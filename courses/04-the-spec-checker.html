@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 4 of 6. A real spec checker in the browser: 14 rules turn every vague word, missing grain and unsigned decision into the question a builder would have to ask. Walk the constructed Saffrondale spec from 19 open questions to 0, read base rates on 440 real user stories, and watch extra words push the count back up.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The spec checker - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 4 of 6. A real rule engine over text: findings, line numbers, open builder questions, real-story base rates and an anti-lever.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/04-the-spec-checker.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The spec checker - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 4 of 6. Count the open builder questions in a spec, for real, in your browser.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 4 · The spec checker - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 4 of 6</div>
+    <h1>The bench: <span class="accent">spec checker</span></h1>
+    <p class="sub">Three sessions of advice become fourteen rules tonight, and the rules run for real in your browser. Paste a story, a set of acceptance criteria or a whole one-page spec, and the checker reads it line by line and prints every finding as the question a builder would have to ask before starting. We walk Saffrondale's spec (a constructed example) from its one-line ask to a signed page with zero open questions, measure the same rules on 440 real user stories from public projects, and press the one button that makes every spec worse: "Add more words".</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Bench night</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the spec</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:3">3-12 · Fourteen rules</span>
+      <span class="a3" style="flex:6">12-38 · The bench: six rungs, real stories, more words</span>
+      <span class="a4" style="flex:1">38-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Sessions 1 to 3 gave Saffrondale's spec a decision statement, stories and testable criteria. Tonight a machine reads it. The checker does not judge whether the dashboard is a good idea; it counts what a builder would still have to ask. That number, open builder questions, is the headline on every rung. It is a count of findings, so it can go up as well as down, and the most useful thing it shows tonight is when and why it goes up.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A checker you can run on any spec you write or receive, the six-rung ladder that takes a one-line ask to zero open questions, base rates for five story rules on real public stories, and proof on your own screen that a longer spec is not a more precise one.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers what the checker reads and its 14 rules</span>
+      <h2>Fourteen rules, each one a builder's question</h2>
+      <span class="tag concept">9 min live</span>
+    </div>
+    <p class="lede">The checker first sorts every line into a kind: a field such as "Decision:" or "Grain:", a story, an acceptance criterion, or plain text. Then it runs the rules that apply to each kind, and finally the rules about the spec as a whole, which look for what is missing rather than what is wrong. Every finding becomes one open question.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How the checker reads a spec. Your text enters one line at a time and is sorted into four lanes: story lines go to 4 story rules (role, reason, one ask, extra notes); criterion lines go to 1 rule, untestable; every line goes to 1 rule for vague words, 19 words of which 6 are exempt when the line has a number; the whole spec goes to 8 spec rules about the decision, the data and the sign-off. All 14 rules feed one result: each finding is one open builder question.">
+        <defs>
+          <filter id="s4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="14" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s4aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s4aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s4aV { font: 800 18px Inter, sans-serif; fill: #3D000E; }
+          .s4aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s4aH" x="30" y="26">HOW THE CHECKER READS A SPEC</text>
+        <text class="s4aA" x="105" y="52" text-anchor="middle">YOUR TEXT</text>
+        <text class="s4aA" x="350" y="52" text-anchor="middle">LINE KIND</text>
+        <text class="s4aA" x="600" y="52" text-anchor="middle">RULES</text>
+
+        <g filter="url(#s4aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="62" width="150" height="232" rx="10" transform="rotate(-0.6 105 178)" fill="url(#s4aHc)"/>
+          <rect x="250" y="62" width="200" height="46" rx="8" transform="rotate(0.5 350 85)" fill="#FFFFFF"/>
+          <rect x="250" y="124" width="200" height="46" rx="8" transform="rotate(-0.5 350 147)" fill="#FFFFFF"/>
+          <rect x="250" y="186" width="200" height="46" rx="8" transform="rotate(0.4 350 209)" fill="#FFFFFF"/>
+          <rect x="250" y="248" width="200" height="46" rx="8" transform="rotate(-0.4 350 271)" fill="#FFFFFF"/>
+          <rect x="500" y="62" width="200" height="46" rx="8" transform="rotate(-0.4 600 85)" fill="#FBEEF1"/>
+          <rect x="500" y="124" width="200" height="46" rx="8" transform="rotate(0.4 600 147)" fill="#FBEEF1"/>
+          <rect x="500" y="186" width="200" height="46" rx="8" transform="rotate(-0.5 600 209)" fill="#FBEEF1"/>
+          <rect x="500" y="248" width="200" height="46" rx="8" transform="rotate(0.5 600 271)" fill="#FBEEF1"/>
+          <rect x="748" y="118" width="110" height="122" rx="12" transform="rotate(-1 803 179)" fill="#F5C518"/>
+          <path d="M183 85 L246 85" marker-end="url(#s4aAr)"/>
+          <path d="M183 147 L246 147" marker-end="url(#s4aAr)"/>
+          <path d="M183 209 L246 209" marker-end="url(#s4aAr)"/>
+          <path d="M183 271 L246 271" marker-end="url(#s4aAr)"/>
+          <path d="M452 85 L496 85" marker-end="url(#s4aAr)"/>
+          <path d="M452 147 L496 147" marker-end="url(#s4aAr)"/>
+          <path d="M452 209 L496 209" marker-end="url(#s4aAr)"/>
+          <path d="M452 271 L496 271" marker-end="url(#s4aAr)"/>
+          <path d="M702 85 C730 85 732 128 744 134" marker-end="url(#s4aAr)"/>
+          <path d="M702 147 L744 160" marker-end="url(#s4aAr)"/>
+          <path d="M702 209 L744 198" marker-end="url(#s4aAr)"/>
+          <path d="M702 271 C730 271 732 230 744 224" marker-end="url(#s4aAr)"/>
+        </g>
+
+        <text class="s4aH" x="350" y="82" text-anchor="middle">Story lines</text>
+        <text class="s4aS" x="350" y="99" text-anchor="middle">As a ..., I want ..., so that ...</text>
+        <text class="s4aH" x="350" y="144" text-anchor="middle">Criterion lines</text>
+        <text class="s4aS" x="350" y="161" text-anchor="middle">Given, When, Then, or bullets</text>
+        <text class="s4aH" x="350" y="206" text-anchor="middle">Every line</text>
+        <text class="s4aS" x="350" y="223" text-anchor="middle">fields, stories, criteria, text</text>
+        <text class="s4aH" x="350" y="268" text-anchor="middle">The whole spec</text>
+        <text class="s4aS" x="350" y="285" text-anchor="middle">what is missing</text>
+
+        <text class="s4aH" x="600" y="82" text-anchor="middle">4 story rules</text>
+        <text class="s4aS" x="600" y="99" text-anchor="middle">role, reason, one ask, notes</text>
+        <text class="s4aH" x="600" y="144" text-anchor="middle">1 rule: untestable</text>
+        <text class="s4aS" x="600" y="161" text-anchor="middle">nothing to observe</text>
+        <text class="s4aH" x="600" y="206" text-anchor="middle">1 rule: vague words</text>
+        <text class="s4aS" x="600" y="223" text-anchor="middle">19 words, 6 pass with digits</text>
+        <text class="s4aH" x="600" y="268" text-anchor="middle">8 spec rules</text>
+        <text class="s4aS" x="600" y="285" text-anchor="middle">decision, data, sign-off</text>
+
+        <text class="s4aV" x="803" y="164" text-anchor="middle">1 finding</text>
+        <text class="s4aH" x="803" y="186" text-anchor="middle">=</text>
+        <text class="s4aH" x="803" y="206" text-anchor="middle">1 open</text>
+        <text class="s4aH" x="803" y="222" text-anchor="middle">question</text>
+        <text class="s4aN" x="30" y="322">The spec rules look for what is absent, which is why a one-line ask still scores 9: almost everything is missing.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - lines are sorted by kind, each kind gets its rules, and every finding is one question a builder would have to ask</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The 14 rules, and where each one comes from<span class="mini">5 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Four rules are modelled on the Quality User Story framework (Lucassen, Dalpiaz, van der Werf and Brinkkemper, 2016). The other ten are teaching rules built for these sessions, and the widget labels each one "lab-only" on every finding.</p>
+        <table class="clean">
+          <tr><th>Rule</th><th>Fires when</th><th>Builder asks</th><th>Origin</th></tr>
+          <tr><td>Story lacks a role or a want</td><td>No "As a ..." or no "I want / need / can"</td><td>Who is this for, and what do they want to do?</td><td>QUS Well-formed</td></tr>
+          <tr><td>Two asks in one story</td><td>"and", "or", "&amp;" or "+" inside the want</td><td>Which comes first, and can they ship apart?</td><td>QUS Atomic, simplified</td></tr>
+          <tr><td>Extra notes inside the story</td><td>Brackets, or more text after a full stop, " - " or "*"</td><td>Is this note part of the requirement?</td><td>QUS Minimal</td></tr>
+          <tr><td>Vague word</td><td>One of 19 words; six quantity words (fast, quick, real-time, up to date, timely, accurate) pass if the line has a number</td><td>Set per word: "How fast is fast?"</td><td>Modelled on QUS Unambiguous; word list lab-only</td></tr>
+          <tr><td>Story gives no reason</td><td>No "so that", "so I" or "so we"</td><td>What changes for this person if we build it?</td><td>Lab-only, contested (Part 2)</td></tr>
+          <tr><td>Criterion with nothing to check</td><td>A Then line or criteria bullet with no number, no quoted value and no observable verb (shows, lists, returns...)</td><td>What would I look at, or count, to call this passed?</td><td>Lab-only</td></tr>
+          <tr><td>No decision named</td><td>No "Decision:" line with which, whether, when, how many, how much or who</td><td>What will someone decide differently?</td><td>Lab-only</td></tr>
+          <tr><td>No user story</td><td>No story line at all</td><td>Who will use this?</td><td>Lab-only</td></tr>
+          <tr><td>No acceptance criteria</td><td>No criterion line at all</td><td>How will we both know it is done?</td><td>Lab-only</td></tr>
+          <tr><td>Metric named but not defined</td><td>The spec mentions a dashboard, metric, rate, model... but has no "Metric:" with a "Definition:" (or numerator and denominator)</td><td>A count of what, divided by a count of what?</td><td>Lab-only</td></tr>
+          <tr><td>No grain</td><td>No "Grain:" line and no "one row per"</td><td>One row per what?</td><td>Lab-only</td></tr>
+          <tr><td>No freshness with a number</td><td>No "Freshness:" with a number, and no line like "no older than 24 hours"</td><td>How old may the data be?</td><td>Lab-only</td></tr>
+          <tr><td>No data source or owner</td><td>"Source:" or "Data owner:" missing</td><td>Which table, and who answers when it looks wrong?</td><td>Lab-only</td></tr>
+          <tr><td>No decision owner or sign-off</td><td>"Decision owner:" missing, or "Signed off:" without a date</td><td>Who confirms this, and on which date?</td><td>Lab-only</td></tr>
+        </table>
+        <p>The four data rules only run when the text mentions a data product (dashboard, report, metric, rate, KPI, model, forecast, chart, pipeline or a percent sign). A spec for a button does not need a grain.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the checker cannot see<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>It reads wording and structure, never meaning. It cannot tell whether the decision is the right one, whether two stories contradict each other (QUS calls this Conflict-free), whether a story describes a solution instead of a problem (Problem-oriented), or whether the "so that" is a real reason or a reference to another story (Conceptually sound). Those are the semantic criteria, and they need a person.</p>
+        <p>It is also easy to satisfy on purpose. "Decision: whether to have a dashboard" contains a choice word and passes. "Then the page shows something" contains an observable verb and passes. A zero is a floor, not a verdict: it means a builder has no question the rules can detect, and the session 6 sign-off is where a person checks the rest.</p>
+        <p>And the rules are simple patterns, so they make mistakes in both directions. Part 2 measures one of them on real stories.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A published checker that chose the same boundary.</strong> AQUSA, the tool Lucassen and colleagues built on their framework, was designed for "easily describable, algorithmically determinable defects", which they call the clerical part of requirements engineering. Its first version implements the syntactic criteria and some pragmatic ones, and deliberately excludes the semantic criteria because those require deep understanding of a requirement's content. The checker on this page draws the same line.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bench">
+    <div class="section-kicker">
+      <span class="klabel">Build-along · the bench</span>
+      <h2>Six rungs, from one line to zero</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Click the six Saffrondale presets in order (Constructed Saffrondale example). Each is the spec as it stood after a session. Read the headline, then the findings: the line number tells you where, the bold name tells you which rule, the line under it is the question a builder would send you.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Open builder questions on each of the six Saffrondale rungs, measured by the checker: one-line ask 9 questions in 13 words; first draft 19 in 68 words; stories fixed 11 in 116 words; criteria testable 4 in 176 words; metric defined 1 in 238 words; signed spec 0 in 259 words. The first draft is highlighted as the highest count.">
+        <defs>
+          <filter id="s4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="24" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s4bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s4bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s4bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s4bK { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s4bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s4bH" x="30" y="26">OPEN BUILDER QUESTIONS, RUNG BY RUNG</text>
+        <text class="s4bS" x="320" y="26">measured by the checker on this page</text>
+        <text class="s4bA" x="800" y="48" text-anchor="middle">WORDS</text>
+
+        <g filter="url(#s4bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="60" width="227" height="30" rx="6" fill="#610017"/>
+          <rect x="260" y="106" width="480" height="30" rx="6" fill="#F5C518"/>
+          <rect x="260" y="152" width="278" height="30" rx="6" fill="#610017"/>
+          <rect x="260" y="198" width="101" height="30" rx="6" fill="#610017"/>
+          <rect x="260" y="244" width="25" height="30" rx="6" fill="#610017"/>
+          <path d="M260 290 L260 320"/>
+          <path d="M260 340 L740 340" stroke="#CFC0C5"/>
+        </g>
+
+        <text class="s4bL" x="240" y="80" text-anchor="end">1 · one-line ask</text>
+        <text class="s4bL" x="240" y="126" text-anchor="end">2 · first draft</text>
+        <text class="s4bL" x="240" y="172" text-anchor="end">3 · stories fixed</text>
+        <text class="s4bL" x="240" y="218" text-anchor="end">4 · criteria testable</text>
+        <text class="s4bL" x="240" y="264" text-anchor="end">5 · metric defined</text>
+        <text class="s4bL" x="240" y="310" text-anchor="end">6 · signed spec</text>
+
+        <text class="s4bW" x="272" y="80">9</text>
+        <text class="s4bK" x="272" y="126">19 · writing surfaced them</text>
+        <text class="s4bW" x="272" y="172">11</text>
+        <text class="s4bW" x="272" y="218">4</text>
+        <text class="s4bK" x="295" y="264">1</text>
+        <text class="s4bK" x="272" y="310">0</text>
+
+        <text class="s4bS" x="800" y="80" text-anchor="middle">13</text>
+        <text class="s4bS" x="800" y="126" text-anchor="middle">68</text>
+        <text class="s4bS" x="800" y="172" text-anchor="middle">116</text>
+        <text class="s4bS" x="800" y="218" text-anchor="middle">176</text>
+        <text class="s4bS" x="800" y="264" text-anchor="middle">238</text>
+        <text class="s4bS" x="800" y="310" text-anchor="middle">259</text>
+        <text class="s4bS" x="260" y="358">open builder questions (bar length), each rung one preset button</text>
+        <text class="s4bN" x="30" y="384">Words grow at every rung. Questions rise once, when the draft is written, then fall to zero.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the count rises when the draft makes hidden questions visible, then falls rung by rung to zero</figcaption>
+    </figure>
+
+    <div class="rqs-bench" data-preset="ask"></div>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Rung 1, the one-line ask: 9 open questions.</strong> Eight findings are "Whole spec": no decision, no user, no criteria, no metric definition, no grain, no freshness, no source or owner, no sign-off. The ninth is on line 1, the vague word "maybe". Short text hides questions; it does not answer them.</p>
+      </div>
+      <div class="step">
+        <p><strong>Rung 2, the first draft: 19.</strong> The count more than doubles. The analyst wrote stories and criteria, and every one of them is now visible to the rules: three stories with no reason, one story with two asks ("a no-show dashboard and a prediction model"), six vague words (real-time, user-friendly, fast, easy, accurate, up to date) and three criteria with nothing to check. This is progress. Session 1's quiz asked why; this is the answer on screen.</p>
+      </div>
+      <div class="step">
+        <p><strong>Rung 3, stories fixed: 11.</strong> The decision statement from session 1 and the three stories from session 2 clear every story finding and the decision finding. What remains is the old criteria (three untestable, three vague words) and five data and sign-off questions.</p>
+      </div>
+      <div class="step">
+        <p><strong>Rung 4, criteria testable: 4.</strong> Session 3's Given, When, Then criteria and two measurable bullets clear six findings. One criterion, "Data on the page is no older than 24 hours at 07:00 each weekday", also answers the freshness question, so that one goes too. Left: the metric definition, the grain, the source and owner, the sign-off.</p>
+      </div>
+      <div class="step">
+        <p><strong>Rung 5, metric defined: 1.</strong> Session 5's block (Metric, Definition, Grain, Freshness, Source, Data owner) clears three findings. Only "No decision owner or sign-off" is left.</p>
+      </div>
+      <div class="step">
+        <p><strong>Rung 6, signed spec: 0.</strong> A named decision owner and a dated sign-off. Zero open questions: every rule passes, and a builder can start without guessing anything these rules can see.</p>
+        <div class="prompt-box good"><span class="label">★ Step 7 · plant a fault, and watch the checker catch it</span>Load "6 · Signed spec", then add this line under the receptionist criterion and press "Check my text":
+
+- The page loads fast.
+
+The checker prints 2 open questions: a vague word ("How fast is fast?") and a criterion with nothing to check. Now change it to "- The page loads in under 3 seconds." and check again: 0.</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Run the checker on the spec you were handed, not only the one you wrote.</strong> A builder who pastes a received spec and sends back the finding list, line numbers and all, has turned "this spec is vague" into seven specific questions the requester can answer in one reply.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the rules on real stories</span>
+      <h2>440 real stories, five base rates</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Saffrondale is constructed, so its numbers only show the rules working. Below the findings, the widget runs the five story rules over 440 real user stories: a seeded sample of 20 from each of 22 public project backlogs collected by Fabiano Dalpiaz at Utrecht University (Requirements data sets, 2018, CC BY 4.0). These are stories real teams wrote, unedited apart from the changes the widget lists.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Share of 440 real user stories that trigger each story rule at least once, measured by the checker: no reason given 38.6 percent; two asks in one 27.7 percent; vague word 10.7 percent; extra notes inside 1.8 percent; role or want missing 0.5 percent. Stories with no finding at all: 41.6 percent.">
+        <defs>
+          <filter id="s4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="34" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s4cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4cL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s4cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s4cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s4cK { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4cB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s4cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s4cH" x="30" y="26">440 REAL USER STORIES: SHARE THAT TRIGGER EACH RULE</text>
+        <text class="s4cS" x="30" y="44">Dalpiaz (2018), 20 stories from each of 22 public backlogs, CC BY 4.0</text>
+
+        <g filter="url(#s4cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="64" width="371" height="30" rx="6" fill="#F5C518"/>
+          <rect x="260" y="110" width="266" height="30" rx="6" fill="#610017"/>
+          <rect x="260" y="156" width="103" height="30" rx="6" fill="#610017"/>
+          <rect x="260" y="202" width="17" height="30" rx="5" fill="#610017"/>
+          <rect x="260" y="248" width="6" height="30" rx="3" fill="#610017"/>
+          <rect x="260" y="294" width="399" height="30" rx="6" fill="#FBEEF1"/>
+          <path d="M248 287 L760 287" stroke="#CFC0C5" stroke-dasharray="4 5"/>
+        </g>
+
+        <text class="s4cL" x="240" y="84" text-anchor="end">No reason given</text>
+        <text class="s4cL" x="240" y="130" text-anchor="end">Two asks in one</text>
+        <text class="s4cL" x="240" y="176" text-anchor="end">Vague word</text>
+        <text class="s4cL" x="240" y="222" text-anchor="end">Extra notes inside</text>
+        <text class="s4cL" x="240" y="268" text-anchor="end">Role or want missing</text>
+        <text class="s4cL" x="240" y="314" text-anchor="end">No finding at all</text>
+
+        <text class="s4cK" x="272" y="84">38.6% · contested rule</text>
+        <text class="s4cW" x="272" y="130">27.7%</text>
+        <text class="s4cW" x="272" y="176">10.7%</text>
+        <text class="s4cK" x="287" y="222">1.8%</text>
+        <text class="s4cK" x="276" y="268">0.5%</text>
+        <text class="s4cK" x="272" y="314">41.6%</text>
+        <text class="s4cB" x="645" y="84">lab-only</text>
+        <text class="s4cS" x="536" y="130">over-flags: see below</text>
+        <text class="s4cN" x="30" y="356">A story can trigger several rules, so the five rule bars do not add up to 100 minus the clean share.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the most common finding on real stories is the contested one, and the second most common is the rule that over-flags</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Read the two biggest bars honestly<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>No reason given, 38.6%.</strong> Real teams leave out "so that" in well over a third of their stories. Is that a defect? It depends who you ask. The Quality User Story framework treats the ends as optional: a story should contain a role, a means and "(optimally) some ends". Mike Cohn writes "so that" in almost every story (62 of 64 in one backlog he counted) but does not consider it mandatory, because sometimes it adds no value. The rule here is lab-only and flags it anyway, because for a data product the reason is usually where the decision lives. Both positions are defensible; the widget says which one it takes.</p>
+        <p><strong>Two asks in one, 27.7%.</strong> This rule is cruder than the published one. AQUSA's Atomic check also parses both sides of the "and" to confirm each half is a separate feature, and even so its own evaluation found Atomic precision of 51.18%: about half of its Atomic alarms were false. The checker here skips the parse, so it over-flags. One real story in the sample reads "As an Agency user, I want the header information box to show updated date AND time, so that I know when it was updated." That is one ask, and the rule fires on it.</p>
+        <p>Press "Check the next real story" a few times and judge each finding yourself. Agreeing with some and not others is the point.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Why the sample, and what changed in it<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The full public set has 1,680 non-empty story lines across 22 projects (the curator describes it as 22 data sets of 50 or more requirements each, gathered from web sources and sampled). The page ships a seeded sample of 20 per project so that every project counts equally and the file stays small. The licence, CC BY 4.0, asks us to say what we changed: curly quotes and dashes were straightened, other accents dropped, whitespace trimmed and empty lines removed. The widget prints the same list.</p>
+        <p>The curator notes that the set was gathered from public web sources, uses non-recent data and was originally used to study ambiguity detection. Treat the base rates as a description of these 440 stories, not of all user stories everywhere.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>How good is a story checker, measured?</strong> Lucassen and colleagues ran AQUSA on 1,023 real user stories from 18 organisations and checked every alarm by hand. Overall it found 93.8% of the defects it looks for (recall) and 72.2% of its alarms were real (precision). They aimed for recall close to 100%, the bar Dan Berry argues an NLP tool for requirements needs to be useful, and did not reach it. A checker is a second reader with known blind spots, not a judge.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the anti-lever</span>
+      <h2>Add more words</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">When a spec is challenged, the instinct is to add explanation. The "Add more words" button does exactly that: it appends one well-meaning sentence to every story and every checked criterion, the kind of sentence people really add ("It should be easy to use for all clinic staff."). Press it on any rung and compare the two numbers in the headline: words, and open questions.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The anti-lever, measured by the checker. Signed spec: 259 words and 0 questions; after adding 68 words of padding, 327 words and 11 questions. First draft: 68 words and 19 questions; after adding 58 words of padding, 126 words and 32 questions.">
+        <defs>
+          <filter id="s4dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="44" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s4dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s4dL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s4dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s4dV { font: 800 20px Inter, sans-serif; fill: #3D000E; }
+          .s4dA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s4dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s4dH" x="30" y="26">MORE WORDS, MORE QUESTIONS</text>
+        <text class="s4dA" x="165" y="50" text-anchor="middle">AS WRITTEN</text>
+        <text class="s4dA" x="535" y="50" text-anchor="middle">AFTER "ADD MORE WORDS"</text>
+
+        <g filter="url(#s4dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="62" width="250" height="86" rx="12" transform="rotate(-0.6 165 105)" fill="#FBEEF1"/>
+          <rect x="410" y="62" width="250" height="86" rx="12" transform="rotate(0.6 535 105)" fill="#F5C518"/>
+          <rect x="40" y="176" width="250" height="86" rx="12" transform="rotate(0.5 165 219)" fill="#FFFFFF"/>
+          <rect x="410" y="176" width="250" height="86" rx="12" transform="rotate(-0.5 535 219)" fill="#FFFFFF"/>
+          <path d="M296 112 L402 112" marker-end="url(#s4dAr)"/>
+          <path d="M296 226 L402 226" marker-end="url(#s4dAr)"/>
+          <path d="M690 92 l12 -8 l12 8 l12 -8 l12 8 l12 -8 l12 8 l12 -8 l12 8"/>
+        </g>
+
+        <text class="s4dH" x="60" y="86">6 · Signed spec</text>
+        <text class="s4dV" x="60" y="118">0 questions</text>
+        <text class="s4dS" x="60" y="138">259 words</text>
+        <text class="s4dH" x="430" y="86">6 · Signed spec, padded</text>
+        <text class="s4dV" x="430" y="118">11 questions</text>
+        <text class="s4dS" x="430" y="138">327 words</text>
+        <text class="s4dA" x="349" y="102" text-anchor="middle">+68 words</text>
+
+        <text class="s4dH" x="60" y="200">2 · First draft</text>
+        <text class="s4dV" x="60" y="232">19 questions</text>
+        <text class="s4dS" x="60" y="252">68 words</text>
+        <text class="s4dH" x="430" y="200">2 · First draft, padded</text>
+        <text class="s4dV" x="430" y="232">32 questions</text>
+        <text class="s4dS" x="430" y="252">126 words</text>
+        <text class="s4dA" x="349" y="216" text-anchor="middle">+58 words</text>
+
+        <text class="s4dS" x="690" y="124">padding adds:</text>
+        <text class="s4dL" x="690" y="144">notes inside stories</text>
+        <text class="s4dL" x="690" y="164">easy, seamless,</text>
+        <text class="s4dL" x="690" y="184">as appropriate</text>
+        <text class="s4dS" x="690" y="208">never a number</text>
+        <text class="s4dN" x="30" y="292">Length is not precision. The padded sentences sound helpful, and each one is a question a builder must now ask.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the same padding takes a finished spec from 0 open questions to 11</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Why padding raises the count, and where it does not<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>On the signed spec, padding adds 11 findings: 3 "extra notes inside the story" (each story now carries a second sentence) and 8 vague words (easy twice, seamless twice, fast, accurate, up to date, as appropriate). Not one sentence answered a question that was open before, because none of them contains a number, a name or something to observe.</p>
+        <p>Look at what did not fire. The receptionist criterion already says "the 20 patients with the highest predicted no-show risk"; padding it with "accurate and up to date" adds no finding, because the line carries a number and those are quantity words. And the 24-hour freshness criterion keeps "fast" out of the count for the same reason, though "seamlessly" still fires. The honest reading: padding next to a measurable statement does less harm. Padding in place of one is all harm.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The words that pass, and why that is fair<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Six of the 19 vague words are quantity words: fast, quick, real-time, up to date, timely and accurate. Each one is exempt on a line that also carries a digit, on the reasoning that "fast: under 3 seconds" has answered its own question. The other thirteen (user-friendly, easy, simple, intuitive, efficient, flexible, robust, seamless, as appropriate, as needed, etc., and/or, maybe) always fire, because no number on the line tells you what "intuitive" means.</p>
+        <p>The rule is generous on purpose. A checker that fired on "fast" even next to "3 seconds" would teach people to ignore it.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Minimal is a published criterion, not a style preference.</strong> The Quality User Story framework's Minimal criterion says a story contains nothing more than a role, a means and ends; comments, expected behaviour and testing hints belong in separate notes. Its example from a real healthcare product appended "See: Mockup from Alice" and implementation notes to a story, and AQUSA reports all text after the first full stop, and anything in brackets, as not minimal. The padding button triggers the same check.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Check a real spec.</strong> Paste a spec, ticket or request you received this month into the checker. Write down the count and the three findings you most agree with.</li>
+      <li><strong>Find one false alarm.</strong> Among your findings or among ten real stories ("Check the next real story"), find a finding you think is wrong. Write one sentence on why the rule fired and what it missed.</li>
+      <li><strong>Pad, then cut.</strong> Press "Add more words" on rung 6, then edit the padded text until it is back to 0 without simply deleting the padding: replace each padded sentence with something measurable or move it to a notes line.</li>
+      <li><strong>Count the data questions.</strong> On rung 4, four questions are left. Write down what you would need to know to answer the first one, "Metric named but not defined", for a no-show rate. Session 5 starts there.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · The signed spec scores 0 open questions. After "Add more words" it scores 11 with 68 more words. What is the lesson?</p>
+      <button class="qopt" type="button">A · The checker penalises long specs</button>
+      <button class="qopt" type="button">B · Specs should be as short as possible</button>
+      <button class="qopt" type="button">C · Length is not precision: the added sentences contain no number, name or observable outcome, so each vague word and appended note becomes a question a builder must ask</button>
+      <button class="qopt" type="button">D · The signed spec was never really finished</button>
+      <p class="qwhy">The checker never counts words. It counts findings, and the padding created them: 3 notes inside stories and 8 vague words. Padding next to a number (the 20-patient criterion) added nothing, which is the honest nuance.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · On 440 real stories, 38.6% trigger "Story gives no reason". How should you read that number?</p>
+      <button class="qopt" type="button">A · As the share of these stories with no "so that", under a lab-only rule on a contested point: the Quality User Story framework calls the reason optional and Mike Cohn does not make it mandatory</button>
+      <button class="qopt" type="button">B · As proof that 38.6% of all user stories are defective</button>
+      <button class="qopt" type="button">C · As AQUSA's measured precision</button>
+      <button class="qopt" type="button">D · As a reason to delete those stories</button>
+      <p class="qwhy">It is a base rate for one rule on one public sample. Whether a missing reason is a defect is a real disagreement; the rule takes a side for data products, where the reason is usually where the decision lives, and says so.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · Why does the checker's "Two asks in one" rule fire on "show updated date AND time", and what does that tell you?</p>
+      <button class="qopt" type="button">A · Because date and time must always be separate stories</button>
+      <button class="qopt" type="button">B · Because the story has no role</button>
+      <button class="qopt" type="button">C · Because the word "updated" is vague</button>
+      <button class="qopt" type="button">D · Because it only looks for "and" in the want; without the parse AQUSA adds, it over-flags, and even AQUSA's Atomic check had a precision of 51.18%</button>
+      <p class="qwhy">Simple patterns make mistakes in both directions. A finding is a prompt to look, and a person decides. That is also why a zero is a floor, not a verdict.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Quality User Story framework and AQUSA</span><span class="note">Lucassen, Dalpiaz, van der Werf, Brinkkemper (2016), Requirements Engineering 21, 383-403; criteria, AQUSA design, Tables 4 and 5 read at source (author manuscript)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Real user stories</span><span class="note">Dalpiaz (2018), Requirements data sets (user stories), Mendeley Data, doi:10.17632/7zbk8zsd8y.2, CC BY 4.0; seeded sample of 440, changes listed on the widget</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">"So that" is optional</span><span class="note">Mike Cohn, Mountain Goat Software blog, on the user story template; read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The ten lab-only rules</span><span class="note">Teaching rules built for these sessions, each with a passing and a failing unit test; labelled lab-only on every finding</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale's six rungs</span><span class="note">Constructed example; every count on this page is printed by the widget above</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>One finding, one question</b><span>The headline is open builder questions. It can rise as well as fall.</span></div>
+      <div class="cheat-item"><b>Short hides, long reveals</b><span>The one-line ask scores 9, the first draft 19. Count at handover, not at the start.</span></div>
+      <div class="cheat-item"><b>Six rungs</b><span>9, 19, 11, 4, 1, 0: ask, draft, stories, criteria, metric, signature.</span></div>
+      <div class="cheat-item"><b>Length is not precision</b><span>Padding took the signed spec from 0 to 11. Add a number, a name or a check, never an adjective.</span></div>
+      <div class="cheat-item"><b>Read the rule's origin</b><span>Four modelled on the Quality User Story framework, ten lab-only. Contested rules say so.</span></div>
+      <div class="cheat-item"><b>Zero is a floor</b><span>The checker reads wording, not meaning. A person still checks the decision at sign-off.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Rung 4 left four questions, and three of them are about the data. Session 5 pins down the no-show rate: numerator, denominator, filters, time window and grain, the freshness a Monday decision needs, the source and its owner, and why two careful analysts can report two different no-show rates from the same table.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 4 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="03-acceptance-criteria-a-builder-can-test.html">← Prev: Acceptance criteria a builder can test</a> &nbsp;·&nbsp; <a href="05-metric-definitions-grain-freshness.html">Next: The data side: metric definitions, grain, freshness, sources →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

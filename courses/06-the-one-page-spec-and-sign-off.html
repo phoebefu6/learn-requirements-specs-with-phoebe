@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 6 of 6. The one-page spec, sign-off by the decision owner, and change control: which changes need a new signature and which need only a log line. Capstone: the constructed Saffrondale spec, signed, scored at 0 open questions, padded, changed and re-signed on the checker.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The one-page spec - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 6 of 6. One page, one signature, and the changes that force a re-sign.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/06-the-one-page-spec-and-sign-off.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The one-page spec - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 6 of 6. A signed one-page spec with zero open questions, and how to keep it signed.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 6 · The one-page spec - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 6 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 6 of 6</div>
+    <h1>The one-page spec, <span class="accent">signed and kept signed</span></h1>
+    <p class="sub">Five sessions built the parts: a decision statement, stories, criteria, a checked draft and a pinned-down metric. Tonight they go on one page, in the order a builder reads them, and the person who owns the decision signs it. Then the part most specs skip: a change arrives a month later, and the page has to say which changes need a new signature and which need only a line in the log. The capstone is Saffrondale's signed spec (a constructed example), scored on the checker, padded, changed and re-signed in front of you.</p>
+    <div class="chip-row">
+      <span class="chip level">🔴 Capstone</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the spec</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · One page, one signature, change control</span>
+      <span class="a3" style="flex:5">18-40 · Capstone: sign, pad, change, re-sign</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Session 5 left the Constructed Saffrondale example at one open question: nobody had signed. A spec is finished when the builder has no questions left, and it stays finished only while everyone agrees it describes what will be built. Tonight is about both halves: getting to the signature, and keeping the signature honest when the request changes.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A one-page spec template in the order a builder reads it, a clear answer to "who signs and what does the signature mean", a two-branch rule for which changes force a re-sign, and Saffrondale's spec taken from 0 open questions to 1 and back to 0 through a real change.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the one-page template</span>
+      <h2>Everything on one page</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Each earlier session wrote one block of the spec. On the page they go in the order a builder needs them: why (the decision), for whom (stories), how to tell it works (criteria), exactly which number (the metric block), who agreed (the signature) and what has changed since (the log). One page is a constraint on purpose: what does not fit is usually what does not trace back to the decision.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saffrondale's one-page spec drawn as a page with seven sections in order: title and version, decision, stories, acceptance criteria, the metric block of six lines, decision owner and sign-off, change log. Each section is tagged with the session that wrote it: sessions 1, 1, 2, 3, 5, 6 and 6. Session 4 checked the whole page: 0 open questions.">
+        <defs>
+          <filter id="s6aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s6aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s6aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s6aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s6aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s6aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s6aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s6aB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s6aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s6aH" x="30" y="26">SAFFRONDALE'S ONE-PAGE SPEC, IN READING ORDER</text>
+        <text class="s6aS" x="380" y="26">Constructed Saffrondale example</text>
+        <text class="s6aA" x="500" y="56">WRITTEN IN</text>
+
+        <g filter="url(#s6aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="50" width="420" height="316" rx="8" transform="rotate(-0.4 250 208)" fill="#FFFFFF"/>
+          <rect x="60" y="66" width="380" height="32" rx="6" fill="#FBEEF1"/>
+          <rect x="60" y="108" width="380" height="32" rx="6" fill="#F5C518"/>
+          <rect x="60" y="150" width="380" height="32" rx="6" fill="#FBEEF1"/>
+          <rect x="60" y="192" width="380" height="32" rx="6" fill="#FBEEF1"/>
+          <rect x="60" y="234" width="380" height="32" rx="6" fill="#FBEEF1"/>
+          <rect x="60" y="276" width="380" height="32" rx="6" fill="#610017"/>
+          <rect x="60" y="318" width="380" height="32" rx="6" fill="#FFFFFF"/>
+          <path d="M444 82 L490 82" marker-end="url(#s6aAr)"/>
+          <path d="M444 124 L490 124" marker-end="url(#s6aAr)"/>
+          <path d="M444 166 L490 166" marker-end="url(#s6aAr)"/>
+          <path d="M444 208 L490 208" marker-end="url(#s6aAr)"/>
+          <path d="M444 250 L490 250" marker-end="url(#s6aAr)"/>
+          <path d="M444 292 L490 292" marker-end="url(#s6aAr)"/>
+          <path d="M444 334 L490 334" marker-end="url(#s6aAr)"/>
+          <rect x="690" y="150" width="160" height="116" rx="12" transform="rotate(2 770 208)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+        </g>
+
+        <text class="s6aL" x="76" y="87">Title and version (v1.0)</text>
+        <text class="s6aH" x="76" y="129">Decision: which patients get a call</text>
+        <text class="s6aL" x="76" y="171">Stories: who, what, why (3)</text>
+        <text class="s6aL" x="76" y="213">Acceptance criteria (6 lines)</text>
+        <text class="s6aL" x="76" y="255">Metric, definition, grain, freshness...</text>
+        <text class="s6aW" x="76" y="297">Decision owner, signed off, date</text>
+        <text class="s6aL" x="76" y="339">Change log</text>
+
+        <text class="s6aS" x="500" y="86">1 · the ask</text>
+        <text class="s6aS" x="500" y="128">1 · the ask</text>
+        <text class="s6aS" x="500" y="170">2 · stories</text>
+        <text class="s6aS" x="500" y="212">3 · criteria</text>
+        <text class="s6aS" x="500" y="254">5 · the data side</text>
+        <text class="s6aS" x="500" y="296">6 · sign-off</text>
+        <text class="s6aS" x="500" y="338">6 · change control</text>
+
+        <text class="s6aB" x="770" y="186" text-anchor="middle">4 · checked</text>
+        <text class="s6aH" x="770" y="212" text-anchor="middle">0 open</text>
+        <text class="s6aH" x="770" y="230" text-anchor="middle">questions</text>
+        <text class="s6aS" x="770" y="250" text-anchor="middle">259 words</text>
+        <text class="s6aN" x="30" y="392">The decision sits second, so every block below it can be traced to it, and cut if it cannot.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - six sessions, seven blocks, one page, and the decision near the top so everything below can be traced to it</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The sections, in the order a builder reads them<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Title and version.</strong> "Saffrondale Clinics no-show dashboard v1.0". The version number matters the first time something changes.</p>
+        <p><strong>Decision.</strong> The one sentence from session 1: when, who, the choice, the action.</p>
+        <p><strong>Stories.</strong> From session 2, each with a role, a want and a reason that traces back to the decision.</p>
+        <p><strong>Acceptance criteria.</strong> From session 3: Given, When, Then plus measurable bullets for freshness, speed and access.</p>
+        <p><strong>The metric block.</strong> From session 5: Metric, Definition, Grain, Freshness, Source, Data owner.</p>
+        <p><strong>Decision owner and Signed off.</strong> A name, a role, a date and the version signed.</p>
+        <p><strong>Change log.</strong> One line per version: what changed, when, and whether it was re-signed.</p>
+        <p>While drafting, an "Open questions" list sits at the bottom, each with an owner (session 1's build-along). At handover it is empty, and it is deleted rather than left as a heading with nothing under it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Why one page<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The limit forces cutting. A story that cannot be traced to the decision statement, a criterion nobody will check, a metric nobody asked for: on one page, each of those is taking space from something the builder needs.</p>
+        <p>The Agile Alliance glossary is blunt that a user story is not a document, and that its detail should grow as implementation nears. The one-page spec is consistent with both: it holds the detail agreed at handover, not every conversation that produced it. The conversations stay in the meeting notes; the page holds the outcome.</p>
+        <p>Some data products honestly need more than a page, for example a pipeline feeding several teams, or a model with a long list of exclusions. Then keep one page as the front sheet, with the decision, the owner and the signature, and link the longer sections from it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Templates in your tools<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Issue trackers and wikis (Jira, Linear, Confluence, Azure DevOps and their peers) all offer page and ticket templates. Any of them can hold the seven blocks above. What they rarely hold by default is the decision statement at the top and a signature with a date at the bottom, so add both as fields. The tool matters less than the order and the signature.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>What a standard says a good requirement is.</strong> ISO/IEC/IEEE 29148:2018, the international standard for requirements engineering, has a clause on the characteristics of individual requirements (5.2.5) and another on the characteristics of a set of requirements (5.2.6); those clause titles were read at source. The list itself is reported, because the standard is paywalled: necessary, appropriate, unambiguous, complete, singular, feasible, verifiable, correct and conforming. The separate clause for a set is the point for a one-page spec: requirements that are each fine can still fail together.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers sign-off</span>
+      <h2>Who signs, and what the signature means</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The decision owner signs: the person named as WHO in the decision statement. For the Constructed Saffrondale example that is Amara Osei, clinic operations lead (fictional). The signature is a promise in one direction, and the builder's check is a promise in the other.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two people meet at one signature line. The decision owner checks: is this my decision, and will I use the result for it? The builder checks: are there zero open questions I can see? Between them, the signature: signed off 2026-03-02 by Amara Osei, version 1.0. Under all of it a floor line: the checker's 0 covers wording only; meaning, conflicts and whether it is the right decision are checked by people.">
+        <defs>
+          <filter id="s6bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="62" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s6bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s6bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s6bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s6bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s6bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s6bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s6bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s6bH" x="30" y="26">ONE SIGNATURE, TWO CHECKS</text>
+        <text class="s6bS" x="232" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s6bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="56" width="230" height="110" rx="12" transform="rotate(-0.8 155 111)" fill="#FBEEF1"/>
+          <rect x="610" y="56" width="230" height="110" rx="12" transform="rotate(0.8 725 111)" fill="#FBEEF1"/>
+          <rect x="320" y="76" width="240" height="70" rx="10" transform="rotate(-0.5 440 111)" fill="#610017"/>
+          <path d="M272 111 L314 111" marker-end="url(#s6bAr)"/>
+          <path d="M608 111 L566 111" marker-end="url(#s6bAr)"/>
+          <path d="M40 200 L840 200" stroke-width="3"/>
+          <path d="M60 200 l-12 14 M100 200 l-12 14 M140 200 l-12 14 M180 200 l-12 14 M220 200 l-12 14"/>
+        </g>
+
+        <text class="s6bH" x="60" y="82">Decision owner</text>
+        <text class="s6bL" x="60" y="104">Is this my decision?</text>
+        <text class="s6bS" x="60" y="124">Will I use the result</text>
+        <text class="s6bS" x="60" y="140">for it, on Mondays?</text>
+
+        <text class="s6bH" x="630" y="82">Builder</text>
+        <text class="s6bL" x="630" y="104">Zero open questions</text>
+        <text class="s6bL" x="630" y="120">that I can see?</text>
+        <text class="s6bS" x="630" y="140">checker run, list empty</text>
+
+        <text class="s6bW" x="440" y="106" text-anchor="middle">Signed off: 2026-03-02</text>
+        <text class="s6bW" x="440" y="126" text-anchor="middle">by Amara Osei, v1.0</text>
+
+        <text class="s6bA" x="240" y="232">THE CHECKER'S 0: wording only, a floor</text>
+        <text class="s6bS" x="240" y="250">meaning, conflicts, the right decision: checked by people</text>
+        <text class="s6bN" x="30" y="284">The signature sits on the floor the checker sets, never in place of what a person must still read.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the owner confirms it is their decision, the builder confirms nothing is left to guess, and both stand on the checker's floor</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The decision owner signs, the builder confirms<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>What the owner's signature means:</strong> "If you build this as written, I will use it for the decision on line 2." It is not approval of the design, the tool or the SQL. It is a statement about the decision, and only the person who makes the decision can make it.</p>
+        <p><strong>What the builder's confirmation means:</strong> "I have read every line and I have no open questions I can see." The builder runs the checker, reads the findings, and says so. If a builder signs off with questions in their head, those are the guessed requirements from session 1, now with a signature on top.</p>
+        <p>Who should not sign: the person who forwarded the ask, a committee, or the builder alone. A signature from someone who does not make the decision is a signature on a document, not on a decision.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Zero is a floor<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The checker reads wording and structure. The Quality User Story framework's semantic criteria, such as Conflict-free (no two stories contradict) and Problem-oriented (a story states the problem, not the solution), need a person; AQUSA's first version left them out on purpose because they require deep understanding of a requirement's content. A spec that says "Decision: whether to build a dashboard" passes the choice-word rule and is still a poor decision statement. Read the signed page once, aloud, with the owner, before anyone signs.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Sign-off is not a contract<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Bill Wake's N in INVEST is Negotiable: a story "captures the essence, not the details", and details are worked out between the customer and the programmer. A signature does not end that. It fixes which version both sides agreed, so that the next negotiation starts from a known page instead of from two memories. Change control, Part 3, is how negotiation continues after the signature without dissolving it.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A published checker that knew its boundary.</strong> Lucassen, Dalpiaz, van der Werf and Brinkkemper designed AQUSA for "easily describable, algorithmically determinable defects", the clerical part of requirements engineering, and excluded the semantic criteria from its first version. Even inside that boundary it caught 93.8% of the defects it looked for, at 72.2% precision, on 1,023 real stories. A checker that clears a spec is a necessary step before signing, not a replacement for the person who signs.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers change control</span>
+      <h2>What forces a re-sign</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Every signed spec meets a change. The question is never whether to allow changes; it is which changes make the old signature untrue. A rule of thumb with two branches covers most of them, and the change log records which branch each change took.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A decision tree for a change to a signed spec. Does the change alter the decision, a definition, the grain, the freshness or the access? Yes: new version and re-sign, for example Saffrondale version 1.1, where late cancellations now count as no-shows. No: a log line only, for example wording, layout or a typo, and version 1.0 stays signed.">
+        <defs>
+          <filter id="s6cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="63" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s6cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s6cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s6cL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s6cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s6cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s6cA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s6cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s6cH" x="30" y="26">A CHANGE ARRIVES: NEW SIGNATURE, OR A LOG LINE?</text>
+
+        <g filter="url(#s6cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="120" width="260" height="90" rx="12" transform="rotate(-0.6 170 165)" fill="#F5C518"/>
+          <rect x="380" y="50" width="220" height="60" rx="10" transform="rotate(0.6 490 80)" fill="#FFFFFF"/>
+          <rect x="650" y="50" width="200" height="60" rx="10" transform="rotate(-0.6 750 80)" fill="#610017"/>
+          <rect x="380" y="220" width="220" height="60" rx="10" transform="rotate(-0.6 490 250)" fill="#FFFFFF"/>
+          <rect x="650" y="220" width="200" height="60" rx="10" transform="rotate(0.6 750 250)" fill="#FBEEF1"/>
+          <path d="M302 140 C340 140 340 80 374 80" marker-end="url(#s6cAr)"/>
+          <path d="M302 190 C340 190 340 250 374 250" marker-end="url(#s6cAr)"/>
+          <path d="M602 80 L644 80" marker-end="url(#s6cAr)"/>
+          <path d="M602 250 L644 250" marker-end="url(#s6cAr)"/>
+        </g>
+
+        <text class="s6cH" x="170" y="150" text-anchor="middle">Does the change alter the</text>
+        <text class="s6cH" x="170" y="168" text-anchor="middle">decision, a definition, grain,</text>
+        <text class="s6cH" x="170" y="186" text-anchor="middle">freshness or access?</text>
+
+        <text class="s6cA" x="318" y="100">yes</text>
+        <text class="s6cA" x="318" y="238">no</text>
+
+        <text class="s6cH" x="490" y="76" text-anchor="middle">New version, re-sign</text>
+        <text class="s6cS" x="490" y="94" text-anchor="middle">dated, the owner signs again</text>
+        <text class="s6cW" x="750" y="76" text-anchor="middle">Saffrondale v1.1</text>
+        <text class="s6cW" x="750" y="94" text-anchor="middle">late cancels = no-show</text>
+
+        <text class="s6cH" x="490" y="246" text-anchor="middle">Log line only</text>
+        <text class="s6cS" x="490" y="264" text-anchor="middle">wording, layout, a typo</text>
+        <text class="s6cH" x="750" y="246" text-anchor="middle">v1.0 stays signed</text>
+        <text class="s6cS" x="750" y="264" text-anchor="middle">no new signature</text>
+
+        <text class="s6cN" x="30" y="318">If a number on the screen could change, the person who decides with that number signs again.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - one question splits every change: could a number on the screen move? Then re-sign</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Changes that need a new signature<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A rule of thumb for these sessions, not a published standard: re-sign when the change could move a number the decision owner acts on, or change who sees it.</p>
+        <ul>
+          <li><strong>The decision.</strong> Monday becomes daily; reminder calls become text messages.</li>
+          <li><strong>A definition.</strong> Late cancellations now count as no-shows (the Constructed Saffrondale v1.1 change below). Session 5 showed the same table giving 10.6% under one definition and 13.9% under the other.</li>
+          <li><strong>Grain or freshness.</strong> Per clinic becomes per clinician; loaded by 06:00 becomes hourly.</li>
+          <li><strong>Access.</strong> Receptionists can now see other clinics' patients.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Changes that need only a log line<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Wording that changes no meaning, a layout change that moves no number, a typo, a new example that illustrates an existing rule. Each still gets a dated line in the change log, so the next reader can see that the page moved and why nobody re-signed. A silent edit to a signed page is how a signature quietly stops meaning anything.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Versioning the spec, and what happens next<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Number the versions (v1.0, v1.1, v2.0), keep the old ones, and write each change log line as: version, date, what changed, why, re-signed or not. Wider project governance (milestones, risks, who is responsible for what) is the subject of <a href="https://phoebefu6.github.io/learn-tech-project-pmo-with-phoebe/courses/01-frame-the-initiative.html">Tech Project PMO, session 1</a>; change control here covers only the spec.</p>
+        <p>Once signed, the spec is input to design. How builders turn requirements like "no older than 24 hours at 07:00" into architecture constraints is <a href="https://phoebefu6.github.io/learn-system-design-with-phoebe/courses/01-requirements-to-constraints.html">System Design, session 1</a>.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Record the decisions, not only the result.</strong> The Data Cards work by Pushkarna, Zaldivar and Kjartansson (2022) asks dataset documentation to explain the decisions that affect how a model performs, alongside sources and intended use. A spec's change log does the same job for a data product: a reader in six months should see not only that the no-show definition is different, but when it changed, why, and who agreed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Capstone: Saffrondale's signed spec, scored</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The Constructed Saffrondale example, signed at version 1.0, goes through four things on the checker: a score, a padding test, a real change and a re-sign. Then you write your own.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Open builder questions printed by the checker at every step of Saffrondale's spec: the ask 9, first draft 19, stories 11, criteria 4, metric 1, signed version 1.0 0, version 1.1 unsigned 1, version 1.1 re-signed 0. A dashed ghost bar over the signed version shows 11 if padded with extra words.">
+        <defs>
+          <filter id="s6dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="64" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s6dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s6dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s6dL { font: 600 11px Inter, sans-serif; fill: #25141A; }
+          .s6dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s6dV { font: 800 14px Inter, sans-serif; fill: #3D000E; }
+          .s6dB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s6dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s6dH" x="30" y="26">OPEN BUILDER QUESTIONS, FROM THE ASK TO A RE-SIGNED v1.1</text>
+
+        <g filter="url(#s6dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="50" y="160" width="70" height="90" rx="5" fill="#610017"/>
+          <rect x="145" y="60" width="70" height="190" rx="5" fill="#F5C518"/>
+          <rect x="240" y="140" width="70" height="110" rx="5" fill="#610017"/>
+          <rect x="335" y="210" width="70" height="40" rx="5" fill="#610017"/>
+          <rect x="430" y="240" width="70" height="10" rx="3" fill="#610017"/>
+          <rect x="525" y="140" width="70" height="110" rx="5" stroke-dasharray="5 4" stroke="#5C474E"/>
+          <rect x="620" y="240" width="70" height="10" rx="3" fill="#610017"/>
+          <path d="M40 250 L800 250"/>
+          <path d="M600 192 C640 180 650 150 690 150" stroke-dasharray="3 4" marker-end="url(#s6dAr)"/>
+        </g>
+
+        <text class="s6dV" x="85" y="152" text-anchor="middle">9</text>
+        <text class="s6dV" x="180" y="54" text-anchor="middle">19</text>
+        <text class="s6dV" x="275" y="132" text-anchor="middle">11</text>
+        <text class="s6dV" x="370" y="202" text-anchor="middle">4</text>
+        <text class="s6dV" x="465" y="232" text-anchor="middle">1</text>
+        <text class="s6dV" x="560" y="242" text-anchor="middle">0</text>
+        <text class="s6dB" x="560" y="132" text-anchor="middle">padded: 11</text>
+        <text class="s6dV" x="655" y="232" text-anchor="middle">1</text>
+        <text class="s6dV" x="750" y="242" text-anchor="middle">0</text>
+        <text class="s6dS" x="700" y="146">a change arrives</text>
+
+        <text class="s6dL" x="85" y="270" text-anchor="middle">ask</text>
+        <text class="s6dL" x="180" y="270" text-anchor="middle">first draft</text>
+        <text class="s6dL" x="275" y="270" text-anchor="middle">stories</text>
+        <text class="s6dL" x="370" y="270" text-anchor="middle">criteria</text>
+        <text class="s6dL" x="465" y="270" text-anchor="middle">metric</text>
+        <text class="s6dL" x="560" y="270" text-anchor="middle">signed v1.0</text>
+        <text class="s6dL" x="655" y="270" text-anchor="middle">v1.1 unsigned</text>
+        <text class="s6dL" x="750" y="270" text-anchor="middle">v1.1 re-signed</text>
+        <text class="s6dN" x="30" y="312">Zero is a state you keep, not a box you tick once: one change takes it to 1 until the owner signs again.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the spec reaches zero, padding would undo it, and a real change reopens one question until the owner re-signs</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Score the signed spec.</strong> The checker below has loaded "6 · Signed spec". It prints 0 open builder questions for 259 words. Read the page top to bottom and find each block from Part 1.</p>
+        <div class="rqs-bench" data-preset="signed" data-mode="mini"></div>
+      </div>
+
+      <div class="step">
+        <p><strong>Pad it, then unpad it.</strong> Press "Add more words". The checker prints 11 open questions for 327 words: 3 extra notes inside stories and 8 vague words. Press it again to take the padding off. A signed spec is the most tempting place to add reassuring sentences, and the worst.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · what the padding adds to every story and checked criterion</span>It should be easy to use for all clinic staff.
+The numbers should always be accurate and up to date.
+Ideally it loads fast and works seamlessly on any device.
+Staff can then act on it as appropriate.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>A change arrives (constructed).</strong> In April, Amara Osei asks for late cancellations, under 24 hours before the start, to count as no-shows. That changes a definition, so by Part 3's rule it is a new version and a re-sign. In the checker's text box, rewrite the Definition line if you like (it changes no checker count), then replace the last two lines with the two below and press "Check my text". The checker prints 1 open question: "No decision owner or sign-off", because the Signed off line has no date.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · version 1.1, waiting for a signature</span>Signed off: pending re-sign of version 1.1
+Change log: v1.0 2026-03-02 first signed version; v1.1 2026-04-06 late cancellations (under 24 hours) now count as no-shows</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Re-sign.</strong> Replace the Signed off line with the line below and check again: 0 open questions.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · version 1.1, re-signed</span>Signed off: 2026-04-08 by Amara Osei, version 1.1</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Find the checker's limit.</strong> Load "6 · Signed spec" again, change the Definition line to include late cancellations, and leave the old line "Signed off: 2026-03-02 by Amara Osei, version 1.0" in place. The checker still prints 0. It cannot know the signature is older than the definition. That is exactly why the change log and the re-sign rule exist: they carry what the rules cannot see.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · a changed definition under an old signature (the checker prints 0)</span>Definition: booked appointments with status "no-show", plus appointments cancelled under 24 hours before the start, divided by all booked appointments not cancelled 24 hours or more before the start time.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Write your own.</strong> Take the real ask from session 1's homework and write its one-page spec in the seven blocks from Part 1. Paste it into the checker and work it down to 0, then read it aloud to the decision owner before asking for a signature. Your count on the way down will differ from Saffrondale's; the end state should not.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · the one-page skeleton</span>&lt;Product name&gt; v0.1
+Decision: &lt;when&gt;, &lt;who&gt; decides &lt;which / whether / how many&gt; &lt;action&gt;.
+As a &lt;role&gt;, I want &lt;want&gt;, so that &lt;reason tied to the decision&gt;.
+Acceptance criteria:
+Given &lt;state&gt;
+When &lt;event&gt;
+Then &lt;observable outcome, with a number where one exists&gt;
+Metric: &lt;name&gt;
+Definition: &lt;numerator&gt;, divided by &lt;denominator&gt;, &lt;filters&gt;, &lt;time window&gt;
+Grain: one row per &lt;...&gt;
+Freshness: &lt;deadline with a number&gt;
+Source: &lt;system and table&gt;
+Data owner: &lt;role&gt;
+Decision owner: &lt;name, role&gt;
+Signed off: &lt;YYYY-MM-DD&gt; by &lt;name&gt;, version &lt;n&gt;
+Change log: &lt;version&gt; &lt;date&gt; &lt;what changed, why&gt;</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Put the change rule on the page before the first change.</strong> Agreeing at sign-off which changes need a re-sign costs one sentence. Arguing about it after the number has moved costs a meeting.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Your next spec</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Finish your own one-page spec</strong> from Step 6, at 0 open questions on the checker.</li>
+      <li><strong>Get it signed by the person who decides.</strong> Read it aloud with them first. Note every change they ask for; each is a question the checker could not see.</li>
+      <li><strong>Write the change rule into the page:</strong> one sentence naming which changes need a re-sign. Use Part 3's rule or your own.</li>
+      <li><strong>Audit one live data product</strong> you depend on. Can you find its decision, its metric definition and a dated signature? Write down the first missing block; that is the question its builder guessed.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 6 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Who should sign Saffrondale's spec, and what does the signature mean?</p>
+      <button class="qopt" type="button">A · The builder, meaning the code is finished</button>
+      <button class="qopt" type="button">B · The operations director who forwarded the ask, meaning the budget is approved</button>
+      <button class="qopt" type="button">C · The decision owner, the clinic operations lead, meaning "if you build this as written, I will use it for the decision on line 2"; the builder separately confirms zero open questions</button>
+      <button class="qopt" type="button">D · Anyone on the team, as long as there is a date</button>
+      <p class="qwhy">Only the person who makes the decision can say the spec serves it. The builder's confirmation is the other half: nothing left to guess.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Which change to a signed no-show spec needs a new version and a re-sign?</p>
+      <button class="qopt" type="button">A · Counting late cancellations (under 24 hours) as no-shows</button>
+      <button class="qopt" type="button">B · Fixing a typo in a story</button>
+      <button class="qopt" type="button">C · Moving the change log below the signature</button>
+      <button class="qopt" type="button">D · Rewording a criterion without changing what it checks</button>
+      <p class="qwhy">A changes a definition, so the number on the screen moves: session 5's constructed week goes from 10.6% to 13.9%. The other three are log lines.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · The checker prints 0 for a spec whose definition changed under an old signature. What follows?</p>
+      <button class="qopt" type="button">A · The checker is broken and should be replaced</button>
+      <button class="qopt" type="button">B · The spec is fine, because 0 means finished</button>
+      <button class="qopt" type="button">C · Signatures do not matter once the checker is clean</button>
+      <button class="qopt" type="button">D · Zero is a floor: the checker reads wording, not history or meaning, so the change log and the re-sign rule must carry what it cannot see</button>
+      <p class="qwhy">Like AQUSA, the checker stays inside what patterns can find. A person reads the meaning, and the change log makes the history visible.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">ISO/IEC/IEEE 29148:2018</span><span class="note">Clause titles 5.2.5 and 5.2.6 read at source; the list of characteristics is reported (paywalled standard)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">A story is not a document</span><span class="note">Agile Alliance glossary, User Stories; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Negotiable</span><span class="note">Wake (2003), INVEST in Good Stories, and SMART Tasks; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">AQUSA's boundary and results</span><span class="note">Lucassen, Dalpiaz, van der Werf, Brinkkemper (2016), Requirements Engineering 21, 383-403; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Recording decisions</span><span class="note">Pushkarna, Zaldivar, Kjartansson (2022), Data Cards, arXiv:2204.01075; abstract read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The re-sign rule</span><span class="note">A rule of thumb for these sessions, not a published standard</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale v1.0 and v1.1</span><span class="note">Constructed example; every count on this page is printed by the checker</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 6 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Seven blocks, one page</b><span>Title, decision, stories, criteria, metric block, signature, change log.</span></div>
+      <div class="cheat-item"><b>Decision near the top</b><span>Everything below traces to it, or gets cut.</span></div>
+      <div class="cheat-item"><b>The owner signs</b><span>"I will use this for that decision." The builder confirms zero open questions.</span></div>
+      <div class="cheat-item"><b>Zero is a floor</b><span>The checker reads wording. Read it aloud with the owner before signing.</span></div>
+      <div class="cheat-item"><b>Could a number move?</b><span>Decision, definition, grain, freshness or access changed: new version, re-sign.</span></div>
+      <div class="cheat-item"><b>Every change gets a line</b><span>Version, date, what, why, re-signed or not. No silent edits to a signed page.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Where to go next. A signed spec is the input to design: <a href="https://phoebefu6.github.io/learn-system-design-with-phoebe/courses/01-requirements-to-constraints.html">System Design, session 1</a> turns requirements into architecture constraints. If the product you are specifying is an AI product, <a href="https://phoebefu6.github.io/learn-ai-pm-with-phoebe/courses/b5-the-spec-and-the-scorer.html">AI Product Management</a> covers the spec and the scorer for it.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 6 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="05-metric-definitions-grain-freshness.html">← Prev: The data side: metric definitions, grain, freshness, sources</a> &nbsp;·&nbsp; <a href="../index.html">Course home →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

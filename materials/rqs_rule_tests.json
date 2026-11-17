@@ -1,0 +1,188 @@
+[
+ {
+  "rule": "no-decision",
+  "fires": true,
+  "text": "Decision: better visibility of no-shows",
+  "desc": "a decision with no choice word"
+ },
+ {
+  "rule": "no-decision",
+  "fires": false,
+  "text": "Decision: the lead decides which patients get a call",
+  "desc": "names a choice"
+ },
+ {
+  "rule": "no-user",
+  "fires": true,
+  "text": "Can we get a dashboard?",
+  "desc": "no story line at all"
+ },
+ {
+  "rule": "no-user",
+  "fires": false,
+  "text": "As a nurse, I want to see my list, so that I can plan.",
+  "desc": "one story"
+ },
+ {
+  "rule": "well-formed",
+  "fires": true,
+  "text": "I want to see an error when I cannot see recommendations.",
+  "desc": "QUS US1: no role"
+ },
+ {
+  "rule": "well-formed",
+  "fires": false,
+  "text": "As a Member, I want to see an error, so that I know.",
+  "desc": "role and means"
+ },
+ {
+  "rule": "no-benefit",
+  "fires": true,
+  "text": "As a receptionist, I want to see no-shows.",
+  "desc": "no so-that"
+ },
+ {
+  "rule": "no-benefit",
+  "fires": false,
+  "text": "As a receptionist, I want to see no-shows, so that I can call.",
+  "desc": "has so-that"
+ },
+ {
+  "rule": "compound",
+  "fires": true,
+  "text": "As a manager, I want a dashboard and a model, so that I can plan.",
+  "desc": "two asks"
+ },
+ {
+  "rule": "compound",
+  "fires": false,
+  "text": "As a manager, I want a dashboard, so that I can plan and staff.",
+  "desc": "'and' only in the ends"
+ },
+ {
+  "rule": "not-minimal",
+  "fires": true,
+  "text": "As a nurse, I want to see hours (split by product), so that I can plan.",
+  "desc": "QUS US3-style bracket"
+ },
+ {
+  "rule": "not-minimal",
+  "fires": false,
+  "text": "As a nurse, I want to see hours, so that I can plan.",
+  "desc": "role, means, ends only"
+ },
+ {
+  "rule": "vague",
+  "fires": true,
+  "text": "As a lead, I want a fast dashboard, so that I can act.",
+  "desc": "fast, no number"
+ },
+ {
+  "rule": "vague",
+  "fires": false,
+  "text": "As a lead, I want the page in under 3 seconds, so that I can act.",
+  "desc": "a number, no vague word"
+ },
+ {
+  "rule": "vague",
+  "fires": false,
+  "text": "- Loads fast: under 3 seconds at 50 users.",
+  "desc": "quantity word with a number on the line"
+ },
+ {
+  "rule": "untestable",
+  "fires": true,
+  "text": "Acceptance criteria:\n- The model works well.",
+  "desc": "nothing to observe"
+ },
+ {
+  "rule": "untestable",
+  "fires": false,
+  "text": "Acceptance criteria:\n- The list shows 20 patients.",
+  "desc": "observable verb and a number"
+ },
+ {
+  "rule": "untestable",
+  "fires": true,
+  "text": "Given a clinic\nWhen I open the page\nThen it is good",
+  "desc": "Then with nothing to check"
+ },
+ {
+  "rule": "untestable",
+  "fires": false,
+  "text": "Given a clinic\nWhen I open the page\nThen the page shows the rate",
+  "desc": "Then shows"
+ },
+ {
+  "rule": "no-criteria",
+  "fires": true,
+  "text": "As a nurse, I want to see hours, so that I can plan.",
+  "desc": "story but no criteria"
+ },
+ {
+  "rule": "no-criteria",
+  "fires": false,
+  "text": "Acceptance criteria:\n- The page shows 7 days.",
+  "desc": "one criterion"
+ },
+ {
+  "rule": "metric-undefined",
+  "fires": true,
+  "text": "Metric: no-show rate",
+  "desc": "named, not defined"
+ },
+ {
+  "rule": "metric-undefined",
+  "fires": false,
+  "text": "Metric: no-show rate\nNumerator: no-shows\nDenominator: booked appointments",
+  "desc": "numerator and denominator"
+ },
+ {
+  "rule": "no-grain",
+  "fires": true,
+  "text": "A no-show dashboard",
+  "desc": "data product, no grain"
+ },
+ {
+  "rule": "no-grain",
+  "fires": false,
+  "text": "A no-show dashboard\nGrain: one row per clinic per day",
+  "desc": "grain field"
+ },
+ {
+  "rule": "no-freshness",
+  "fires": true,
+  "text": "A no-show dashboard\nFreshness: real-time",
+  "desc": "freshness without a number"
+ },
+ {
+  "rule": "no-freshness",
+  "fires": false,
+  "text": "A no-show dashboard\nFreshness: loaded by 06:00 daily",
+  "desc": "a number"
+ },
+ {
+  "rule": "no-source",
+  "fires": true,
+  "text": "A no-show dashboard\nSource: booking system",
+  "desc": "source without an owner"
+ },
+ {
+  "rule": "no-source",
+  "fires": false,
+  "text": "A no-show dashboard\nSource: booking system\nData owner: patient access",
+  "desc": "both"
+ },
+ {
+  "rule": "no-signoff",
+  "fires": true,
+  "text": "Decision owner: Amara Osei\nSigned off: soon",
+  "desc": "no date"
+ },
+ {
+  "rule": "no-signoff",
+  "fires": false,
+  "text": "Decision owner: Amara Osei\nSigned off: 2026-03-02",
+  "desc": "owner and date"
+ }
+]

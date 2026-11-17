@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 2 of 6. User stories that say who, what and why: the Connextra template, INVEST, the Quality User Story criteria, splitting a compound story, and the honest argument over whether data products need stories at all. Build-along: rewrite five vague stories from the constructed Saffrondale example.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="User stories that say who, what and why - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 2 of 6. The story template, INVEST, the QUS criteria, splitting, and job stories versus user stories.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/02-user-stories-who-what-why.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="User stories that say who, what and why - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 2 of 6. Role, want, reason; INVEST; splitting; and the job-story argument.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 2 · User stories that say who, what and why - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 2 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 2 of 6</div>
+    <h1>User stories that say <span class="accent">who, what and why</span></h1>
+    <p class="sub">A decision statement tells the builder why the product exists. A user story tells them who will use one piece of it, what that person wants to do, and what changes for them when it works. Tonight we take the story format apart, check stories the way a reviewer and a machine would, split the ones that hide two asks, and look honestly at the argument over whether a dashboard needs stories at all. Then you rewrite five vague stories from the Constructed Saffrondale example until the checker finds nothing wrong with any of them.</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Foundations</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the ask</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Stories, INVEST, the argument</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: rewrite five stories</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Session 1 ended with one sentence at the top of Saffrondale's spec: "Each Monday, the clinic operations lead decides which booked patients get a reminder call." That sentence names one decision and one owner. But a no-show dashboard is opened by more than one person: receptionists, clinic managers, the operations lead herself, each wanting something slightly different. Stories are how those wants get written down one at a time, each small enough to build and check on its own. Everything tonight uses the Constructed Saffrondale example; no real clinic or patient is involved.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Five rewritten Saffrondale stories that each name a real role, one want and a reason that traces back to the decision, checked by a real rule engine with zero story-level findings; the INVEST letters and the three QUS checks a machine can run; and a clear view of the job-story disagreement, so you can choose a format per product and say why.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the story format and the 3 C's</span>
+      <h2>Role, want, reason</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The standard story has three slots: as a (role), I want (something), so that (a reason). Each slot answers a question the builder would otherwise have to ask. The role says whose job this sits in and who to test it with. The want says what to build. The reason says what decision or action it serves, and that is the slot that should trace straight back to the decision statement from session 1. A story whose reason cannot be traced there is either serving a different decision or serving none.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One constructed Saffrondale story split into three boxes. Role: as a clinic operations lead, which tells the builder who to test with. Means: I want to see last week's no-show rate for each clinic, which is the feature to build, highlighted. Ends: so that I can decide where reminder calls go, which names the decision it serves. A line runs from the ends box down to the session 1 decision statement: each Monday, the clinic operations lead decides which booked patients get a reminder call.">
+        <defs>
+          <filter id="s2aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="52" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s2aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s2aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s2aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s2aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s2aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s2aH" x="30" y="26">ANATOMY OF ONE STORY</text>
+        <text class="s2aS" x="200" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s2aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="200" height="62" rx="10" transform="rotate(-0.7 130 81)" fill="#FFFFFF"/>
+          <rect x="250" y="50" width="330" height="62" rx="10" transform="rotate(0.5 415 81)" fill="#F5C518"/>
+          <rect x="600" y="50" width="250" height="62" rx="10" transform="rotate(-0.6 725 81)" fill="#FFFFFF"/>
+          <path d="M36 122 L36 130 L224 130 L224 122"/>
+          <path d="M256 122 L256 130 L574 130 L574 122"/>
+          <path d="M606 122 L606 130 L844 130 L844 122"/>
+          <path d="M725 192 L725 222" stroke-dasharray="4 4" marker-end="url(#s2aAr)"/>
+          <rect x="30" y="226" width="820" height="40" rx="10" transform="rotate(0.2 440 246)" fill="#610017"/>
+          <path d="M852 196 l8 8 l14 -18" stroke="#610017"/>
+        </g>
+
+        <text class="s2aL" x="130" y="77" text-anchor="middle">As a clinic</text>
+        <text class="s2aL" x="130" y="95" text-anchor="middle">operations lead,</text>
+        <text class="s2aL" x="415" y="77" text-anchor="middle">I want to see last week's no-show</text>
+        <text class="s2aL" x="415" y="95" text-anchor="middle">rate for each clinic,</text>
+        <text class="s2aL" x="725" y="77" text-anchor="middle">so that I can decide</text>
+        <text class="s2aL" x="725" y="95" text-anchor="middle">where reminder calls go.</text>
+
+        <text class="s2aA" x="130" y="150" text-anchor="middle">ROLE</text>
+        <text class="s2aA" x="415" y="150" text-anchor="middle">MEANS</text>
+        <text class="s2aA" x="725" y="150" text-anchor="middle">ENDS</text>
+        <text class="s2aS" x="130" y="168" text-anchor="middle">who to test with</text>
+        <text class="s2aS" x="415" y="168" text-anchor="middle">the feature to build</text>
+        <text class="s2aS" x="725" y="168" text-anchor="middle">the decision it serves</text>
+        <text class="s2aS" x="130" y="184" text-anchor="middle">and who to ask</text>
+        <text class="s2aS" x="415" y="184" text-anchor="middle">rate, per clinic, last week</text>
+        <text class="s2aA" x="738" y="212">traces back</text>
+
+        <text class="s2aW" x="440" y="251" text-anchor="middle">Session 1: Each Monday, the clinic operations lead decides which booked patients get a reminder call.</text>
+        <text class="s2aN" x="30" y="298">If the ends slot cannot be traced to the crimson line, the story serves a different decision, or none.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - each slot answers one builder question, and the reason is the slot that ties the story to the decision</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The template and where it came from<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The template.</strong> "As a (role), I want (something), so that (benefit)." Mike Cohn, who did more than anyone to spread it, credits it to Rachel Davies and her team at Connextra in the UK in the early 2000s (Cohn, Advantages of the "As a user, I want" user story template, read at source). The Agile Alliance glossary dates the role-feature-benefit template to 2001.</p>
+        <p><strong>The 3 C's.</strong> The same glossary dates the "3 C's" model to 2001: card, conversation, confirmation. The card is the short written story; the conversation is where the detail actually gets agreed; the confirmation is how both sides will know it is done, which is session 3's acceptance criteria. The glossary does not say who coined the 3 C's. Ron Jeffries is the usual attribution, and that is reported, not read at source.</p>
+        <p><strong>Why it matters for a spec.</strong> The glossary puts it plainly: "a user story is not a document". A story is a placeholder for a conversation that still has to happen. So a story in a spec is a promise to talk, written down so nobody forgets who the talk is with and what it is for. A spec that is only a list of stories has not had the conversations yet.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Stories against tasks<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Bill Wake's 2003 article that gave us INVEST (Part 2) has a second half that is easy to miss: SMART tasks. A task is Specific, Measurable, Achievable, Relevant and Time-boxed (Wake, 2003, read at source).</p>
+        <p>The split is clean. <strong>A story is the who, what and why</strong>, written in the requester's language, and it belongs in the spec. <strong>Tasks are how the builder splits the work</strong>: "add the clinic filter", "write the weekly rollup", "schedule the Monday refresh". They belong in the builder's plan, whatever ticket tool the team uses, and the requester should never have to read them.</p>
+        <p>The Agile Alliance glossary lists a related pitfall: writing stories about screens, dialog boxes and buttons. "A dropdown with all six clinics" is a design choice, not a user story. The story is "as a clinic manager, I want my own clinic's weekly count"; whether that arrives as a dropdown, a link or an email is the builder's call, guided by the conversation.</p>
+        <table class="clean">
+          <tr><th>Written as</th><th>Example (constructed)</th><th>Belongs in</th></tr>
+          <tr><td>Story</td><td>As a receptionist, I want today's no-shows by 10:00, so that I can offer the freed slots</td><td>The spec</td></tr>
+          <tr><td>Task</td><td>Load yesterday's appointments by 06:00; add a "today" view</td><td>The builder's plan</td></tr>
+          <tr><td>UI element</td><td>A red badge next to each no-show</td><td>Neither, yet: a conversation</td></tr>
+        </table>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>"So that" is optional, and still almost always there.</strong> Mike Cohn writes that he does not consider the "so that" clause mandatory; sometimes, he says, it just does not add any value. Yet when he counted a recent backlog of his own, 62 of its 64 stories had one (Cohn, read at source). The person who argues hardest that the reason is optional still writes it almost every time, because it is usually the cheapest sentence in the story and the one a builder most often needs.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers INVEST, QUS and splitting</span>
+      <h2>INVEST, and the checks a machine can run</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A story in the right format can still be a bad story. Two checklists help. INVEST is a reviewer's checklist: six letters you run in your head while reading. The Quality User Story framework, QUS for short, is a researcher's checklist of 13 criteria, and some of them are simple enough for a machine to run. The most useful check of all is the one that spots two stories glued together with "and".</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="On the left, a dashed Before box: as a manager, I want a no-show dashboard and a prediction model, where no single test passes until both ship. It splits on the word and into two atomic stories. Story A, ships first: as a clinic operations lead, I want to see last week's no-show rate for each clinic, so that I can decide where reminder calls go, tested by the page showing the rate per clinic. Story B, can ship later: as a receptionist, I want a list of next week's patients ranked by no-show risk, with phone numbers, so that I can call the top 20 first, tested by the list showing 20 patients sorted by risk.">
+        <defs>
+          <filter id="s2bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s2bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s2bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s2bB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s2bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s2bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s2bH" x="30" y="26">SPLITTING A COMPOUND STORY</text>
+        <text class="s2bS" x="236" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s2bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="120" width="262" height="110" rx="12" transform="rotate(-0.6 161 175)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="320" y="150" width="110" height="52" rx="12" transform="rotate(1.2 375 176)" fill="#F5C518"/>
+          <rect x="462" y="56" width="388" height="114" rx="12" transform="rotate(0.4 656 113)" fill="#FBEEF1"/>
+          <rect x="462" y="196" width="388" height="114" rx="12" transform="rotate(-0.4 656 253)" fill="#FFFFFF"/>
+          <path d="M294 176 L316 176" marker-end="url(#s2bAr)"/>
+          <path d="M432 166 C446 160 444 118 458 114" marker-end="url(#s2bAr)"/>
+          <path d="M432 188 C446 194 444 250 458 254" marker-end="url(#s2bAr)"/>
+          <path d="M342 222 q12 8 24 0 q12 -8 24 0" stroke="#5C474E"/>
+        </g>
+
+        <text class="s2bH" x="46" y="146">Before: one story, two asks</text>
+        <text class="s2bL" x="46" y="170">As a manager, I want a</text>
+        <text class="s2bL" x="46" y="188">no-show dashboard <tspan class="s2bB">and</tspan> a</text>
+        <text class="s2bL" x="46" y="206">prediction model.</text>
+        <text class="s2bA" x="30" y="254">no single test passes until both ship</text>
+
+        <text class="s2bH" x="375" y="172" text-anchor="middle">split on</text>
+        <text class="s2bH" x="375" y="188" text-anchor="middle">"and"</text>
+
+        <text class="s2bH" x="478" y="80">Story A · ships first</text>
+        <text class="s2bS" x="478" y="100">As a clinic operations lead, I want to see last week's</text>
+        <text class="s2bS" x="478" y="116">no-show rate for each clinic, so that I can decide</text>
+        <text class="s2bS" x="478" y="132">where reminder calls go.</text>
+        <text class="s2bA" x="478" y="156">Test: the page shows last week's rate per clinic</text>
+
+        <text class="s2bH" x="478" y="220">Story B · can ship later</text>
+        <text class="s2bS" x="478" y="240">As a receptionist, I want a list of next week's</text>
+        <text class="s2bS" x="478" y="256">patients ranked by no-show risk, with phone</text>
+        <text class="s2bS" x="478" y="272">numbers, so that I can call the top 20 first.</text>
+        <text class="s2bA" x="478" y="296">Test: the list shows 20 patients, sorted by risk</text>
+
+        <text class="s2bN" x="30" y="340">Each half gets its own reason and its own test, so the model no longer holds the dashboard hostage.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - one compound story becomes two atomic ones; each can be tested, and shipped, on its own</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>INVEST, letter by letter<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Bill Wake published INVEST in 2003 (Wake, INVEST in Good Stories, and SMART Tasks, read at source). Six letters, each a question you ask of one story:</p>
+        <table class="clean">
+          <tr><th>Letter</th><th>The question</th><th>A Saffrondale story that fails it (constructed)</th></tr>
+          <tr><td><strong>I</strong>ndependent</td><td>Can it be built and shipped without waiting on another story?</td><td>"A dashboard and a prediction model": the dashboard waits for the model</td></tr>
+          <tr><td><strong>N</strong>egotiable</td><td>Is the detail still open for the conversation, rather than fixed in advance?</td><td>A story that dictates the chart type and the colours</td></tr>
+          <tr><td><strong>V</strong>aluable</td><td>Does someone outside the build team get something from it?</td><td>"Migrate the appointments table": a task, not a story</td></tr>
+          <tr><td><strong>E</strong>stimable</td><td>Could a builder give a rough size for it?</td><td>"Predict who will not come", with no data source named</td></tr>
+          <tr><td><strong>S</strong>mall</td><td>Is it at most a few person-weeks of work?</td><td>"The whole no-show reporting suite"</td></tr>
+          <tr><td><strong>T</strong>estable</td><td>Could you say, after building, whether it passed?</td><td>"A user-friendly dashboard that loads fast"</td></tr>
+        </table>
+        <p>Wake's own words for the last letter are short: "A good story is testable." That one letter is the bridge to session 3, where untestable wants become acceptance criteria with numbers in them.</p>
+        <p><strong>One naming trap.</strong> Lucassen and colleagues, in the QUS paper below, expand the S as "Scalable". Wake's article says Small, and Small is the word to use: it is a size limit, and it is what makes splitting necessary.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Splitting a compound story<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The QUS criterion Atomic says a story expresses exactly one feature. The tell is almost always a conjunction in the want: "and", "or", "&amp;", "+". Saffrondale's first draft has the classic case: "As a manager, I want a no-show dashboard and a prediction model."</p>
+        <p>Glued together, the two halves fail three INVEST letters at once. They are not Independent (the dashboard waits for the model), not Small (a model is weeks of work on its own), and not Testable as one unit (no single test passes until both ship). Split, each half gets its own role, its own reason and its own test, as the figure shows. The dashboard story can ship in the first fortnight; the model story can wait until the data side is settled in session 5, and nobody is blocked in the meantime.</p>
+        <p><strong>How to split.</strong> Cut on the conjunction. Then ask, for each half: who wants this one, and why? Often the two halves turn out to belong to different people. Here the dashboard serves the operations lead and the ranked list serves the receptionists, which was invisible while "a manager" wanted both.</p>
+        <p><strong>An honest warning about the checker.</strong> The checker's "Two asks in one story" rule looks for " and " or " or " anywhere in the story. It does not parse both sides, the way the AQUSA tool does, so it over-flags: "ranked by risk and by clinic" is one feature with two sort keys, and it would still fire. Even AQUSA's more careful Atomic check had a precision of 51.18% in its evaluation (Lucassen et al., 2016). Treat the finding as a question to answer, not a verdict.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The 13 QUS criteria<span class="mini">5 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Lucassen, Dalpiaz, van der Werf and Brinkkemper (Improving agile requirements: the Quality User Story framework and tool, Requirements Engineering 21, 383-403, 2016) list 13 criteria in three groups:</p>
+        <table class="clean">
+          <tr><th>Group</th><th>Criteria</th><th>What the group checks</th></tr>
+          <tr><td>Syntactic</td><td>Well-formed, Atomic, Minimal</td><td>The shape of one story: role and means present, one feature, nothing extra</td></tr>
+          <tr><td>Semantic</td><td>Conceptually sound, Problem-oriented, Unambiguous, Conflict-free</td><td>What the words mean: the problem not the solution, no double meanings, no clashes</td></tr>
+          <tr><td>Pragmatic</td><td>Full sentence, Estimatable, Unique, Uniform, Independent, Complete</td><td>The set of stories as a whole: no duplicates, one format, no gaps</td></tr>
+        </table>
+        <p>Their tool, AQUSA, runs the syntactic criteria and some pragmatic ones, and deliberately leaves out the semantic group, because those "require deep understanding of requirements' content". That is the honest limit of any lint for stories: the defects that hurt most, like ambiguity, are the ones a machine struggles with.</p>
+        <p><strong>What the session 4 checker runs.</strong> Three syntactic checks: Well-formed ("Story lacks a role or a want"), Atomic ("Two asks in one story", simpler than AQUSA's) and Minimal ("Extra notes inside the story": text in brackets or after a full stop, a spaced hyphen or an asterisk). Plus a vague-word list modelled on Unambiguous: words like fast, real-time, user-friendly, easy, efficient and "etc.", each paired with the question a builder would ask. The word list is the checker's own, not part of QUS. A sixth story rule, "Story gives no reason", is labelled lab-only, for reasons Part 3 explains.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The defects came from real backlogs.</strong> The QUS paper illustrates its criteria with stories taken from real Dutch software companies, not invented examples. Its Table 2 includes a story with no role at all (US1, a Well-formed failure), a story that is really two stories in one (US2, Atomic), and a story carrying the note "See: Mockup from Alice" inside it (US3, Minimal). Every one of those is in Saffrondale's five vague stories below, because every one of them turns up in ordinary backlogs.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the disagreement</span>
+      <h2>Do data products need user stories at all?</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Practitioners disagree about this, and the disagreement is worth understanding rather than settling. A story template was built for software features used by many people. A dashboard often has one real user and one decision. Three camps write the same need three different ways, and each puts something different first: the person, the situation, or the decision.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One constructed Saffrondale need, the operations lead choosing who gets a reminder call each Monday, written three ways. User story, Cohn's camp: as a clinic operations lead, I want next week's patients ranked by no-show risk, so that I can choose who gets a reminder call; it puts the persona first. Job story, Adams's camp: when I plan Monday's reminder calls, I want to see who is likely to miss next week, so I can call them first; it puts the situation first. Decision statement: each Monday, the clinic operations lead decides which booked patients get a reminder call; it puts the decision first.">
+        <defs>
+          <filter id="s2cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="73" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s2cL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s2cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s2cA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s2cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s2cH" x="30" y="26">ONE NEED, THREE FORMATS</text>
+        <text class="s2cS" x="210" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s2cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="190" y="44" width="500" height="44" rx="12" transform="rotate(-0.4 440 66)" fill="#F5C518"/>
+          <path d="M300 90 C260 100 180 102 160 120" marker-end="url(#s2cAr)"/>
+          <path d="M440 90 L440 120" marker-end="url(#s2cAr)"/>
+          <path d="M580 90 C620 100 700 102 720 120" marker-end="url(#s2cAr)"/>
+          <rect x="30" y="126" width="260" height="168" rx="12" transform="rotate(-0.6 160 210)" fill="#FFFFFF"/>
+          <rect x="310" y="126" width="260" height="168" rx="12" transform="rotate(0.5 440 210)" fill="#FFFFFF"/>
+          <rect x="590" y="126" width="260" height="168" rx="12" transform="rotate(-0.5 720 210)" fill="#FBEEF1"/>
+          <path d="M836 52 l0 24 M828 60 l8 -8 l8 8" stroke="#5C474E"/>
+        </g>
+
+        <text class="s2cL" x="440" y="62" text-anchor="middle">The need: each Monday the ops lead chooses</text>
+        <text class="s2cL" x="440" y="78" text-anchor="middle">which booked patients get a reminder call</text>
+
+        <text class="s2cH" x="46" y="150">User story (Cohn)</text>
+        <text class="s2cA" x="46" y="168">first: the persona</text>
+        <text class="s2cS" x="46" y="190">As a clinic operations lead,</text>
+        <text class="s2cS" x="46" y="206">I want next week's patients</text>
+        <text class="s2cS" x="46" y="222">ranked by no-show risk,</text>
+        <text class="s2cS" x="46" y="238">so that I can choose who</text>
+        <text class="s2cS" x="46" y="254">gets a reminder call.</text>
+        <text class="s2cS" x="46" y="280">keeps who and why on the card</text>
+
+        <text class="s2cH" x="326" y="150">Job story (Adams)</text>
+        <text class="s2cA" x="326" y="168">first: the situation</text>
+        <text class="s2cS" x="326" y="190">When I plan Monday's</text>
+        <text class="s2cS" x="326" y="206">reminder calls,</text>
+        <text class="s2cS" x="326" y="222">I want to see who is likely</text>
+        <text class="s2cS" x="326" y="238">to miss next week,</text>
+        <text class="s2cS" x="326" y="254">so I can call them first.</text>
+        <text class="s2cS" x="326" y="280">situation and motive over persona</text>
+
+        <text class="s2cH" x="606" y="150">Decision statement</text>
+        <text class="s2cA" x="606" y="168">first: the decision</text>
+        <text class="s2cS" x="606" y="190">Each Monday, the clinic</text>
+        <text class="s2cS" x="606" y="206">operations lead decides</text>
+        <text class="s2cS" x="606" y="222">which booked patients</text>
+        <text class="s2cS" x="606" y="238">get a reminder call.</text>
+        <text class="s2cS" x="606" y="280">one real user, so the choice leads</text>
+
+        <text class="s2cN" x="30" y="322">Same need, three orders. Each camp argues its order is the one a builder needs first.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the same need written three ways; what changes is what the builder reads first</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three formats, one Saffrondale need<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The story camp.</strong> Mike Cohn's case for role-feature-benefit is that it keeps the who and the why on the card, where everyone sees them every time the story is discussed. Drop the role, and stories drift into "the system shall"; drop the reason, and nobody can tell which story to cut when time runs short.</p>
+        <p><strong>The job-story camp.</strong> Paul Adams at Intercom described job stories on 28 June 2016 (How we accidentally invented Job Stories, Intercom blog, read at source). The format is "When ___, I want to ___, so I can ___". His critique of user stories is that they are formatted to describe functionality to be built, rather than the motivation behind it, and that a persona says less than the situation someone is in. The name "job stories" is reported to come from Alan Klement, who popularised the format.</p>
+        <p><strong>Cohn's own position sits between them.</strong> He writes both, and thinks job stories are likely the better approach when the users' needs are not very distinct from one another (Cohn, Job Stories Offer a Viable Alternative to User Stories, read at source).</p>
+        <p><strong>The plain problem statement camp.</strong> For a dashboard or a single metric, the user is often one person making one decision. Writing "as a clinic operations lead" on every card adds little when there is only one operations lead; the decision statement from session 1 may carry more than any story. The argument against: the moment a second person opens the dashboard, a statement written for one user hides the second user's needs.</p>
+        <p>Nobody has settled this, and there is no study that settles it for data products. The useful habit is to choose deliberately, per product, and to write down why.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When the "so that" is optional<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Even inside the story camp, the reason clause is contested. The QUS framework treats the ends as optional: a story includes a role and a means, and optimally an end. Cohn does not consider "so that" mandatory either, though, as Part 1 showed, he writes it almost every time.</p>
+        <p>The session 4 checker takes a stricter line than either, and says so. Its "Story gives no reason" rule is labelled lab-only: it exists because a data product's reason is where the decision lives, and a missing reason is the most common way a story loses its link to the decision statement. On the 440 real stories sampled from the Dalpiaz corpus, it fires on 38.6% of them. That is not evidence that 38.6% of real stories are bad; it is evidence that many teams, reasonably, leave the reason out.</p>
+        <p>Practical rule for a data spec: keep the "so that" whenever it names a decision or an action, and treat a reason you cannot write as a signal to go back to session 1. If the reason is genuinely obvious, a requester and a builder can agree to drop it, and the checker's finding becomes a question you have already answered.</p>
+        <p>For where job stories come from (the "jobs to be done" thinking behind them), see <a href="https://phoebefu6.github.io/learn-product-thinking-with-phoebe/courses/01-the-job-not-the-feature.html">Product Thinking, session 1</a>; it is not retaught here.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Intercom wrote job stories because their personas were not helping.</strong> Paul Adams describes the format emerging inside Intercom's own product work, and the post's title is honest about how deliberate it was: they "accidentally invented" it. The team found that the situation and the motivation told them more about what to build than a persona did. Notice that this is one company's account of its own practice, written as a blog post, not a measured comparison; it is a strong argument, not a result.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Rewrite five vague stories</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Here are five stories from the Constructed Saffrondale example first draft, the kind that turn up in any real backlog. You will run them through the session 4 checker, rewrite them in three passes (split, replace vague words, name a real role and reason), and check again. Each rewrite ends with a reason you can trace to the decision statement, or an honest note when it serves a different one. Everything runs in this page.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five constructed Saffrondale stories before and after the rewrite. Story 1, manager wants dashboard and prediction model: 2 findings, no reason and two asks; after, the ops lead sees the rate per clinic for the calls. Story 2, receptionist wants no-shows in real time: 2 findings, no reason and real-time; after, by 10:00 to refill slots. Story 3, clinic lead wants user-friendly and fast: 3 findings, no reason and 2 vague words; after, the ops lead compares this month with last. Story 4, no role, numbers by clinic etc: 3 findings, no role, no reason, etc; after, a manager gets a weekly count to plan cover. Story 5, user wants an easy way with phone numbers in brackets, efficient: 3 findings, note, easy, efficient; after, a receptionist gets a ranked list and calls the top 20. 13 story-level findings in total. Before: 20 open questions. After: 7, all whole spec.">
+        <defs>
+          <filter id="s2dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="84" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s2dL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s2dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s2dB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s2dA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s2dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s2dH" x="30" y="26">FIVE STORIES: WHICH FINDING EACH CARRIED, AND WHICH REWRITE CLOSED IT</text>
+        <text class="s2dA" x="30" y="52">Before (constructed first draft)</text>
+        <text class="s2dA" x="340" y="52">Story-level findings</text>
+        <text class="s2dA" x="580" y="52">After the rewrite</text>
+
+        <g filter="url(#s2dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="66" width="290" height="40" rx="10" transform="rotate(-0.6 175 86)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="118" width="290" height="40" rx="10" transform="rotate(0.5 175 138)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="170" width="290" height="40" rx="10" transform="rotate(-0.4 175 190)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="222" width="290" height="40" rx="10" transform="rotate(0.6 175 242)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="274" width="290" height="40" rx="10" transform="rotate(-0.5 175 294)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="340" y="70" width="210" height="32" rx="16" transform="rotate(0.8 445 86)" fill="#FFFFFF"/>
+          <rect x="340" y="122" width="210" height="32" rx="16" transform="rotate(-0.8 445 138)" fill="#FFFFFF"/>
+          <rect x="340" y="174" width="210" height="32" rx="16" transform="rotate(0.7 445 190)" fill="#FFFFFF"/>
+          <rect x="340" y="226" width="210" height="32" rx="16" transform="rotate(-0.7 445 242)" fill="#FFFFFF"/>
+          <rect x="340" y="278" width="210" height="32" rx="16" transform="rotate(0.6 445 294)" fill="#FFFFFF"/>
+          <rect x="580" y="66" width="270" height="40" rx="10" transform="rotate(0.5 715 86)" fill="#FBEEF1"/>
+          <rect x="580" y="118" width="270" height="40" rx="10" transform="rotate(-0.5 715 138)" fill="#FBEEF1"/>
+          <rect x="580" y="170" width="270" height="40" rx="10" transform="rotate(0.4 715 190)" fill="#FBEEF1"/>
+          <rect x="580" y="222" width="270" height="40" rx="10" transform="rotate(-0.6 715 242)" fill="#FBEEF1"/>
+          <rect x="580" y="274" width="270" height="40" rx="10" transform="rotate(0.5 715 294)" fill="#FBEEF1"/>
+          <path d="M322 86 L336 86" marker-end="url(#s2dAr)"/>
+          <path d="M322 138 L336 138" marker-end="url(#s2dAr)"/>
+          <path d="M322 190 L336 190" marker-end="url(#s2dAr)"/>
+          <path d="M322 242 L336 242" marker-end="url(#s2dAr)"/>
+          <path d="M322 294 L336 294" marker-end="url(#s2dAr)"/>
+          <path d="M552 86 L576 86" marker-end="url(#s2dAr)"/>
+          <path d="M552 138 L576 138" marker-end="url(#s2dAr)"/>
+          <path d="M552 190 L576 190" marker-end="url(#s2dAr)"/>
+          <path d="M552 242 L576 242" marker-end="url(#s2dAr)"/>
+          <path d="M552 294 L576 294" marker-end="url(#s2dAr)"/>
+          <rect x="340" y="330" width="210" height="40" rx="12" transform="rotate(-0.8 445 350)" fill="#F5C518"/>
+          <path d="M572 352 q8 -10 16 0 q8 10 16 0" stroke="#5C474E"/>
+        </g>
+
+        <text class="s2dS" x="44" y="90">1 · manager: dashboard and a model</text>
+        <text class="s2dS" x="44" y="142">2 · receptionist: no-shows in real time</text>
+        <text class="s2dS" x="44" y="194">3 · clinic lead: user-friendly, loads fast</text>
+        <text class="s2dS" x="44" y="246">4 · no role: numbers by clinic, etc.</text>
+        <text class="s2dS" x="44" y="298">5 · user: easy way, (phones), efficient</text>
+
+        <text class="s2dS" x="445" y="90" text-anchor="middle">2 · no reason, two asks</text>
+        <text class="s2dS" x="445" y="142" text-anchor="middle">2 · no reason, real-time</text>
+        <text class="s2dS" x="445" y="194" text-anchor="middle">3 · no reason, 2 vague</text>
+        <text class="s2dS" x="445" y="246" text-anchor="middle">3 · no role, no reason, etc.</text>
+        <text class="s2dS" x="445" y="298" text-anchor="middle">3 · note, easy, efficient</text>
+
+        <text class="s2dS" x="594" y="90">ops lead: rate per clinic, for calls</text>
+        <text class="s2dS" x="594" y="142">receptionist: by 10:00, refill slots</text>
+        <text class="s2dS" x="594" y="194">ops lead: this month vs last</text>
+        <text class="s2dS" x="594" y="246">manager: weekly count, plan cover</text>
+        <text class="s2dS" x="594" y="298">receptionist: ranked, call top 20</text>
+
+        <text class="s2dH" x="445" y="355" text-anchor="middle">13 story-level findings</text>
+        <text class="s2dL" x="30" y="355">Before: 20 open questions</text>
+        <text class="s2dS" x="30" y="372">13 story-level + 7 whole spec</text>
+        <text class="s2dL" x="620" y="355">After: 7, all whole spec</text>
+        <text class="s2dS" x="620" y="372">0 story-level findings</text>
+
+        <text class="s2dN" x="30" y="404">The 7 left are whole-spec questions: sessions 1, 3, 5 and 6 close them, not better stories.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every story-level finding maps to one rewrite move; what is left belongs to other sessions</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Check the five vague stories.</strong> The widget below is the real rule engine from session 4. Copy the five stories from the box, paste them into the widget's text box (replace what is there) and press "Check my text". It prints 20 open builder questions for this exact block. Thirteen are about individual stories: no reason given (four stories), two asks in one (one), role or want missing (one), extra notes inside a story (one), and six vague words: real-time, fast, user-friendly, etc., easy and efficient. The other seven are labelled "Whole spec": things no story can supply.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · five vague stories (Constructed Saffrondale example)</span>As a manager, I want a no-show dashboard and a prediction model.
+As a receptionist, I want to see no-shows in real time.
+As a clinic lead, I want a user-friendly dashboard that loads fast.
+I want the no-show numbers by clinic, etc.
+As a user, I want an easy way to see which patients might not come (and their phone numbers), so that the calls are efficient.</div>
+        <div class="rqs-bench" data-preset="draft" data-mode="mini"></div>
+      </div>
+
+      <div class="step">
+        <p><strong>Split the compound story.</strong> Story 1 hides two asks behind "and". Cut it. The dashboard half goes to the person who actually decides about calls, the clinic operations lead, with a reason taken straight from the decision statement. The model half is really a list for the receptionists who make the calls; hold it until step 4, where it merges with story 5.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · story 1, the dashboard half</span>As a clinic operations lead, I want to see last week's no-show rate for each clinic, so that I can decide where reminder calls go.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Replace vague words with a number or a time.</strong> "In real time" becomes a time of day the receptionist can check: by 10:00. Ask the receptionist why, and the reason appears: freed slots can go to patients on the waiting list. Story 3 is harder. Asked what "user-friendly" and "fast" were for, the clinic lead says what they really want is to tell whether the calls are working. That is a different want, and a better story. If load time still matters, it becomes an acceptance criterion with a number in session 3, not a word in a story.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · stories 2 and 3, rewritten</span>As a receptionist, I want to see today's no-shows by 10:00, so that I can offer the freed slots to patients on the waiting list.
+As a clinic operations lead, I want to compare this month's no-show rate with last month's, so that I can tell whether the calls help.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Name a real role, give a reason, move the note out.</strong> Story 4 has no role: name the person who opens the weekly number, a clinic manager, and give them a reason. Story 5's "user" is a receptionist; "easy" and "efficient" become a ranked list and a concrete target, the top 20; and the bracketed phone numbers are part of the requirement, so they move into the want instead of sitting in a note. This is also where story 1's model half lands. Notice that rewrite 4's reason, planning reception cover, serves a staffing decision rather than the reminder-call decision. That is worth flagging to the requester: session 1 said two decisions may mean two specs.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · stories 4 and 5, rewritten</span>As a clinic manager, I want the weekly no-show count for my clinic, so that I can plan reception cover for the next week.
+As a receptionist, I want a list of next week's patients ranked by no-show risk, with phone numbers, so that I can call the top 20 first.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Check the five rewrites.</strong> Paste all five into the widget and press "Check my text". The widget prints 7 open questions, every one of them labelled "Whole spec": no decision line, no acceptance criteria, the metric not defined, no grain, no freshness, no data source or owner, no sign-off. Zero story-level findings. Those seven are not a failure of your stories; they are the work of sessions 1, 3, 5 and 6.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · the five rewrites</span>As a clinic operations lead, I want to see last week's no-show rate for each clinic, so that I can decide where reminder calls go.
+As a receptionist, I want to see today's no-shows by 10:00, so that I can offer the freed slots to patients on the waiting list.
+As a clinic operations lead, I want to compare this month's no-show rate with last month's, so that I can tell whether the calls help.
+As a clinic manager, I want the weekly no-show count for my clinic, so that I can plan reception cover for the next week.
+As a receptionist, I want a list of next week's patients ranked by no-show risk, with phone numbers, so that I can call the top 20 first.</div>
+        <p>Now add session 1's decision line as the first line and check once more. The count drops to 6: "No decision named" is gone, and the six left are criteria, metric, grain, freshness, source and owner, and sign-off.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · with session 1's decision line on top</span>Decision: Each Monday, the clinic operations lead decides which booked patients get a reminder call.
+As a clinic operations lead, I want to see last week's no-show rate for each clinic, so that I can decide where reminder calls go.
+As a receptionist, I want to see today's no-shows by 10:00, so that I can offer the freed slots to patients on the waiting list.
+As a clinic operations lead, I want to compare this month's no-show rate with last month's, so that I can tell whether the calls help.
+As a clinic manager, I want the weekly no-show count for my clinic, so that I can plan reception cover for the next week.
+As a receptionist, I want a list of next week's patients ranked by no-show risk, with phone numbers, so that I can call the top 20 first.</div>
+        <p>If you wrote your own rewrites instead, your count may differ. What matters is that the story-level findings are gone and every finding left says "Whole spec".</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Read each reason aloud next to the decision statement.</strong> If the two sentences sound like they belong in the same meeting, the story fits the spec. If one sounds like a different meeting, as rewrite 4 does, you have found a second decision, and it deserves its own line in the open-questions list.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 3</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Rewrite three real stories</strong> from a backlog or a request you have seen. Give each a named role, one want and a reason you can trace to a decision. Run the before and after through the checker and note which findings disappeared.</li>
+      <li><strong>Find one compound story</strong> and split it on the conjunction. For each half, write who wants it and whether it could ship without the other. If the checker flagged an "and" that is really one feature, write one line saying why.</li>
+      <li><strong>Write one need three ways</strong>: as a user story, a job story and a decision statement. Which would your builder rather receive, and why? There is no right answer; write the reason down.</li>
+      <li><strong>Mark every untestable word</strong> left in your stories (fast, easy, accurate, up to date). Session 3 turns each one into an acceptance criterion with something to check.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 2 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Which of these constructed Saffrondale stories fails INVEST's Testable letter, and why?</p>
+      <button class="qopt" type="button">A · "As a receptionist, I want to see today's no-shows by 10:00, so that I can offer the freed slots to patients on the waiting list"</button>
+      <button class="qopt" type="button">B · "As a clinic manager, I want the weekly no-show count for my clinic, so that I can plan reception cover for the next week"</button>
+      <button class="qopt" type="button">C · "As a clinic lead, I want a user-friendly dashboard that loads fast", because nobody can say after building whether "user-friendly" or "fast" passed</button>
+      <button class="qopt" type="button">D · "As a receptionist, I want a list of next week's patients ranked by no-show risk, with phone numbers, so that I can call the top 20 first"</button>
+      <p class="qwhy">C has nothing to check: "user-friendly" and "fast" have no number, time or observable result, so it fails Testable, and "a dashboard" with no scope also strains Small. A, B and D each name something you can look at afterwards: a time, a weekly count, a list of 20 sorted by risk.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">2 · What does the QUS criterion Atomic catch, and why does splitting help?</p>
+      <button class="qopt" type="button">A · A story with no role; splitting gives it one</button>
+      <button class="qopt" type="button">B · A story that expresses more than one feature; split, each half gets its own reason and its own test, and can ship without waiting for the other</button>
+      <button class="qopt" type="button">C · A story with a note in brackets; splitting moves the note out</button>
+      <button class="qopt" type="button">D · A story with a vague word; splitting removes the word</button>
+      <p class="qwhy">Atomic means exactly one feature. A is Well-formed, C is Minimal and D is the vague-word check modelled on Unambiguous. Splitting "a dashboard and a prediction model" lets the dashboard ship first and be tested on its own, instead of waiting for the model.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · A colleague asks: "Should our no-show dashboard spec use user stories or job stories?" Which answer is most accurate?</p>
+      <button class="qopt" type="button">A · Job stories, because Intercom proved they work better than user stories</button>
+      <button class="qopt" type="button">B · User stories, because INVEST requires the role-feature-benefit template</button>
+      <button class="qopt" type="button">C · Neither: data products never need stories</button>
+      <button class="qopt" type="button">D · It is a live disagreement: Cohn keeps who and why on the card and writes both formats, Adams argues the situation matters more than the persona, and for a one-user dashboard a decision statement may carry more; choose per product and write down why</button>
+      <p class="qwhy">Nobody has settled this. Adams's post is one company's account, not a measured comparison; INVEST checks story quality, not the template; and plenty of data specs benefit from stories once more than one person uses the product. D presents it as what it is.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">INVEST and SMART tasks</span><span class="note">Wake, B. (2003). INVEST in Good Stories, and SMART Tasks. xp123.com; read at source (Small, "A good story is testable", SMART)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Template date, 3 C's date, pitfalls</span><span class="note">Agile Alliance. Glossary: User Stories. agilealliance.org; read at source ("a user story is not a document"; screens and buttons are not stories)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The Connextra template, "so that" in 62 of 64</span><span class="note">Cohn, M. Advantages of the "As a user, I want" user story template. mountaingoatsoftware.com; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Job stories</span><span class="note">Adams, P. (2016). How we accidentally invented Job Stories. Intercom blog; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Writing both formats</span><span class="note">Cohn, M. Job Stories Offer a Viable Alternative to User Stories. mountaingoatsoftware.com; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The 13 QUS criteria and AQUSA</span><span class="note">Lucassen, G., Dalpiaz, F., van der Werf, J.M.E.M., Brinkkemper, S. (2016). Improving agile requirements: the Quality User Story framework and tool. Requirements Engineering 21, 383-403; read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ron Jeffries and the 3 C's</span><span class="note">Reported: the usual attribution; the Agile Alliance glossary does not name who coined it. Alan Klement naming job stories is also reported</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale Clinics</span><span class="note">Constructed example; the five vague stories and five rewrites are checked live by the session 4 rule engine</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 2 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>The template</b><span>As a (role), I want (something), so that (reason). Role: who to test with. Want: what to build. Reason: why.</span></div>
+      <div class="cheat-item"><b>The 3 C's</b><span>Card, conversation, confirmation. A story is a promise to talk, not a document.</span></div>
+      <div class="cheat-item"><b>INVEST</b><span>Independent, Negotiable, Valuable, Estimable, Small (a few person-weeks at most), Testable.</span></div>
+      <div class="cheat-item"><b>Split on "and"</b><span>Two asks in one story: cut on the conjunction, give each half its own role, reason and test.</span></div>
+      <div class="cheat-item"><b>Job stories</b><span>When ___, I want to ___, so I can ___. A live alternative, not a replacement: choose per product, say why.</span></div>
+      <div class="cheat-item"><b>The reason traces to the decision</b><span>Read each "so that" next to the decision statement. A different meeting means a different decision.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The stories now say who, what and why. But "how will we both know it is done?" is still open. Session 3 writes acceptance criteria a builder can test: Given, When, Then; rules; criteria for freshness and access; and the Mars Climate Orbiter, where the requirement was written down and nobody checked the delivered file against it.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 2 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="01-the-ask-behind-the-dashboard.html">← Prev: The ask behind "a dashboard, and maybe a model"</a> &nbsp;·&nbsp; <a href="03-acceptance-criteria-a-builder-can-test.html">Next: Acceptance criteria a builder can test →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 3 of 6. Acceptance criteria a builder can test: Given, When, Then, rule-based and non-functional criteria, and the definition of done. Rewrite the constructed Saffrondale Clinics criteria and watch the open questions drop from 11 to 4.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Acceptance criteria a builder can test - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 3 of 6. Given, When, Then; freshness, speed and access written as checks; and the definition of done.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/03-acceptance-criteria-a-builder-can-test.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Acceptance criteria a builder can test - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 3 of 6. Given, When, Then, non-functional criteria, and the definition of done.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 3 · Acceptance criteria a builder can test - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 3 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 3 of 6</div>
+    <h1>Acceptance criteria <span class="accent">a builder can test</span></h1>
+    <p class="sub">"The dashboard is easy to read" is a hope, not a criterion. Nobody can look at a finished page and say whether it passed. Tonight we turn hopes into checks: a scenario in Given, When, Then; a business rule with its example; freshness, speed and access written as measurements; and the one bar every item must clear before anyone calls it done. Saffrondale Clinics, our constructed network of six outpatient clinics, still has three vague criteria from its first draft. By the end of the build-along, none of them is vague.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Core</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the spec</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Scenarios, rules, done</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: testable criteria</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Session 1 named the decision; session 2 named the people and what they want. The Constructed Saffrondale example now has a decision statement and three stories that say who, what and why, and the spec checker still counts 11 open questions. Six of them sit on three lines: the acceptance criteria copied from the first draft. A criterion is the place where requester and builder agree, in advance, what they will look at to call a piece of work finished. If the criterion cannot be looked at, the agreement is empty, and the argument simply moves to the demo.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Saffrondale's acceptance criteria rewritten so a builder can check every one, taking the checker from 11 open questions to 4; three non-functional criteria (freshness, speed, access) written as measurements; a short definition of done for a data product; and a clear sense of where acceptance criteria stop and the definition of done begins.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers Given/When/Then</span>
+      <h2>Given, When, Then</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Given, When, Then is a three-line shape for one example of the product behaving correctly. It forces the writer to separate the situation, the trigger and the result, and only the result is something the builder checks. Follow one Saffrondale scenario through the three lines and notice which part a tester actually looks at.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 334" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One scenario from the constructed Saffrondale example in three boxes. Given, the initial context: the dashboard is opened on a Monday. When, an event or action: the operations lead picks a clinic. Then, an expected outcome: the page shows last week's rate, Monday to Sunday. Only the Then box is checked by the builder. Below, two panels: observable outcomes the user can see, such as the rate on the page and the week shown, and hidden internals a test should not check, such as a row written to a table or a query that finished.">
+        <defs>
+          <filter id="s3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s3aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s3aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s3aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s3aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s3aH" x="30" y="26">ONE SCENARIO, THREE JOBS</text>
+        <text class="s3aS" x="220" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s3aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="48" width="250" height="84" rx="10" transform="rotate(-0.6 155 90)" fill="#FFFFFF"/>
+          <rect x="315" y="48" width="250" height="84" rx="10" transform="rotate(0.5 440 90)" fill="#FFFFFF"/>
+          <rect x="600" y="48" width="250" height="84" rx="10" transform="rotate(-0.5 725 90)" fill="#F5C518"/>
+          <path d="M283 90 L310 90" marker-end="url(#s3aAr)"/>
+          <path d="M568 90 L595 90" marker-end="url(#s3aAr)"/>
+          <path d="M610 142 L610 150 L840 150 L840 142"/>
+          <rect x="30" y="190" width="400" height="98" rx="10" transform="rotate(0.4 230 239)" fill="#FFFFFF"/>
+          <rect x="450" y="190" width="400" height="98" rx="10" transform="rotate(-0.4 650 239)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <circle cx="404" cy="210" r="5"/>
+          <path d="M388 210 Q404 196 420 210 Q404 224 388 210"/>
+        </g>
+
+        <text class="s3aH" x="155" y="74" text-anchor="middle">GIVEN · initial context</text>
+        <text class="s3aL" x="155" y="96" text-anchor="middle">the dashboard is opened</text>
+        <text class="s3aL" x="155" y="114" text-anchor="middle">on a Monday</text>
+        <text class="s3aH" x="440" y="74" text-anchor="middle">WHEN · an event or action</text>
+        <text class="s3aL" x="440" y="96" text-anchor="middle">the ops lead picks</text>
+        <text class="s3aL" x="440" y="114" text-anchor="middle">a clinic</text>
+        <text class="s3aH" x="725" y="74" text-anchor="middle">THEN · an expected outcome</text>
+        <text class="s3aL" x="725" y="96" text-anchor="middle">the page shows last week's</text>
+        <text class="s3aL" x="725" y="114" text-anchor="middle">rate, Monday to Sunday</text>
+
+        <text class="s3aS" x="155" y="168" text-anchor="middle">sets the state, not checked</text>
+        <text class="s3aS" x="440" y="168" text-anchor="middle">the trigger, not checked</text>
+        <text class="s3aA" x="725" y="168" text-anchor="middle">the only part the builder checks</text>
+
+        <text class="s3aH" x="46" y="214">Observable: the user can see it</text>
+        <text class="s3aS" x="46" y="240">the rate on the page for the chosen clinic</text>
+        <text class="s3aS" x="46" y="260">the week shown runs Monday to Sunday</text>
+        <text class="s3aS" x="46" y="278">the 4 earlier weeks appear beside it</text>
+        <text class="s3aH" x="466" y="214">Vague check: hidden internals</text>
+        <text class="s3aS" x="466" y="240">a row was written to a database table</text>
+        <text class="s3aS" x="466" y="260">the query finished without an error</text>
+        <text class="s3aS" x="466" y="278">true or not, the user cannot see either</text>
+
+        <text class="s3aN" x="30" y="318">Gherkin's reference: verify only outcomes the user can observe, not hidden internals like database records.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - Given and When set the stage; Then is the line the builder checks, and it must be something a user can see</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Three keywords, three jobs<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The Cucumber Gherkin reference gives each keyword one job. <strong>Given</strong> is the initial context: the state of the world before anything happens. <strong>When</strong> is an event or action: the one thing the user does. <strong>Then</strong> is an expected outcome: what the user should now see.</p>
+        <p>The reference adds the rule that makes Then lines useful: you should only verify an outcome that is observable for the user, and avoid checking hidden internals such as database records. For a data product that is a sharp test. "The rate is stored correctly" is an internal. "The page shows last week's rate for that clinic" is an outcome someone can look at, and argue about, before launch.</p>
+        <p>The shape is older than the tools that run it. The Agile Alliance glossary describes Given-When-Then as "a template intended to guide the writing of acceptance tests for a User Story", and its user-stories page dates the template to 2006. The template is usually credited to Dan North and Chris Matts; that attribution is reported, because the glossary page itself does not name them.</p>
+        <div class="prompt-box good"><span class="label">★ One Saffrondale scenario (constructed)</span>Given the dashboard is opened on a Monday
+When the clinic operations lead picks a clinic
+Then the page shows last week's no-show rate for that clinic, Monday to Sunday.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The full keyword list<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Given, When and Then are three of the keywords in the Gherkin reference. The full list, and what each is for:</p>
+        <table class="clean">
+          <tr><th>Keyword</th><th>What it does</th></tr>
+          <tr><td>Feature</td><td>Names the piece of the product the scenarios describe</td></tr>
+          <tr><td>Rule</td><td>One business rule, grouping the examples that illustrate it (Part 2)</td></tr>
+          <tr><td>Example / Scenario</td><td>One concrete case, written as steps</td></tr>
+          <tr><td>Given, When, Then</td><td>Initial context, an event or action, an expected outcome</td></tr>
+          <tr><td>And, But</td><td>Continue the previous step without repeating its keyword</td></tr>
+          <tr><td>Background</td><td>Context shared by every scenario in a feature</td></tr>
+          <tr><td>Scenario Outline / Template, Examples</td><td>One scenario run over a table of values</td></tr>
+        </table>
+        <p>Gherkin can also be executed: test tools read the scenarios and run them against the product. That is a category of tooling, and none of it is needed here. Everything in these six sessions is about writing criteria a person could check by hand; whether a team later automates them is the builder's choice.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Check what the user can see.</strong> The Cucumber Gherkin reference is explicit that a Then step should verify an outcome observable for the user, and should avoid checking things like database records. For data products this is the line between "the pipeline ran" and "the number on the page is right". Only the second one is what the requester asked for (Cucumber, Gherkin reference, cucumber.io/docs/gherkin/reference).</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers rule-based and non-functional criteria</span>
+      <h2>Rules, freshness, speed and access</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Not every criterion is a scenario. Some are business rules that need one worked example to be unambiguous. Others are about the product as a whole: how old the data may be, how fast the page opens, who may see what. These non-functional criteria are criteria too, and they are the ones most often left as adjectives. The trick is the same every time: write down the measurement a builder would take.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 334" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three non-functional criteria from the constructed Saffrondale example, each drawn as the measurement a builder takes. Freshness: a clock at 07:00 compared with the timestamp of the newest data row; the age must be under 24 hours. Latency: a stopwatch reading 3 seconds while 20 users open the page at once. Access: two receptionist accounts from different clinics, each seeing only its own clinic's rows.">
+        <defs>
+          <filter id="s3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="29" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s3bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s3bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s3bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s3bV { font: 800 18px Inter, sans-serif; fill: #3D000E; }
+          .s3bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s3bH" x="30" y="26">THREE NON-FUNCTIONAL CRITERIA, THREE MEASUREMENTS</text>
+        <text class="s3bS" x="420" y="26">Constructed Saffrondale example</text>
+
+        <text class="s3bA" x="160" y="58" text-anchor="middle">FRESHNESS</text>
+        <text class="s3bA" x="440" y="58" text-anchor="middle">LATENCY</text>
+        <text class="s3bA" x="720" y="58" text-anchor="middle">ACCESS</text>
+
+        <g filter="url(#s3bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="70" width="260" height="146" rx="12" transform="rotate(-0.4 160 143)" fill="#FBEEF1"/>
+          <rect x="310" y="70" width="260" height="146" rx="12" transform="rotate(0.4 440 143)" fill="#FBEEF1"/>
+          <rect x="590" y="70" width="260" height="146" rx="12" transform="rotate(-0.4 720 143)" fill="#FBEEF1"/>
+          <circle cx="96" cy="136" r="36" fill="#FFFFFF"/>
+          <path d="M96 136 L96 108"/>
+          <path d="M96 136 L80 158"/>
+          <path d="M136 136 L162 136" marker-end="url(#s3bAr)"/>
+          <rect x="168" y="114" width="110" height="46" rx="8" transform="rotate(1.5 223 137)" fill="#FFFFFF"/>
+          <circle cx="372" cy="140" r="36" fill="#FFFFFF"/>
+          <rect x="366" y="96" width="12" height="8" rx="2" fill="#FFFFFF"/>
+          <path d="M372 140 L392 128"/>
+          <circle cx="448" cy="104" r="6" fill="#FFFFFF"/><circle cx="470" cy="104" r="6" fill="#FFFFFF"/><circle cx="492" cy="104" r="6" fill="#FFFFFF"/><circle cx="514" cy="104" r="6" fill="#FFFFFF"/><circle cx="536" cy="104" r="6" fill="#FFFFFF"/>
+          <circle cx="448" cy="126" r="6" fill="#FFFFFF"/><circle cx="470" cy="126" r="6" fill="#FFFFFF"/><circle cx="492" cy="126" r="6" fill="#FFFFFF"/><circle cx="514" cy="126" r="6" fill="#FFFFFF"/><circle cx="536" cy="126" r="6" fill="#FFFFFF"/>
+          <circle cx="448" cy="148" r="6" fill="#FFFFFF"/><circle cx="470" cy="148" r="6" fill="#FFFFFF"/><circle cx="492" cy="148" r="6" fill="#FFFFFF"/><circle cx="514" cy="148" r="6" fill="#FFFFFF"/><circle cx="536" cy="148" r="6" fill="#FFFFFF"/>
+          <circle cx="448" cy="170" r="6" fill="#FFFFFF"/><circle cx="470" cy="170" r="6" fill="#FFFFFF"/><circle cx="492" cy="170" r="6" fill="#FFFFFF"/><circle cx="514" cy="170" r="6" fill="#FFFFFF"/><circle cx="536" cy="170" r="6" fill="#FFFFFF"/>
+          <rect x="602" y="82" width="112" height="104" rx="8" transform="rotate(-1.2 658 134)" fill="#FFFFFF"/>
+          <rect x="728" y="82" width="112" height="104" rx="8" transform="rotate(1.2 784 134)" fill="#FFFFFF"/>
+          <rect x="614" y="116" width="88" height="14" rx="4" fill="#E7AAB7"/>
+          <rect x="614" y="138" width="88" height="14" rx="4" fill="#E7AAB7"/>
+          <rect x="614" y="160" width="88" height="14" rx="4" fill="#E7AAB7"/>
+          <rect x="740" y="116" width="88" height="14" rx="4" fill="url(#s3bHc)"/>
+          <rect x="740" y="138" width="88" height="14" rx="4" fill="url(#s3bHc)"/>
+          <rect x="740" y="160" width="88" height="14" rx="4" fill="url(#s3bHc)"/>
+        </g>
+
+        <text class="s3bS" x="223" y="133" text-anchor="middle">newest row</text>
+        <text class="s3bL" x="223" y="150" text-anchor="middle">Mon 06:10</text>
+        <text class="s3bS" x="96" y="200" text-anchor="middle">07:00 now</text>
+        <text class="s3bS" x="223" y="200" text-anchor="middle">age under 24 h</text>
+
+        <text class="s3bV" x="372" y="166" text-anchor="middle">3 s</text>
+        <text class="s3bS" x="372" y="200" text-anchor="middle">under 3 s</text>
+        <text class="s3bS" x="492" y="200" text-anchor="middle">20 users at once</text>
+
+        <text class="s3bL" x="658" y="104" text-anchor="middle">Clinic A desk</text>
+        <text class="s3bL" x="784" y="104" text-anchor="middle">Clinic B desk</text>
+        <text class="s3bS" x="658" y="204" text-anchor="middle">sees A rows only</text>
+        <text class="s3bS" x="784" y="204" text-anchor="middle">sees B rows only</text>
+
+        <text class="s3bL" x="160" y="244" text-anchor="middle">No older than 24 hours</text>
+        <text class="s3bL" x="160" y="262" text-anchor="middle">at 07:00 each weekday</text>
+        <text class="s3bL" x="440" y="244" text-anchor="middle">Opens in under 3 seconds</text>
+        <text class="s3bL" x="440" y="262" text-anchor="middle">for 20 users at the same time</text>
+        <text class="s3bL" x="720" y="244" text-anchor="middle">A receptionist account shows</text>
+        <text class="s3bL" x="720" y="262" text-anchor="middle">only its own clinic's patients</text>
+
+        <text class="s3bA" x="160" y="286" text-anchor="middle">check: clock minus newest row</text>
+        <text class="s3bA" x="440" y="286" text-anchor="middle">check: time it, 20 at once</text>
+        <text class="s3bA" x="720" y="286" text-anchor="middle">check: log in as each, compare</text>
+
+        <text class="s3bN" x="30" y="316">Each non-functional line names its measurement: a clock, a stopwatch, two logins. No adjective survives that.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a non-functional criterion is testable when you can say which instrument the builder picks up</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Rule-based criteria<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Some requirements are rules rather than journeys: who counts, what is excluded, which threshold applies. Since Gherkin 6, the reference has a <strong>Rule</strong> keyword for exactly this: one business rule, with the examples that illustrate it grouped underneath. The rule states the policy; the example removes the arguments about edge cases.</p>
+        <p>Saffrondale's no-show rate depends on one such rule (constructed): a patient who cancels 24 hours or more before the start time is not a no-show. Written alone, the rule still leaves room for doubt: 24 hours before what, measured from which timestamp? One example settles it.</p>
+        <div class="prompt-box good"><span class="label">★ A rule with its example (Constructed Saffrondale example)</span>Rule: A patient who cancels 24 hours or more before the start is not a no-show
+  Example: cancelled the day before
+    Given a booking on Tuesday at 10:00
+    When the patient cancels on Monday at 09:00
+    Then the no-show list does not include that appointment</div>
+        <p>Monday 09:00 is 25 hours before Tuesday 10:00, so the cancellation is outside the window. Write the second example, a cancellation at 11:00 on Monday, 23 hours before, and the rule's edge is pinned on both sides. Session 5 puts the same rule into the metric definition itself.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Non-functional criteria are criteria too<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Freshness, speed and access are about the whole product, not one story, and they are where adjectives hide: "up to date", "fast", "secure". Each has a measurable version:</p>
+        <p><strong>Freshness.</strong> How old may the data be at the moment someone acts on it? "Data on the page is no older than 24 hours at 07:00 each weekday" names a deadline and an age. A builder checks it with a clock and the timestamp of the newest row.</p>
+        <p><strong>Latency.</strong> How fast, under what load? "The page opens in under 3 seconds for 20 users at the same time" names both the number and the condition. Without the load, three seconds for one person on a quiet morning proves little.</p>
+        <p><strong>Access.</strong> Who sees what? "A receptionist account shows only the patients of its own clinic" can be checked by logging in as two receptionists from two clinics and comparing.</p>
+        <p>Bill Wake's INVEST list puts it plainly: "A good story is testable" (Wake, 2003). Applying the same demand to the product-wide lines is our reading, not a sentence Wake wrote, but the logic carries: if nobody can say what would be measured, nobody can say whether it was delivered.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the checker counts as testable<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Session 4's spec checker cannot read meaning, so it uses a proxy. Its "Criterion with nothing to check" rule is lab-only, written for these sessions after Wake's Testable and Gherkin's advice on observable outcomes. A Then line (or an And or But after a Then), or any bullet under "Acceptance criteria:", passes when it carries at least one of:</p>
+        <ul>
+          <li>a number (any digit),</li>
+          <li>a quoted value, such as "no-show",</li>
+          <li>an observable verb: shows, lists, returns, sends, flags, highlights, exports, equals, matches, appears, contains, includes, sorted, filtered, counts, prints, opens, alerts (and their simple forms, such as show or list).</li>
+        </ul>
+        <table class="clean">
+          <tr><th>Criterion</th><th>Checker says</th><th>Could a person test it?</th></tr>
+          <tr><td>Only clinic leads can see phone numbers.</td><td>Nothing to check: no digit, no quote, and "see" is not on the list</td><td>Yes: log in as a clinic lead and as a receptionist, and look</td></tr>
+          <tr><td>A receptionist account shows only the patients of its own clinic.</td><td>Passes: "shows"</td><td>Yes</td></tr>
+          <tr><td>The model works well.</td><td>Nothing to check</td><td>No: works well by what measure, on which patients?</td></tr>
+        </table>
+        <p>The first row is the honest limit. A human could test it, and the checker flags it anyway, because the proxy is a word list. Treat the flag as a prompt to reread the line, not as a verdict: often a rewrite with an observable verb ("A receptionist account shows no phone numbers") is clearer for the builder too. And the proxy fails the other way as well: a line can contain "shows" and still say nothing measurable. The checker counts the words; you judge the meaning.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The requirement was written. Nobody checked the file against it.</strong> NASA's Mars Climate Orbiter was lost on 23 September 1999. The Mishap Investigation Board found that the Software Interface Specification required thruster impulse data in metric units, newton-seconds. The ground software file "SM_FORCES" produced pound-force seconds instead, and the trajectory modelers assumed metric "per the requirements". The small-forces delta-V was low by a factor of 4.45. The lesson for a spec writer is not that a requirement was missing: it was there, in writing. What was missing was a check of the delivered output against it. Acceptance criteria are how a written requirement gets checked (NASA, 1999, Mars Climate Orbiter Mishap Investigation Board Phase I Report).</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the definition of done</span>
+      <h2>Acceptance criteria and the definition of done</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Acceptance criteria say what this story must do. A definition of done says what every item must have before anyone calls it finished, whatever the story. Teams that mix the two either repeat "reviewed and documented" under every story, or forget it under all of them. Picture two layers: a bar every item clears, and each story's own criteria standing on top of it.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two layers for the constructed Saffrondale example. At the bottom, one bar: the definition of done, which every item must clear: definition reviewed, source and owner named, freshness monitored, sign-off recorded. Standing on the bar, three stories, each with its own acceptance criteria. Story 1, the weekly rate: shows last week's rate, shows 4 earlier weeks. Story 2, the call list: shows the top 20 by risk, data under 24 hours at 07:00. Story 3, the month comparison: criteria still to write, highlighted.">
+        <defs>
+          <filter id="s3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s3cL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s3cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s3cA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s3cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s3cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s3cH" x="30" y="26">TWO LAYERS: PER STORY, AND EVERY STORY</text>
+        <text class="s3cS" x="340" y="26">Constructed Saffrondale example</text>
+        <text class="s3cA" x="30" y="52">each story carries its own acceptance criteria</text>
+
+        <g filter="url(#s3cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="60" y="66" width="220" height="38" rx="8" transform="rotate(-0.6 170 85)" fill="#FFFFFF"/>
+          <rect x="330" y="66" width="220" height="38" rx="8" transform="rotate(0.6 440 85)" fill="#FFFFFF"/>
+          <rect x="600" y="66" width="220" height="38" rx="8" transform="rotate(-0.5 710 85)" fill="#FFFFFF"/>
+          <rect x="70" y="116" width="200" height="28" rx="14" fill="#FBEEF1"/>
+          <rect x="70" y="152" width="200" height="28" rx="14" fill="#FBEEF1"/>
+          <rect x="340" y="116" width="200" height="28" rx="14" fill="#FBEEF1"/>
+          <rect x="340" y="152" width="200" height="28" rx="14" fill="#FBEEF1"/>
+          <rect x="610" y="116" width="200" height="28" rx="14" fill="#F5C518"/>
+          <path d="M170 184 L170 218"/>
+          <path d="M440 184 L440 218"/>
+          <path d="M710 150 L710 218" stroke-dasharray="4 4"/>
+          <rect x="30" y="220" width="790" height="44" rx="10" transform="rotate(0.3 425 242)" fill="#610017"/>
+          <path d="M840 262 L840 196"/>
+          <path d="M840 196 L862 204 L840 212"/>
+        </g>
+
+        <text class="s3cL" x="170" y="90" text-anchor="middle">Story 1 · weekly rate</text>
+        <text class="s3cL" x="440" y="90" text-anchor="middle">Story 2 · call list</text>
+        <text class="s3cL" x="710" y="90" text-anchor="middle">Story 3 · month compare</text>
+        <text class="s3cS" x="170" y="134" text-anchor="middle">shows last week's rate</text>
+        <text class="s3cS" x="170" y="170" text-anchor="middle">shows 4 earlier weeks</text>
+        <text class="s3cS" x="440" y="134" text-anchor="middle">shows top 20, by risk</text>
+        <text class="s3cS" x="440" y="170" text-anchor="middle">data under 24 h at 07:00</text>
+        <text class="s3cL" x="710" y="135" text-anchor="middle">criteria still to write</text>
+
+        <text class="s3cW" x="425" y="247" text-anchor="middle">DEFINITION OF DONE · every item clears this bar</text>
+        <text class="s3cS" x="30" y="290">definition reviewed · source and owner named · freshness monitored · sign-off recorded</text>
+        <text class="s3cN" x="30" y="318">Criteria change from story to story; the definition of done is the same bar for all of them.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - criteria are per story; the definition of done is one bar under all of them, and story 3 still needs its own</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Per story versus every story<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The Agile Alliance glossary defines the definition of done as a list of criteria that must be met before an increment is considered done. Its history is short and telling: in 2002 Bill Wake raised the problem that "done" meant different things to different people; by 2007 the practice was widespread. Its main pitfall is the one you would guess: a definition of done that is not written down loses most of its value, because everyone carries their own.</p>
+        <p>The common practitioner reading is that the definition of done applies to every item, and acceptance criteria belong to one story. Be clear that this distinction is the practice, not a sentence on the glossary page: the page defines the definition of done without comparing it with acceptance criteria. It is still the reading that keeps specs short. "Shows last week's rate" belongs under story 1. "Source and owner named" belongs under every story, so it is written once, in the definition of done.</p>
+        <p>A useful test when you are unsure where a line goes: would it be true of the next story too? If yes, it is a definition-of-done line.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>A data product's definition of done<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Software teams' definitions of done often mention code review and deployment. A data product needs a few lines of its own, because its most common failures are about the data, not the code. A short version for Saffrondale (constructed):</p>
+        <div class="prompt-box good"><span class="label">★ Saffrondale definition of done (Constructed Saffrondale example)</span>Definition of done (applies to every item):
+- Every metric on the page has a written definition, reviewed by the decision owner.
+- Every table used has a named source and a named data owner.
+- Freshness is monitored, and a late load alerts the data owner by 07:00.
+- The decision owner's sign-off is recorded with a date and a version.</div>
+        <p>Each line points to a later session: definitions, source and owner, and freshness are session 5; sign-off and versions are session 6. Write the definition of done once, near the top of the team's working agreement rather than inside one spec, and keep it to lines that really apply to every item. A definition of done with twenty lines gets skipped; one with four gets checked.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>"Done" took years to mean one thing.</strong> The Agile Alliance glossary records the history of the definition of done: Bill Wake pointed out in 2002 that teams used "done" inconsistently, and by 2007 a written definition of done was widespread practice. The fix was not a cleverer word; it was writing the list down where everyone could see it (Agile Alliance, Glossary: Definition of Done, agilealliance.org).</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Criteria for the no-show dashboard</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">You start where session 2 ended: the Constructed Saffrondale example at rung 3, "Stories fixed". The decision statement and the three stories are good. The acceptance criteria are still the first draft's three hopeful lines. You will run the checker, rewrite each criterion so a builder can test it, and check again. Everything runs in this page.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The three vague criteria from rung 3 of the constructed Saffrondale example, each mapped to its rewrite. Line 7, the dashboard is easy to read, carries two findings: vague easy and untestable; it becomes a Then line, the page shows last week's rate for that clinic, Monday to Sunday. Line 8, data is accurate and up to date, carries three findings: vague accurate, vague up to date, untestable; it becomes data no older than 24 hours at 07:00 each weekday, highlighted because it also closes the freshness question. Line 9, the model works well, carries one finding: untestable; it becomes the receptionist list shows the 20 highest-risk patients for next week, sorted by risk.">
+        <defs>
+          <filter id="s3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s3dL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s3dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s3dA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s3dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s3dH" x="30" y="26">THREE VAGUE CRITERIA, THREE REWRITES</text>
+        <text class="s3dS" x="320" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s3dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="52" width="280" height="62" rx="10" transform="rotate(-0.6 170 83)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="136" width="280" height="62" rx="10" transform="rotate(0.5 170 167)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="30" y="220" width="280" height="62" rx="10" transform="rotate(-0.5 170 251)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="530" y="52" width="320" height="62" rx="10" transform="rotate(0.5 690 83)" fill="#FBEEF1"/>
+          <rect x="530" y="136" width="320" height="62" rx="10" transform="rotate(-0.5 690 167)" fill="#F5C518"/>
+          <rect x="530" y="220" width="320" height="62" rx="10" transform="rotate(0.5 690 251)" fill="#FBEEF1"/>
+          <path d="M318 82 L522 82" marker-end="url(#s3dAr)"/>
+          <path d="M318 166 L522 166" marker-end="url(#s3dAr)"/>
+          <path d="M318 250 L522 250" marker-end="url(#s3dAr)"/>
+          <path d="M792 40 L836 22 L842 30 L798 48 Z" fill="#FFFFFF"/>
+          <path d="M792 40 L786 50 L798 48"/>
+        </g>
+
+        <text class="s3dH" x="46" y="76">Vague · line 7</text>
+        <text class="s3dS" x="46" y="98">The dashboard is easy to read.</text>
+        <text class="s3dH" x="46" y="160">Vague · line 8</text>
+        <text class="s3dS" x="46" y="182">Data is accurate and up to date.</text>
+        <text class="s3dH" x="46" y="244">Vague · line 9</text>
+        <text class="s3dS" x="46" y="266">The model works well.</text>
+
+        <text class="s3dA" x="420" y="72" text-anchor="middle">2 findings</text>
+        <text class="s3dS" x="420" y="100" text-anchor="middle">easy, untestable</text>
+        <text class="s3dA" x="420" y="156" text-anchor="middle">3 findings</text>
+        <text class="s3dS" x="420" y="184" text-anchor="middle">accurate, up to date,</text>
+        <text class="s3dS" x="420" y="198" text-anchor="middle">untestable</text>
+        <text class="s3dA" x="420" y="240" text-anchor="middle">1 finding</text>
+        <text class="s3dS" x="420" y="268" text-anchor="middle">untestable</text>
+
+        <text class="s3dH" x="546" y="76">Then the page shows last week's rate</text>
+        <text class="s3dS" x="546" y="98">for that clinic, Monday to Sunday.</text>
+        <text class="s3dH" x="546" y="160">Data no older than 24 hours</text>
+        <text class="s3dL" x="546" y="182">at 07:00 each weekday, closes freshness</text>
+        <text class="s3dH" x="546" y="244">The list shows the 20 highest-risk</text>
+        <text class="s3dS" x="546" y="266">patients for next week, sorted by risk.</text>
+
+        <text class="s3dN" x="30" y="306">Six findings on three lines go to zero; the line 8 rewrite also closes the whole-spec freshness question.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - each vague line carried its own findings; each rewrite names something a builder can look at or count</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Run rung 3 through the checker.</strong> The widget below has loaded "3 · Stories fixed". It prints 11 open questions. Five are about the spec as a whole (metric, grain, freshness, source and owner, sign-off). The other six sit on the three criteria lines: line 7 carries vague "easy" and nothing to check; line 8 carries vague "accurate", vague "up to date" and nothing to check; line 9 carries nothing to check. These are the six you fix tonight.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · the criteria at rung 3, lines 6 to 9 (constructed)</span>Acceptance criteria:
+- The dashboard is easy to read.
+- Data is accurate and up to date.
+- The model works well.</div>
+        <div class="rqs-bench" data-preset="stories" data-mode="mini"></div>
+      </div>
+
+      <div class="step">
+        <p><strong>Rewrite line 7 as a scenario.</strong> "Easy to read" for whom, doing what? Story 1 says the clinic operations lead wants last week's rate for each clinic. So the scenario starts on a Monday, the trigger is picking a clinic, and the outcome is what the page shows. Add a second Then line for the comparison weeks the lead will want beside it.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · line 7 becomes Given, When, Then</span>Given the dashboard is opened on a Monday
+When the clinic operations lead picks a clinic
+Then the page shows last week's no-show rate for that clinic, Monday to Sunday.
+And the page shows the same rate for each of the 4 weeks before it.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Rewrite line 9 as a measurable bullet.</strong> "The model works well" cannot be checked until you say what the model's output is for. Story 2 says the receptionist wants next week's high-risk patients so they can call them first. The output is a list: say how long, for when, and in which order. How good the ranking must be is a later conversation; this line makes the output checkable now.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · line 9 becomes a list a builder can count</span>- The receptionist list shows the 20 patients with the highest predicted no-show risk for next week, sorted by risk.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Rewrite line 8 as a freshness criterion.</strong> "Accurate and up to date" is two hopes in one line. Up to date as of when? The decision is made on Monday morning before calls start, so name an age and a deadline. Accuracy comes back in session 5, where the metric gets a definition it can be accurate against.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · line 8 becomes an age and a deadline</span>- Data on the page is no older than 24 hours at 07:00 each weekday.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Check rung 4.</strong> Click the preset "4 · Criteria testable" in the widget. It holds exactly the rewrites from steps 2 to 4, shown below. The widget prints 4 open questions. All six criteria findings are gone, and the freshness line also closes the whole-spec freshness question, because it names an age with a number. The 4 left are the metric definition, the grain, the source and owner, and the sign-off: session 5 closes the first three, session 6 the last.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · the rung 4 criteria, exactly as in the preset</span>Acceptance criteria:
+Given the dashboard is opened on a Monday
+When the clinic operations lead picks a clinic
+Then the page shows last week's no-show rate for that clinic, Monday to Sunday.
+And the page shows the same rate for each of the 4 weeks before it.
+- The receptionist list shows the 20 patients with the highest predicted no-show risk for next week, sorted by risk.
+- Data on the page is no older than 24 hours at 07:00 each weekday.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Optional: add the non-functional lines.</strong> Paste the three lines below at the end of the rung 4 text, under the criteria, and press "Check my text". Every one passes: each carries a number or an observable verb. The count stays at 4. Then try your own version of the access line with "see" instead of "shows", and watch the checker flag it: the proxy from Part 2, in action.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · speed, access and accuracy, written as checks</span>- The page opens in under 3 seconds for 20 users at the same time.
+- A receptionist account shows only the patients of its own clinic.
+- The weekly rate for each clinic matches the booking system's own report to 0.1 percentage points.</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Read each criterion as the builder on demo day.</strong> For every line, ask: what will I open, count or time to say "passed"? If the answer is "I will ask the requester whether they like it", the line is still a hope. Rewrite it now, while it costs one sentence.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Write criteria for your own ask.</strong> Take the decision statement and stories you wrote after sessions 1 and 2. Write one Given, When, Then scenario for the most important story, and at least one measurable bullet for each of the others.</li>
+      <li><strong>Add three non-functional lines.</strong> One for freshness (an age and a deadline), one for speed (a time and a load), one for access (who sees what). For each, write the check a builder would run.</li>
+      <li><strong>Find one rule.</strong> Pick a business rule hidden in your metric, like Saffrondale's 24-hour cancellation rule. Write it with two examples, one on each side of the edge.</li>
+      <li><strong>Draft a four-line definition of done</strong> for your team's data products. For each line, ask whether it is true of every item. If it is not, move it under a story as an acceptance criterion.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Which Then line can a builder test?</p>
+      <button class="qopt" type="button">A · Then the dashboard is easy to read</button>
+      <button class="qopt" type="button">B · Then the no-show data is stored correctly in the database</button>
+      <button class="qopt" type="button">C · Then the page shows last week's no-show rate for that clinic, Monday to Sunday</button>
+      <button class="qopt" type="button">D · Then the model works well</button>
+      <p class="qwhy">C names an outcome the user can observe: a rate, for a clinic, over a stated week. A and D give nothing to look at or count. B can be checked by someone, but it is a hidden internal; the Gherkin reference advises verifying what the user can observe instead.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Why is Mars Climate Orbiter a verification story rather than a missing-requirement story?</p>
+      <button class="qopt" type="button">A · The Software Interface Specification did require metric units; the SM_FORCES file was delivered in pound-force seconds and nobody checked it against the written requirement</button>
+      <button class="qopt" type="button">B · Nobody had written down which units to use</button>
+      <button class="qopt" type="button">C · The requirement was written in vague words like "accurate"</button>
+      <button class="qopt" type="button">D · The spacecraft hardware failed, not the software</button>
+      <p class="qwhy">The Mishap Investigation Board found the requirement in the interface specification; the trajectory modelers even assumed metric "per the requirements". What failed was the check of the delivered file. Acceptance criteria exist so that every written requirement gets one.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · "Every table used has a named source and a named data owner." Where does this line belong?</p>
+      <button class="qopt" type="button">A · Under story 1, as an acceptance criterion</button>
+      <button class="qopt" type="button">B · Under every story, repeated each time</button>
+      <button class="qopt" type="button">C · Nowhere: it is not testable</button>
+      <button class="qopt" type="button">D · In the definition of done, because it is true of every item, not one story</button>
+      <p class="qwhy">Acceptance criteria are per story; the definition of done is one list every item must meet. The per-story versus every-item split is the common practitioner reading; the Agile Alliance glossary defines the definition of done without making that comparison itself.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Given, When, Then and the Rule keyword</span><span class="note">Cucumber. Gherkin reference. cucumber.io/docs/gherkin/reference; read at source (keyword list, observable outcomes, Rule since Gherkin 6)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Given-When-Then as an acceptance test template</span><span class="note">Agile Alliance. Glossary: Given When Then; dated 2006 on Glossary: User Stories; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Definition of done</span><span class="note">Agile Alliance. Glossary: Definition of Done; read at source (2002 Wake, widespread by 2007, unwritten pitfall); per story versus every item is the practitioner reading</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Testable</span><span class="note">Wake, B. (2003). INVEST in Good Stories, and SMART Tasks. xp123.com; read at source; extending it to non-functional lines is our reading</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Mars Climate Orbiter</span><span class="note">NASA (1999). Mars Climate Orbiter Mishap Investigation Board Phase I Report; read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Dan North and Chris Matts</span><span class="note">Attribution of Given-When-Then is reported; the glossary page does not name them</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The checker's testable rule</span><span class="note">Lab-only proxy (a digit, a quoted value or an observable verb); flags some lines a person could test</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale Clinics</span><span class="note">Constructed example; rungs 3 and 4 on the session 4 checker (11 and 4 open questions)</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Given, When, Then</b><span>Initial context, an event or action, an expected outcome. Only the Then is checked.</span></div>
+      <div class="cheat-item"><b>Observable outcomes</b><span>Check what the user can see on the page, not database records or a query that ran.</span></div>
+      <div class="cheat-item"><b>Rule plus example</b><span>State the business rule, then one example on each side of its edge.</span></div>
+      <div class="cheat-item"><b>Name the instrument</b><span>Freshness: a clock and an age. Speed: a stopwatch and a load. Access: two logins.</span></div>
+      <div class="cheat-item"><b>Criteria versus done</b><span>Per story, or true of every item? Every item goes in the definition of done, written once.</span></div>
+      <div class="cheat-item"><b>Written is not checked</b><span>Mars Climate Orbiter had the requirement. A criterion is how it gets checked.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Three sessions of rewriting, one count. Session 4 opens the spec checker itself: all six Saffrondale rungs from 9 open questions to 0, why padding a finished spec with well-meant words pushes the count back up, and how often real user stories carry the same defects.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 3 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="02-user-stories-who-what-why.html">← Prev: User stories that say who, what and why</a> &nbsp;·&nbsp; <a href="04-the-spec-checker.html">Next: The bench: spec checker →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

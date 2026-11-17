@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Six sessions on requirements and specs for data products you are not coding yourself: the decision behind the ask, user stories, acceptance criteria a builder can test, metric definitions with grain and freshness, and a signed one-page spec. A real spec checker runs in the browser. Free, by Phoebe Fu.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn Requirements &amp; Specs with Phoebe">
+<meta property="og:description" content="User stories, acceptance criteria and a spec a builder can act on, for the data product you are not coding yourself. Turn a one-line ask into a one-page spec with zero open questions.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Requirements &amp; Specs with Phoebe">
+<meta name="twitter:description" content="A real spec checker in your browser: every vague word, missing grain and unsigned decision turned into the question a builder would have to ask.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn Requirements &amp; Specs with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=1">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(var(--shadow-rgb),.16); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo-deep); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--indigo-50)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .not-this { border: 1px solid var(--hairline); border-left: 4px solid var(--amber); border-radius: var(--radius); background: #fff; padding: 1.1rem 1.3rem; margin-top: 1.2rem; }
+  .not-this h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · System &amp; Product Design</div>
+    <h1>Learn <span class="accent">Requirements &amp; Specs</span> with Phoebe</h1>
+    <p class="sub">User stories, acceptance criteria and a spec a builder can act on, for the data product you are not coding yourself. Turn a one-line ask into a one-page spec with zero open questions. A spec is finished when the builder has no questions left, so every session asks the same two things: how many questions would a builder have to ask before starting, and which of them would they quietly guess instead? One running case throughout, Saffrondale Clinics, a constructed network of six outpatient clinics that asked for "a no-show dashboard, and maybe a model", and a real spec checker in the browser that turns every gap into the question it forces.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="6">6</b><span>sessions</span></div>
+      <div class="stat"><b data-count="14">14</b><span>checker rules, unit-tested</span></div>
+      <div class="stat"><b data-count="440">440</b><span>real user stories on the bench</span></div>
+      <div class="stat"><b data-count="19">19</b><span>open questions in the first draft</span></div>
+      <div class="stat"><b data-count="45">45</b><span>min per session</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>The six sessions 🎯 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· from a one-line ask to a signed one-page spec</span></h2>
+      <p class="plede">The running case is <strong>Saffrondale Clinics</strong>, a constructed network of six outpatient clinics (no real patients, no real data). The operations director asks for "a no-show dashboard, and maybe a model". Each session adds one piece to Saffrondale's one-page spec: a decision statement, stories, criteria, a checked draft, a pinned-down metric, and a signature.</p>
+    </div>
+
+    <div class="course-grid">
+      <a class="course-card" href="courses/01-the-ask-behind-the-dashboard.html" style="--diff:#34D399">
+        <span class="cicon">🎯</span>
+        <span class="cnum">Session 1 · foundations</span>
+        <h3>The ask behind "a dashboard, and maybe a model"</h3>
+        <p>The decision a data product serves, who acts on it and what changes if it exists; the cost of a requirement the builder had to guess. Build-along: turn Saffrondale's one-line ask into a decision statement.</p>
+        <span class="meta"><span class="pill amber">▶ Start here</span></span>
+      </a>
+      <a class="course-card" href="courses/02-user-stories-who-what-why.html" style="--diff:#34D399">
+        <span class="cicon">👥</span>
+        <span class="cnum">Session 2 · foundations</span>
+        <h3>User stories that say who, what and why</h3>
+        <p>The story format, INVEST, splitting, stories against tasks, and the honest argument over whether data work needs stories at all. Build-along: rewrite five vague stories.</p>
+        <span class="meta"><span class="pill">who, what, why</span></span>
+      </a>
+      <a class="course-card" href="courses/03-acceptance-criteria-a-builder-can-test.html" style="--diff:#FBBF24">
+        <span class="cicon">✅</span>
+        <span class="cnum">Session 3 · core</span>
+        <h3>Acceptance criteria a builder can test</h3>
+        <p>Given, When, Then; rule-based criteria; freshness, latency and access written as criteria; the definition of done. Build-along: criteria for the no-show dashboard.</p>
+        <span class="meta"><span class="pill">checkable, not hopeful</span></span>
+      </a>
+      <a class="course-card" href="courses/04-the-spec-checker.html" style="--diff:#FB923C">
+        <span class="cicon">🔍</span>
+        <span class="cnum">Session 4 · bench night</span>
+        <h3>The bench: spec checker</h3>
+        <p>A real rule engine in your browser: every finding with its line number and the builder question it forces, base rates on 440 real user stories, and an "add more words" button that shows length is not precision.</p>
+        <span class="meta"><span class="pill amber">★ the bench</span></span>
+      </a>
+      <a class="course-card" href="courses/05-metric-definitions-grain-freshness.html" style="--diff:#FB923C">
+        <span class="cicon">📏</span>
+        <span class="cnum">Session 5 · stretch</span>
+        <h3>The data side: metric definitions, grain, freshness, sources</h3>
+        <p>Numerator, denominator, filters, time window and grain; the "same name, two numbers" failure; freshness, source and owner; data cards for a model. Build-along: define the no-show rate so two analysts get one number.</p>
+        <span class="meta"><span class="pill">one name, one number</span></span>
+      </a>
+      <a class="course-card" href="courses/06-the-one-page-spec-and-sign-off.html" style="--diff:#F87171">
+        <span class="cicon">✍️</span>
+        <span class="cnum">Session 6 · capstone</span>
+        <h3>The one-page spec, sign-off and change control</h3>
+        <p>The one-page template, sign-off by the decision owner, versioned changes and what forces a re-sign. Capstone: Saffrondale's signed spec, scored on the checker.</p>
+        <span class="meta"><span class="pill amber">🔒 final scorecard</span></span>
+      </a>
+    </div>
+
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>foundations</span>
+      <span><i style="background:#FBBF24"></i>core</span>
+      <span><i style="background:#FB923C"></i>stretch and bench</span>
+      <span><i style="background:#F87171"></i>capstone</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Six stamps means you can find the decision behind an ask, write stories that say who, what and why, write criteria a builder can check, run a spec through a checker and read its findings, define a metric so two people get one number, and get a one-page spec signed and keep it signed. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+
+  <section class="section">
+    <div class="not-this">
+      <h3>What this is not, so you land in the right place 🧭</h3>
+      <table class="clean">
+        <tr><th>If your question is</th><th>Go here instead</th></tr>
+        <tr><td>What job is the person really hiring this for, and what are they asking for versus what they need?</td><td><a href="https://phoebefu6.github.io/learn-product-thinking-with-phoebe/courses/01-the-job-not-the-feature.html">Product Thinking, session 1 ↗</a></td></tr>
+        <tr><td>How do I write the spec, and the scorer, for an AI product?</td><td><a href="https://phoebefu6.github.io/learn-ai-pm-with-phoebe/courses/b5-the-spec-and-the-scorer.html">AI Product Management ↗</a></td></tr>
+        <tr><td>How do these requirements become architecture constraints?</td><td><a href="https://phoebefu6.github.io/learn-system-design-with-phoebe/courses/01-requirements-to-constraints.html">System Design, session 1 ↗</a></td></tr>
+        <tr><td>How do I run the discovery meeting with a stakeholder before anything is written?</td><td><a href="https://phoebefu6.github.io/learn-asking-right-questions-as-da-with-phoebe/">Asking the Right Questions as a Data Analyst ↗</a></td></tr>
+        <tr><td>How do I build the metric in dbt once it is defined?</td><td><a href="https://phoebefu6.github.io/learn-analytics-engineering-with-phoebe/">Analytics Engineering ↗</a></td></tr>
+        <tr><td>How do I govern the whole project: milestones, risks, RACI?</td><td><a href="https://phoebefu6.github.io/learn-tech-project-pmo-with-phoebe/">Tech Project PMO ↗</a></td></tr>
+        <tr><td><strong>I ask for dashboards, metrics, models or pipelines that someone else builds, or I build them from someone else's ask, and I want the spec to leave no questions.</strong></td><td><strong>you are in the right place</strong></td></tr>
+      </table>
+      <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)"><strong>Specs for data products, written by people who are not coding them.</strong> The problem is assumed clear when session 1 starts and architecture begins after session 6; both neighbours are linked rather than retaught.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Two doors into the same spec, one for each side of the handover, and a third for the whole route. The requester writes it; the builder reads it; both should be able to count its open questions.</p>
+      <div class="path"><b>📝 Requester path: I ask, someone else builds</b>
+        <a class="pstep" href="courses/01-the-ask-behind-the-dashboard.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-user-stories-who-what-why.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-spec-checker.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-the-one-page-spec-and-sign-off.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">name the decision, write the stories, check the draft, sign it</span>
+      </div>
+      <div class="path"><b>🛠️ Builder path: I receive the spec</b>
+        <a class="pstep" href="courses/03-acceptance-criteria-a-builder-can-test.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-spec-checker.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-metric-definitions-grain-freshness.html">5</a>
+        <span style="font-size:.82rem;color:var(--muted)">turn hopes into checks, count the open questions, pin the metric down</span>
+      </div>
+      <div class="path"><b>🎯 The whole one-page spec</b>
+        <a class="pstep" href="courses/01-the-ask-behind-the-dashboard.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-user-stories-who-what-why.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/03-acceptance-criteria-a-builder-can-test.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-spec-checker.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-metric-definitions-grain-freshness.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-the-one-page-spec-and-sign-off.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">from one line to a signed page with zero open questions</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is honest here 🧾</h2>
+      <p class="plede">The checker computes for real; the running case is constructed and labelled; frameworks are read at their source; contested advice is taught as a disagreement.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>Every finding, line number and open-question count on the bench</td><td><strong>Really computed</strong> in your browser by a rule engine whose 14 rules each have a test that fires them and one that must not; a Python twin prints identical findings on every preset and on the real stories</td></tr>
+      <tr><td>Saffrondale Clinics, its ask, its drafts and its signed spec</td><td><strong>Constructed</strong> for teaching and labelled on every page; no real clinic, no real patient data</td></tr>
+      <tr><td>The 440 user stories</td><td><strong>Real,</strong> a seeded sample of the public Dalpiaz (2018) user-story data sets, CC BY 4.0, with the changes listed on the widget</td></tr>
+      <tr><td>Which rules are published and which are teaching rules</td><td><strong>Labelled per rule.</strong> Four are modelled on the Quality User Story framework (Lucassen et al. 2016); the rest are lab-only and say so</td></tr>
+      <tr><td>Does a story need "so that"?</td><td><strong>Contested,</strong> taught as a disagreement: the Quality User Story framework calls the reason optional and Mike Cohn does not make it mandatory</td></tr>
+      <tr><td>INVEST, Gherkin, the definition of done, the dbt metric format, Data Cards</td><td><strong>Read at source</strong> and cited by author and date</td></tr>
+      <tr><td>The ISO/IEC/IEEE 29148 list of good-requirement characteristics</td><td><strong>Reported:</strong> the standard is paywalled; its clause titles were read, the list itself was not</td></tr>
+    </table>
+  </section>
+
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">The whole spec at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Neighbours on the shelf: <a href="https://phoebefu6.github.io/learn-product-thinking-with-phoebe/">Product Thinking ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-system-design-with-phoebe/">System Design ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-ai-pm-with-phoebe/">AI Product Management ↗</a></span>
+  </footer>
+
+</main>
+
+<script>
+window.MINDMAP_DATA = {
+ "title": "Requirements\n& Specs",
+ "centerColor": "#3D000E",
+ "sessions": [
+  {
+   "label": "The ask behind\nthe dashboard",
+   "href": "courses/01-the-ask-behind-the-dashboard.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "The decision it serves",
+     "href": "courses/01-the-ask-behind-the-dashboard.html"
+    },
+    {
+     "label": "Guessed vs asked",
+     "href": "courses/01-the-ask-behind-the-dashboard.html"
+    },
+    {
+     "label": "A decision statement",
+     "href": "courses/01-the-ask-behind-the-dashboard.html"
+    }
+   ]
+  },
+  {
+   "label": "User stories:\nwho, what, why",
+   "href": "courses/02-user-stories-who-what-why.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "Role, want, reason",
+     "href": "courses/02-user-stories-who-what-why.html"
+    },
+    {
+     "label": "INVEST and splitting",
+     "href": "courses/02-user-stories-who-what-why.html"
+    },
+    {
+     "label": "Stories or job stories",
+     "href": "courses/02-user-stories-who-what-why.html"
+    }
+   ]
+  },
+  {
+   "label": "Acceptance criteria\na builder can test",
+   "href": "courses/03-acceptance-criteria-a-builder-can-test.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Given, When, Then",
+     "href": "courses/03-acceptance-criteria-a-builder-can-test.html"
+    },
+    {
+     "label": "Freshness and access",
+     "href": "courses/03-acceptance-criteria-a-builder-can-test.html"
+    },
+    {
+     "label": "Definition of done",
+     "href": "courses/03-acceptance-criteria-a-builder-can-test.html"
+    }
+   ]
+  },
+  {
+   "label": "The spec\nchecker",
+   "href": "courses/04-the-spec-checker.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "14 rules, 14 questions",
+     "href": "courses/04-the-spec-checker.html"
+    },
+    {
+     "label": "Real-story base rates",
+     "href": "courses/04-the-spec-checker.html"
+    },
+    {
+     "label": "More words, more questions",
+     "href": "courses/04-the-spec-checker.html"
+    }
+   ]
+  },
+  {
+   "label": "Metric definitions,\ngrain, freshness",
+   "href": "courses/05-metric-definitions-grain-freshness.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Numerator, denominator",
+     "href": "courses/05-metric-definitions-grain-freshness.html"
+    },
+    {
+     "label": "Same name, two numbers",
+     "href": "courses/05-metric-definitions-grain-freshness.html"
+    },
+    {
+     "label": "Source and owner",
+     "href": "courses/05-metric-definitions-grain-freshness.html"
+    }
+   ]
+  },
+  {
+   "label": "The one-page spec\nand sign-off",
+   "href": "courses/06-the-one-page-spec-and-sign-off.html",
+   "color": "#F87171",
+   "concepts": [
+    {
+     "label": "The one-page template",
+     "href": "courses/06-the-one-page-spec-and-sign-off.html"
+    },
+    {
+     "label": "Who signs, when",
+     "href": "courses/06-the-one-page-spec-and-sign-off.html"
+    },
+    {
+     "label": "What forces a re-sign",
+     "href": "courses/06-the-one-page-spec-and-sign-off.html"
+    }
+   ]
+  }
+ ]
+};
+</script>
+<script src="assets/mindmap.js?v=1"></script>
+<script src="assets/app.js?v=1"></script>
+</body>
+</html>

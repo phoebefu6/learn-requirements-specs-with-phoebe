@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 5 of 6. A metric definition has five parts. See how one table and one week give four different no-show rates, pin the grain, freshness, source and owner to the decision, and define the constructed Saffrondale no-show rate so two analysts get one number.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The data side: metric definitions, grain, freshness, sources - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 5 of 6. Numerator, denominator, filters, time window and grain; same name, two numbers; freshness, source, owner and data cards.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/05-metric-definitions-grain-freshness.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The data side: metric definitions, grain, freshness, sources - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 5 of 6. One name, one number: define the metric so two analysts agree.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 5 · The data side: metric definitions, grain, freshness, sources - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 5 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 5 of 6</div>
+    <h1>The data side: <span class="accent">one name, one number</span></h1>
+    <p class="sub">"No-show rate" sounds like one number. Hand the same table to two analysts and you can get two, or four, and every one of them is correct by its own reading. Tonight we take the metric apart into five parts, watch one week of constructed appointments produce four different rates, and then pin down the rest of the data side: one row per what, how old the data may be, which table it comes from and who answers when it looks wrong. By the end, the Constructed Saffrondale example drops from 4 open questions to 1.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Stretch</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the spec</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Definition, two numbers, the data path</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: define the rate</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">After session 3, the constructed Saffrondale spec has a decision, three stories and criteria a builder can test. The checker still finds 4 open questions, and every one of them is about the data: the metric is named but not defined, nobody has said one row per what, nobody has named the table or its owner, and nobody has signed. Data questions are the ones builders guess most quietly, because a reasonable default always exists. Tonight we write the answers down.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A six-line metric block for the constructed Saffrondale no-show rate that takes the checker from 4 open questions to 1; the five parts of any metric definition; the habit of deriving grain and freshness from the decision instead of from the database; and a named owner for the data, so a wrong number has somewhere to go.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the metric definition</span>
+      <h2>A metric definition has five parts</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A metric name is a label. A metric definition is a recipe: what you count, what you divide by, which records are in scope at all, over what stretch of time, and at what level of detail each row sits. Leave out any one of the five and the builder fills it in with a default. Here is the no-show rate from the constructed Saffrondale example, with every part named.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The constructed Saffrondale no-show rate written as a fraction. Numerator: booked appointments with status no-show. Denominator: booked appointments not cancelled 24 hours or more ahead, highlighted as the side where analysts split. A bracket says both sides share one filter, one window and one grain. Below, three limits: filters, booked appointments in all 6 clinics; time window, Monday to Sunday; grain, one row per clinic and appointment date.">
+        <defs>
+          <filter id="s5aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="51" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s5aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s5aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s5aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s5aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s5aB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s5aV { font: 800 18px Inter, sans-serif; fill: #3D000E; }
+          .s5aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s5aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s5aH" x="30" y="26">ANATOMY OF A METRIC DEFINITION</text>
+        <text class="s5aS" x="270" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s5aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="230" y="58" width="420" height="52" rx="10" transform="rotate(-0.5 440 84)" fill="#FFFFFF"/>
+          <path d="M226 126 L654 126" stroke-width="3"/>
+          <rect x="230" y="142" width="420" height="52" rx="10" transform="rotate(0.5 440 168)" fill="#F5C518"/>
+          <path d="M668 60 q10 0 10 10 L678 182 q0 10 -10 10"/>
+          <path d="M678 126 L688 126"/>
+          <rect x="30" y="250" width="250" height="52" rx="10" transform="rotate(-0.6 155 276)" fill="#FBEEF1"/>
+          <rect x="315" y="250" width="250" height="52" rx="10" transform="rotate(0.5 440 276)" fill="#FBEEF1"/>
+          <rect x="600" y="250" width="250" height="52" rx="10" transform="rotate(-0.4 725 276)" fill="#FBEEF1"/>
+        </g>
+
+        <text class="s5aV" x="40" y="132">No-show rate</text>
+        <text class="s5aV" x="188" y="132">=</text>
+
+        <text class="s5aH" x="440" y="80" text-anchor="middle">1 · Numerator</text>
+        <text class="s5aL" x="440" y="99" text-anchor="middle">booked appointments with status "no-show"</text>
+        <text class="s5aH" x="440" y="164" text-anchor="middle">2 · Denominator</text>
+        <text class="s5aL" x="440" y="183" text-anchor="middle">booked, not cancelled 24 hours or more ahead</text>
+
+        <text class="s5aA" x="696" y="114">Both sides share</text>
+        <text class="s5aS" x="696" y="130">one scope, one window,</text>
+        <text class="s5aS" x="696" y="146">one grain</text>
+
+        <text class="s5aB" x="440" y="214" text-anchor="middle">the side analysts split on (Part 2)</text>
+        <text class="s5aA" x="30" y="240">THE THREE LIMITS ON EVERY COUNT</text>
+
+        <text class="s5aH" x="155" y="272" text-anchor="middle">3 · Filters</text>
+        <text class="s5aS" x="155" y="290" text-anchor="middle">booked appointments, all 6 clinics</text>
+        <text class="s5aH" x="440" y="272" text-anchor="middle">4 · Time window</text>
+        <text class="s5aS" x="440" y="290" text-anchor="middle">Monday to Sunday, last full week</text>
+        <text class="s5aH" x="725" y="272" text-anchor="middle">5 · Grain (one row per)</text>
+        <text class="s5aS" x="725" y="290" text-anchor="middle">clinic and appointment date</text>
+
+        <text class="s5aN" x="30" y="326">Name all five and two analysts compute the same number. Skip one and each picks a default.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a metric is a fraction plus three limits; the denominator is where readings split</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Numerator, denominator, filters, time window, grain<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Numerator.</strong> What you count. For the constructed Saffrondale rate: booked appointments whose status is "no-show". Name the status value as it appears in the source, not a paraphrase of it.</p>
+        <p><strong>Denominator.</strong> What you divide by. This is the part most often left implicit, and the part Part 2 shows splitting. Saffrondale's signed version (constructed): booked appointments not cancelled 24 hours or more before the start time. A slot cancelled a week ahead could be rebooked, so it never had the chance to become a no-show.</p>
+        <p><strong>Filters.</strong> Which records are in scope at all: which clinics, which appointment types, whether test bookings or staff bookings are excluded. A filter you do not write down is a filter the builder will invent, or forget.</p>
+        <p><strong>Time window.</strong> Which stretch of time one value of the rate covers. The decision is made each Monday about the coming week, so the window is the last full week, Monday to Sunday, by appointment date (not booking date: write that down too).</p>
+        <p><strong>Grain.</strong> What one row stands for before anything is added up: one row per clinic per appointment date. The weekly rate is then a rollup of seven daily rows per clinic, and a monthly comparison is a rollup of the same rows. Pick the finest grain the decision needs, and coarser views come for free.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>One format: the dbt Semantic Layer ratio metric<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Builders often write metric definitions down in code, and the requester's plain-language definition should map onto that code line by line. One widely used format is the dbt Semantic Layer. Its metrics overview lists the fields a metric carries: a name and a type (both required), plus a description, a label, a config and a filter. The types are simple, ratio, cumulative, derived and conversion.</p>
+        <p>A rate like the no-show rate is a <strong>ratio</strong> metric, and a ratio metric requires both a numerator and a denominator. The documentation draws a distinction worth stealing for any spec: a filter at the top level of the metric applies to both sides, while a filter inside the numerator or the denominator applies to that side only. "Exclude appointments cancelled 24 hours or more ahead" is a filter on the denominator side in Saffrondale's constructed definition; "all 6 clinics" is a top-level filter.</p>
+        <p>Grain works in two layers there too: the native time grain is set on the time dimension column, and the rollup grain (day, week, month) is chosen when someone queries the metric. That matches the advice above: specify the finest grain the decision needs in the spec, and let weekly and monthly views be rollups.</p>
+        <p>This is one way to write a metric down, not the way, and your team's tool may differ. Building a semantic layer is taught in <a href="https://phoebefu6.github.io/learn-analytics-engineering-with-phoebe/courses/b8-marts-and-questions.html">Analytics Engineering, session b8</a>; how one metric decomposes into a tree of drivers is in <a href="https://phoebefu6.github.io/learn-data-literacy-with-phoebe/courses/04-metrics-and-kpi-trees.html">Data Literacy, session 4</a>. The requester's job is the plain-language version; the builder's job is the code that matches it.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A metric format that refuses a half-defined ratio.</strong> In the dbt Semantic Layer (dbt Labs, Metrics overview), a metric of type ratio requires a numerator and a denominator before it is valid. The tool will not accept "no-show rate" without saying what is divided by what. A requirements spec has no such guard, which is why the checker's "Metric named but not defined" rule, a lab-only rule modelled on that ratio metric, asks the same question: a count of what, divided by a count of what?</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers "same name, two numbers"</span>
+      <h2>Same name, two numbers</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Here is one clinic-week, constructed for this session with invented counts: 400 booked appointments. 40 were cancelled 24 hours or more before the start, 12 were cancelled less than 24 hours before, 38 were no-shows and 310 attended. Two analysts are asked for "the no-show rate". Neither makes a mistake. Watch where they split.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Constructed counts for one clinic-week: 400 booked appointments split into 40 early cancellations, 12 late cancellations, 38 no-shows and 310 attended. Four readings of the no-show rate. Analyst A: 38 over all 400, 9.5 percent. Analyst B: 38 over attended plus no-shows, 348, 10.9 percent. The signed spec: 38 over 360, everything except early cancellations, 10.6 percent. Late as no-show: 50 over 360, 13.9 percent.">
+        <defs>
+          <filter id="s5bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="52" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s5bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s5bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s5bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s5bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s5bV { font: 800 17px Inter, sans-serif; fill: #3D000E; }
+          .s5bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s5bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s5bH" x="30" y="26">ONE CLINIC-WEEK, 400 BOOKED, FOUR NO-SHOW RATES</text>
+        <text class="s5bS" x="400" y="26">constructed counts</text>
+
+        <g filter="url(#s5bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="200" y="50" width="105" height="56" rx="6" fill="#FFFFFF"/>
+          <rect x="305" y="50" width="105" height="56" rx="6" fill="#FBEEF1"/>
+          <rect x="410" y="50" width="105" height="56" rx="6" fill="#F5C518"/>
+          <rect x="515" y="50" width="225" height="56" rx="6" fill="#FFFFFF"/>
+
+          <rect x="412" y="167" width="101" height="10" rx="3" fill="#F5C518"/>
+          <path d="M202 185 L202 191 L738 191 L738 185"/>
+
+          <rect x="412" y="217" width="101" height="10" rx="3" fill="#F5C518"/>
+          <path d="M412 235 L412 241 L738 241 L738 235"/>
+
+          <rect x="24" y="263" width="168" height="40" rx="8" transform="rotate(-0.6 108 283)" fill="#610017"/>
+          <rect x="412" y="267" width="101" height="10" rx="3" fill="#F5C518"/>
+          <path d="M307 285 L307 291 L738 291 L738 285"/>
+
+          <rect x="307" y="317" width="206" height="10" rx="3" fill="#F5C518"/>
+          <path d="M307 335 L307 341 L738 341 L738 335"/>
+        </g>
+
+        <text class="s5bV" x="252" y="76" text-anchor="middle">40</text>
+        <text class="s5bS" x="252" y="96" text-anchor="middle">early cancel</text>
+        <text class="s5bV" x="357" y="76" text-anchor="middle">12</text>
+        <text class="s5bS" x="357" y="96" text-anchor="middle">late cancel</text>
+        <text class="s5bV" x="462" y="76" text-anchor="middle">38</text>
+        <text class="s5bL" x="462" y="96" text-anchor="middle">no-show</text>
+        <text class="s5bV" x="627" y="76" text-anchor="middle">310</text>
+        <text class="s5bS" x="627" y="96" text-anchor="middle">attended</text>
+
+        <text class="s5bN" x="200" y="126">early = cancelled 24 hours or more ahead · late = under 24 hours · not to scale</text>
+        <text class="s5bA" x="200" y="152">yellow strip = numerator · bracket = denominator</text>
+
+        <text class="s5bH" x="30" y="183">A · Analyst A</text>
+        <text class="s5bS" x="30" y="198">38 / 400, all booked</text>
+        <text class="s5bV" x="770" y="190">9.5%</text>
+
+        <text class="s5bH" x="30" y="233">B · Analyst B</text>
+        <text class="s5bS" x="30" y="248">38 / 348, showed or no-show</text>
+        <text class="s5bV" x="770" y="240">10.9%</text>
+
+        <text class="s5bW" x="36" y="281">C · The signed spec</text>
+        <text class="s5bW" x="36" y="296">38 / 360</text>
+        <text class="s5bV" x="770" y="290">10.6%</text>
+
+        <text class="s5bH" x="30" y="333">D · Late as no-show</text>
+        <text class="s5bS" x="30" y="348">50 / 360</text>
+        <text class="s5bV" x="770" y="340">13.9%</text>
+
+        <text class="s5bN" x="30" y="378">Same table, same week, same name. The denominator and the numerator decide; the data does not.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - four honest readings of one week, from 9.5% to 13.9%; only a written definition picks one</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Where the numbers split<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Work the four readings through (all counts constructed):</p>
+        <table class="clean">
+          <tr><th>Reading</th><th>Numerator</th><th>Denominator</th><th>Rate</th></tr>
+          <tr><td>A · Analyst A</td><td>38 no-shows</td><td>400, all booked</td><td>9.5%</td></tr>
+          <tr><td>B · Analyst B</td><td>38 no-shows</td><td>348, attended plus no-shows</td><td>10.9%</td></tr>
+          <tr><td>C · The signed definition</td><td>38 no-shows</td><td>360, booked minus early cancellations</td><td>10.6%</td></tr>
+          <tr><td>D · Late cancellations count as no-shows</td><td>50, no-shows plus late cancellations</td><td>360</td><td>13.9%</td></tr>
+        </table>
+        <p>Each split is a question a builder would otherwise guess:</p>
+        <p><strong>Does a cancellation leave the denominator?</strong> Analyst A says no, every booking counts. Analyst B says every cancellation leaves. The signed definition says only cancellations made 24 hours or more ahead leave, because those slots could still be refilled.</p>
+        <p><strong>Is a late cancellation a kind of no-show?</strong> For an operations lead whose slot sat empty, a cancellation an hour before the start feels exactly like a no-show. Reading D counts it that way. That is a legitimate choice, and it moves the number by more than three points.</p>
+        <p><strong>What is the cut-off?</strong> "24 hours" is a choice too. Change it to 48 and the early and late piles change size.</p>
+        <p>None of these is a data question. They are business choices about what the decision needs, which is why the requester has to make them, in writing.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Pin it in the spec, not in the SQL<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Every one of the four readings ends up in a query somewhere. If the spec is silent, the definition lives only in that query, written by whichever builder got there first, and it is visible only to people who can read it. The next analyst asked for "the no-show rate" writes a second query, and the organisation now has two numbers with one name.</p>
+        <p>Writing the definition into the spec in plain language does three things. The requester can read it and say "yes, that is what I mean". Every builder implements the same recipe. And when someone quotes 13.9% in a meeting and someone else quotes 10.6%, there is a document that says which one is the agreed no-show rate, and what the other one is.</p>
+        <p>A practical test: read the definition aloud and ask a colleague to compute it by hand on a small set of made-up rows, as you will in the build-along. If they need to ask you anything, the definition is not finished.</p>
+        <p>If the organisation genuinely needs two readings (an operations view that counts late cancellations, and a reporting view that does not), give them two names. "No-show rate" and "empty-slot rate" can both exist; two "no-show rates" cannot.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Comparisons only mean something when the definitions match.</strong> A systematic review of 105 studies (Dantas, Fleck, Cyrino Oliveira and Hamacher, Health Policy, 2018) put the average no-show rate "of the order of 23%", from 43.0% in Africa to 13.2% in Oceania. The abstract does not say how each study defined a no-show, so we cannot tell how much of that spread is behaviour and how much is definition. That is exactly the reason to write yours down: if Saffrondale's constructed rate is ever set beside a published one, the first question will be "counted how?", and the spec should already answer it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers grain, freshness, source, owner and data cards</span>
+      <h2>Grain, freshness, source, owner</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The definition says what the number is. Four more lines say where it comes from and when it can be trusted: one row per what, how old the data may be when someone acts on it, which table it is read from, and which person answers when it looks wrong. None of them should be chosen by looking at the database. All of them follow from the decision statement written in session 1.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The constructed Saffrondale data path in four hops with the freshness clock at each: the booking system's appointments table, updated live all day, owned by the head of patient access; a nightly extract, overnight; loaded by 06:00 each weekday with data to the end of the previous day, highlighted; and the Monday screen where the ops lead decides calls before they start.">
+        <defs>
+          <filter id="s5cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s5cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s5cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s5cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s5cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5cA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s5cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s5cH" x="30" y="26">FROM THE SOURCE TABLE TO THE MONDAY SCREEN</text>
+        <text class="s5cS" x="350" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s5cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="44" width="250" height="30" rx="15" transform="rotate(-0.6 155 59)" fill="#610017"/>
+          <path d="M120 76 L120 94" marker-end="url(#s5cAr)"/>
+          <rect x="30" y="98" width="180" height="58" rx="10" transform="rotate(-0.6 120 127)" fill="#FBEEF1"/>
+          <rect x="245" y="98" width="180" height="58" rx="10" transform="rotate(0.5 335 127)" fill="#FFFFFF"/>
+          <rect x="460" y="98" width="180" height="58" rx="10" transform="rotate(-0.5 550 127)" fill="#F5C518"/>
+          <rect x="675" y="98" width="180" height="58" rx="10" transform="rotate(0.6 765 127)" fill="#FFFFFF"/>
+          <path d="M212 127 L241 127" marker-end="url(#s5cAr)"/>
+          <path d="M427 127 L456 127" marker-end="url(#s5cAr)"/>
+          <path d="M642 127 L671 127" marker-end="url(#s5cAr)"/>
+          <circle cx="600" cy="62" r="16" fill="#FFFFFF"/>
+          <path d="M600 62 L600 51"/>
+          <path d="M600 62 L608 66"/>
+          <path d="M335 166 L335 176" stroke="#5C474E"/>
+          <path d="M550 166 L550 176" stroke="#5C474E"/>
+          <path d="M765 166 L765 176" stroke="#5C474E"/>
+          <path d="M120 166 L120 176" stroke="#5C474E"/>
+        </g>
+
+        <text class="s5cW" x="155" y="64" text-anchor="middle">Owner: head of patient access</text>
+
+        <text class="s5cH" x="120" y="122" text-anchor="middle">Booking system</text>
+        <text class="s5cS" x="120" y="140" text-anchor="middle">appointments table</text>
+        <text class="s5cH" x="335" y="122" text-anchor="middle">Nightly extract</text>
+        <text class="s5cS" x="335" y="140" text-anchor="middle">copied once a night</text>
+        <text class="s5cH" x="550" y="122" text-anchor="middle">Loaded by 06:00</text>
+        <text class="s5cS" x="550" y="140" text-anchor="middle">data to end of yesterday</text>
+        <text class="s5cH" x="765" y="122" text-anchor="middle">Monday screen</text>
+        <text class="s5cS" x="765" y="140" text-anchor="middle">ops lead decides calls</text>
+
+        <text class="s5cA" x="120" y="192" text-anchor="middle">live, all day</text>
+        <text class="s5cA" x="335" y="192" text-anchor="middle">overnight</text>
+        <text class="s5cA" x="550" y="192" text-anchor="middle">06:00 each weekday</text>
+        <text class="s5cA" x="765" y="192" text-anchor="middle">Monday, before calls</text>
+
+        <text class="s5cN" x="30" y="222">Each hop adds delay. The spec names the deadline at the hop the decision reads from: loaded by 06:00.</text>
+        <text class="s5cN" x="30" y="242">Wrong number? The owner at the source answers, not whoever built the screen.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - freshness is a promise at one hop, set by when the decision is made; the owner sits at the source</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Grain and freshness, from the decision<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Start from the constructed decision statement: each Monday, the clinic operations lead decides which booked patients get a reminder call. Two data answers follow from that sentence alone.</p>
+        <p><strong>Grain.</strong> The decision is weekly and per clinic, but the criteria from session 3 also ask for the same rate for each of the 4 weeks before, and a month-on-month comparison. A weekly grain would serve Monday and fight the monthly view (weeks do not divide into months). So the grain is daily rows per clinic: one row per clinic per appointment date. Weeks and months are rollups of those rows.</p>
+        <p><strong>Freshness.</strong> The lead acts on Monday morning, before calls start, about last week. So last week's data, to the end of Sunday, has to be in place before Monday morning. The spec line is: loaded by 06:00 each weekday, with data to the end of the previous day. "Each weekday" because the receptionist's call list is used on other days too.</p>
+        <p>Notice what is not here: "real-time". Session 2 flagged it as a vague word in the first draft. A Monday decision does not need data from the last minute, and asking for it would cost a streaming pipeline nobody uses. Freshness is a number derived from the decision's cadence, not a wish.</p>
+        <p>One check: the session 3 criterion says data on the page is no older than 24 hours at 07:00 each weekday. A 06:00 load with data to midnight meets it with an hour of slack. The freshness line is the builder's promise; the criterion is how you test it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Source and owner<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Source.</strong> Name the table and how it arrives: the appointments table in the booking system, nightly extract (constructed). Not "the clinic data". There may be three tables with appointments in them (the booking system, the billing system, a spreadsheet a clinic keeps), and they will not agree. The spec picks one.</p>
+        <p><strong>Data owner.</strong> Name the role who answers when the number looks wrong: for the constructed Saffrondale example, the head of patient access, who owns how appointment statuses are recorded. The builder of the dashboard is not the data owner. If a receptionist marks an arrived patient as "no-show" by mistake, the dashboard is correct and the number is wrong, and only the owner of the source can fix it.</p>
+        <p>The checker treats these as one question, "Which table does this come from, and who answers when it looks wrong?", and closes it only when both a Source line and a Data owner line are present. A source with no owner is a number nobody can correct.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Data cards for a model requirement<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The constructed Saffrondale ask still says "maybe a model": the receptionist story wants a list of next week's patients with a high no-show risk. A model adds a requirement a dashboard does not have: the data it learns from shapes what it predicts, and that has to be written down before training, not discovered after.</p>
+        <p>Pushkarna, Zaldivar and Kjartansson (Data Cards, 2022) describe structured summaries of a dataset that cover its upstream sources, its collection and annotation methods, its intended use, and the decisions that affect how a model trained on it performs. Their abstract reports lessons from deploying over 20 Data Cards. The arXiv page says the paper was submitted to FAccT 2022; the published proceedings record is reported, not read.</p>
+        <p>For Saffrondale's constructed model requirement, the spec asks for a data card before any training starts, answering at least:</p>
+        <p><strong>Which appointments?</strong> All 6 clinics, which appointment types, and the same no-show definition as the dashboard (or the model and the dashboard will disagree on what they measure).</p>
+        <p><strong>Which period?</strong> The date range of the training data, and whether it includes any stretch when booking practice changed.</p>
+        <p><strong>Which patients are excluded, and why?</strong> Every exclusion changes who the model can rank, so it is a decision for the requester, not a cleaning step for the builder.</p>
+        <p>Writing the requirements for an AI product in depth is taught in <a href="https://phoebefu6.github.io/learn-ai-pm-with-phoebe/courses/a3-specs-and-accountability.html">AI PM, session a3</a> and <a href="https://phoebefu6.github.io/learn-ai-pm-with-phoebe/courses/b5-the-spec-and-the-scorer.html">session b5</a>.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Upstream sources, written down.</strong> The Data Cards work (Pushkarna, Zaldivar and Kjartansson, arXiv:2204.01075, FAccT 2022 reported) treats the upstream sources of a dataset as a field to document, alongside how it was collected and what it is meant for, drawing on over 20 deployed Data Cards. The checker's "No data source or owner" rule is a lab-only rule built after that upstream-sources field: a number with no recorded origin cannot be checked, and a number nobody owns cannot be fixed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Define the no-show rate so two analysts get one number</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">You will start from the constructed Saffrondale spec as session 3 left it, work the four readings by hand, write six lines, and watch the checker close three of the four remaining questions. Everything runs in this page.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 332" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rung 4 to rung 5 on the checker, constructed Saffrondale example. Four open questions at rung 4 on the left, the spec lines that close them on the right. Metric named but not defined is closed by the Metric and Definition lines. No grain is closed by the Grain line. No data source or owner is closed by the Source and Data owner lines. No decision owner or sign-off stays open, highlighted, for session 6.">
+        <defs>
+          <filter id="s5dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="54" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s5dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s5dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s5dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s5dA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s5dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s5dH" x="30" y="26">RUNG 4 TO RUNG 5: WHICH LINE CLOSES WHICH QUESTION</text>
+        <text class="s5dS" x="420" y="26">Constructed Saffrondale example</text>
+
+        <text class="s5dA" x="40" y="62">RUNG 4 · CRITERIA TESTABLE · 4 OPEN</text>
+        <text class="s5dA" x="500" y="62">RUNG 5 · METRIC DEFINED · 1 OPEN</text>
+
+        <g filter="url(#s5dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="76" width="330" height="46" rx="10" transform="rotate(-0.5 205 99)" fill="#FFFFFF"/>
+          <rect x="40" y="132" width="330" height="46" rx="10" transform="rotate(0.4 205 155)" fill="#FFFFFF"/>
+          <rect x="40" y="188" width="330" height="46" rx="10" transform="rotate(-0.4 205 211)" fill="#FFFFFF"/>
+          <rect x="40" y="244" width="330" height="46" rx="10" transform="rotate(0.5 205 267)" fill="#F5C518"/>
+          <rect x="500" y="76" width="340" height="46" rx="10" transform="rotate(0.4 670 99)" fill="#FBEEF1"/>
+          <rect x="500" y="132" width="340" height="46" rx="10" transform="rotate(-0.5 670 155)" fill="#FBEEF1"/>
+          <rect x="500" y="188" width="340" height="46" rx="10" transform="rotate(0.4 670 211)" fill="#FBEEF1"/>
+          <rect x="500" y="244" width="340" height="46" rx="10" transform="rotate(-0.4 670 267)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <path d="M496 99 L376 99" marker-end="url(#s5dAr)"/>
+          <path d="M496 155 L376 155" marker-end="url(#s5dAr)"/>
+          <path d="M496 211 L376 211" marker-end="url(#s5dAr)"/>
+        </g>
+
+        <text class="s5dH" x="56" y="96">Metric named but not defined</text>
+        <text class="s5dS" x="56" y="112">a count of what, divided by what?</text>
+        <text class="s5dH" x="56" y="152">No grain</text>
+        <text class="s5dS" x="56" y="168">one row per what?</text>
+        <text class="s5dH" x="56" y="208">No data source or owner</text>
+        <text class="s5dS" x="56" y="224">which table, and who answers?</text>
+        <text class="s5dH" x="56" y="264">No decision owner or sign-off</text>
+        <text class="s5dH" x="56" y="280">still open after tonight</text>
+
+        <text class="s5dH" x="516" y="96">Metric + Definition lines</text>
+        <text class="s5dS" x="516" y="112">no-shows over booked minus early cancels</text>
+        <text class="s5dH" x="516" y="152">Grain line</text>
+        <text class="s5dS" x="516" y="168">one row per clinic per appointment date</text>
+        <text class="s5dH" x="516" y="208">Source + Data owner lines</text>
+        <text class="s5dS" x="516" y="224">booking system extract; head of patient access</text>
+        <text class="s5dH" x="516" y="264">Sign-off: session 6</text>
+        <text class="s5dS" x="516" y="280">a named owner and a dated signature</text>
+
+        <text class="s5dN" x="30" y="316">Freshness already passed at rung 4: the criterion "no older than 24 hours" carries a number.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - six lines close three questions; the last one needs a signature, not more data</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Load where session 3 left off.</strong> The widget below is the session 4 checker with "4 · Criteria testable" loaded: the constructed Saffrondale spec with its decision, three stories and testable criteria. Read the headline: 4 open questions. All four are whole-spec questions: metric named but not defined, no grain, no data source or owner, and no decision owner or sign-off. Freshness is not on the list, because the criterion "no older than 24 hours" already carries a number.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · the four open questions at rung 4</span>Metric named but not defined: a count of what, divided by a count of what?
+No grain: one row, one bar, one dot per what?
+No data source or owner: which table, and who answers when it looks wrong?
+No decision owner or sign-off: who confirms this, and on which date?</div>
+        <div class="rqs-bench" data-preset="criteria" data-mode="mini"></div>
+      </div>
+
+      <div class="step">
+        <p><strong>Work the four readings by hand.</strong> Before writing a definition, feel how far apart honest readings land. Use the constructed clinic-week from Part 2 and compute each rate yourself. This is the constructed example; your own clinic's numbers will differ, and so may the size of the gap.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · one clinic-week, constructed counts</span>Booked: 400 = 40 cancelled 24h+ ahead + 12 cancelled under 24h + 38 no-shows + 310 attended
+
+A  no-shows / all booked                      38 / 400 = 9.5%
+B  no-shows / (attended + no-shows)           38 / 348 = 10.9%
+C  no-shows / (booked - early cancellations)  38 / 360 = 10.6%
+D  (no-shows + late cancels) / same as C      50 / 360 = 13.9%
+
+Which one does the Monday decision need? Write down why.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Write the Metric and Definition lines.</strong> Saffrondale's operations lead (constructed) chooses reading C: slots cancelled a day or more ahead can be rebooked, so they are not lost. Add these two lines to the end of the text in the widget and press "Check my text". The count drops from 4 to 3: "Metric named but not defined" is gone. Now try it with only the first line, "Metric: no-show rate", and no Definition line: the question comes back, and the count is 4 again. A name is not a definition. The rule is satisfied by a Definition line, or by a Numerator line and a Denominator line together.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · the metric, defined</span>Metric: no-show rate
+Definition: booked appointments with status "no-show", divided by all booked appointments not cancelled 24 hours or more before the start time.</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Write the four data lines.</strong> Grain and freshness come from the decision (Part 3); source and owner come from asking who records appointment statuses. Add these four lines below the two from step 3 and check again. The grain line closes "No grain"; the Source and Data owner lines together close "No data source or owner". Delete the Data owner line and check: the source question comes back, because a source with no owner is still open.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · grain, freshness, source, owner</span>Grain: one row per clinic per appointment date
+Freshness: loaded by 06:00 each weekday, with data to the end of the previous day
+Source: appointments table in the booking system, nightly extract
+Data owner: head of patient access</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Compare with rung 5.</strong> Click the preset "5 · Metric defined". It is the constructed Saffrondale spec with exactly your six lines added, and the widget prints 1 open question: "No decision owner or sign-off". Nothing more about the data will close it. Somebody has to say "this is what I asked for" on a date, and session 6 is where that happens.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · the metric block, as it now sits in the spec (constructed)</span>Metric: no-show rate
+Definition: booked appointments with status "no-show", divided by all booked appointments not cancelled 24 hours or more before the start time.
+Grain: one row per clinic per appointment date
+Freshness: loaded by 06:00 each weekday, with data to the end of the previous day
+Source: appointments table in the booking system, nightly extract
+Data owner: head of patient access
+
+Open questions: 1 (No decision owner or sign-off) - session 6</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Hand the definition to a second person.</strong> Give the Definition line and the four constructed counts from step 2 to a colleague who was not in the room, and ask for the rate. If they get 10.6% without asking you a question, the definition is finished. If they ask "do late cancellations count?", the line needs another clause.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 6</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Take one rate you report or receive</strong> (a churn rate, a conversion rate, a utilisation rate). Write its five parts: numerator, denominator, filters, time window, grain. Mark every part you had to guess.</li>
+      <li><strong>Find a second reading.</strong> For the same rate, write one other honest denominator someone could choose, and compute both on a small set of numbers you make up. How far apart are they?</li>
+      <li><strong>Derive freshness from the decision.</strong> For that rate, write the decision it serves and when it is made, then the freshness line that follows. Is the current refresh faster or slower than the decision needs?</li>
+      <li><strong>Name the data owner.</strong> Find out who answers when that number looks wrong at the source, not on the dashboard. If nobody does, write that down as an open question for session 6's sign-off.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 5 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · In the constructed clinic-week, analyst A gets 9.5% and analyst B gets 10.9% from the same table. Which choice splits them?</p>
+      <button class="qopt" type="button">A · They counted the no-shows differently</button>
+      <button class="qopt" type="button">B · One of them used the wrong week</button>
+      <button class="qopt" type="button">C · The denominator: A divides by all 400 booked, B divides by the 348 who attended or did not show, dropping every cancellation</button>
+      <button class="qopt" type="button">D · One of them made an arithmetic mistake</button>
+      <p class="qwhy">Both use the same 38 no-shows and the same week, and both divisions are correct. The split is the denominator: whether cancellations leave it, and which ones. Only a written definition decides that.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · Why is the constructed Saffrondale freshness line "loaded by 06:00 each weekday" rather than "real-time"?</p>
+      <button class="qopt" type="button">A · Because real-time data is always less accurate</button>
+      <button class="qopt" type="button">B · Because the booking system cannot export more often</button>
+      <button class="qopt" type="button">C · Because dashboards should never refresh during the day</button>
+      <button class="qopt" type="button">D · Because freshness follows from the decision's cadence: the lead decides on Monday morning about last week, so data to the end of the previous day, loaded before the working day, is enough</button>
+      <p class="qwhy">Freshness is derived from when someone acts on the data, not from what the pipeline could do. "Real-time" is a vague word in a spec, and for a Monday decision it buys cost without changing anything anyone does.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">3 · The constructed Saffrondale spec still says "maybe a model". What does asking for a data card before training add to that requirement?</p>
+      <button class="qopt" type="button">A · It makes the model more accurate</button>
+      <button class="qopt" type="button">B · It records which appointments, which period and which patients are excluded, so the choices that shape what the model learns are made by the requester and written down before training</button>
+      <button class="qopt" type="button">C · It replaces the need for acceptance criteria on the model</button>
+      <button class="qopt" type="button">D · It is a legal requirement for every model</button>
+      <p class="qwhy">Data Cards (Pushkarna, Zaldivar and Kjartansson, 2022) summarise upstream sources, collection methods, intended use and the decisions that affect model performance. In a spec, that turns hidden data-cleaning choices into visible requirements; it does not by itself make a model better.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Metric fields and the ratio metric</span><span class="note">dbt Labs, Metrics overview, dbt Semantic Layer, docs.getdbt.com; read at source (fields, five types, numerator and denominator, filter scope, time grain); cited as one format, not taught</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Data Cards</span><span class="note">Pushkarna, Zaldivar, Kjartansson (2022), Data Cards, arXiv:2204.01075; abstract read at source (upstream sources, collection, intended use, over 20 deployed)</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Data Cards venue</span><span class="note">FAccT 2022: the arXiv page says submitted to FAccT 2022; the published proceedings record is reported</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">No-show rates across studies</span><span class="note">Dantas, Fleck, Cyrino Oliveira, Hamacher (2018), Health Policy 122(4), 412-421; abstract read at source (105 studies, of the order of 23%, Africa 43.0%, Oceania 13.2%); the abstract does not discuss definitions</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The two-analyst numbers</span><span class="note">Constructed: invented counts for one clinic-week (400 booked), worked to 9.5%, 10.9%, 10.6% and 13.9%</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale Clinics</span><span class="note">Constructed example; the metric block is preset 5 on the session 4 checker, which prints 1 open question</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 5 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Five parts</b><span>Numerator, denominator, filters, time window, grain. Skip one and the builder picks a default.</span></div>
+      <div class="cheat-item"><b>Watch the denominator</b><span>Same table, same week: 9.5% to 13.9% in the constructed example, all from denominator and numerator choices.</span></div>
+      <div class="cheat-item"><b>A name is not a definition</b><span>"Metric: no-show rate" alone leaves the question open. Write a Definition, or a Numerator and a Denominator.</span></div>
+      <div class="cheat-item"><b>Grain from the decision</b><span>The finest level the decision needs; weeks and months are rollups of it.</span></div>
+      <div class="cheat-item"><b>Freshness from the cadence</b><span>When does someone act? Set the deadline at that hop, with a number. Never "real-time".</span></div>
+      <div class="cheat-item"><b>Source plus owner</b><span>One named table and one named person who answers when it looks wrong. A model adds a data card before training.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The data side is pinned down, and one question is left: who confirms this is what they asked for? Session 6 assembles the constructed Saffrondale one-page spec, gets it signed by the decision owner on a date, and sets the rule for which changes force a new signature. The capstone runs the signed spec through the checker at 0, then pads it and watches the count climb back.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 5 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="04-the-spec-checker.html">← Prev: The bench: spec checker</a> &nbsp;·&nbsp; <a href="06-the-one-page-spec-and-sign-off.html">Next: The one-page spec, sign-off and change control →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

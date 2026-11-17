@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 1 of 6. Every data product serves a decision. Find the decision behind a one-line ask, see what a guessed requirement costs, and turn the constructed Saffrondale Clinics ask into a decision statement a builder can work from.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The ask behind the dashboard - learn requirements specs with phoebe">
+<meta property="og:description" content="Session 1 of 6. The decision behind the ask, the cost of a guessed requirement, and a one-sentence decision statement.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/courses/01-the-ask-behind-the-dashboard.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The ask behind the dashboard - learn requirements specs with phoebe">
+<meta name="twitter:description" content="Session 1 of 6. The decision behind the ask, and what a guessed requirement costs.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-requirements-specs-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 1 · The ask behind the dashboard - learn requirements specs with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-requirements-specs-with-phoebe</a> / Session 1 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Requirements &amp; Specs with Phoebe · Session 1 of 6</div>
+    <h1>The ask behind <span class="accent">"a dashboard, and maybe a model"</span></h1>
+    <p class="sub">Nobody wants a dashboard. They want to decide something on Monday morning with less guessing than last Monday. Tonight we find the decision hiding inside a one-line ask, count what it costs when a builder has to guess a requirement instead of asking, and write the one sentence every later part of a spec hangs from. The ask comes from Saffrondale Clinics, a constructed network of six outpatient clinics, and it is the kind of ask every analyst has received: "a no-show dashboard, and maybe a model".</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Foundations</span>
+      <span class="chip audience">Managers, analysts, ops and product leads who ask for data products</span>
+      <span class="chip audience">Builders who receive the ask</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Decisions, guesses, the statement</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: ask to decision</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">A spec is finished when the builder has no questions left. Two questions run through all six sessions: how many questions would a builder have to ask before starting, and which of them would they quietly guess instead? We carry one running case the whole way, the Constructed Saffrondale example: six outpatient clinics, an operations director who wants fewer empty appointment slots, and a one-line message to the data team. Each session adds one piece to Saffrondale's one-page spec, and session 4's spec checker counts the open questions at every step.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself, in the page</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A one-sentence decision statement for Saffrondale's ask, checked by a real rule engine; the habit of asking "what will someone decide differently?" before "what should it look like?"; and a list of the open questions still in the ask, each tagged with the session that closes it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the decision a data product serves</span>
+      <h2>Every data product serves a decision</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A dashboard, a metric, a model and a pipeline are all means. Each one exists so that somebody, at some moment, makes a choice with better information than they had before. When the ask names the means and not the choice, the builder has to reconstruct the choice from scraps, and two builders will reconstruct two different ones. Follow the chain from the ask to the outcome and notice where the builder actually learns what to build.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A chain of five boxes from the ask to the outcome, for the constructed Saffrondale example: the ask, a no-show dashboard; the decision, which patients get a call; the actor, the operations lead each Monday; the action, reminder calls made; the outcome, fewer empty slots. Under each box, what a builder learns from it: from the ask almost nothing, from the decision what to rank, from the actor when and for whom, from the action that the output is a list, from the outcome how to judge it. The decision box is highlighted.">
+        <defs>
+          <filter id="s1aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1aH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s1aL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s1aS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s1aB { font: 800 11px Inter, sans-serif; fill: #6B4E00; }
+          .s1aA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s1aN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s1aH" x="30" y="26">FROM THE ASK TO THE OUTCOME</text>
+        <text class="s1aS" x="254" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s1aSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="23" y="56" width="150" height="66" rx="10" transform="rotate(-0.8 98 89)" fill="#FFFFFF"/>
+          <rect x="194" y="56" width="150" height="66" rx="10" transform="rotate(0.7 269 89)" fill="#F5C518"/>
+          <rect x="365" y="56" width="150" height="66" rx="10" transform="rotate(-0.5 440 89)" fill="#FFFFFF"/>
+          <rect x="536" y="56" width="150" height="66" rx="10" transform="rotate(0.6 611 89)" fill="#FFFFFF"/>
+          <rect x="707" y="56" width="150" height="66" rx="10" transform="rotate(-0.7 782 89)" fill="#FFFFFF"/>
+          <path d="M175 89 L190 89" marker-end="url(#s1aAr)"/>
+          <path d="M346 89 L361 89" marker-end="url(#s1aAr)"/>
+          <path d="M517 89 L532 89" marker-end="url(#s1aAr)"/>
+          <path d="M688 89 L703 89" marker-end="url(#s1aAr)"/>
+          <path d="M98 124 L98 150" stroke-dasharray="4 4"/>
+          <path d="M269 124 L269 150"/>
+          <path d="M440 124 L440 150"/>
+          <path d="M611 124 L611 150"/>
+          <path d="M782 124 L782 150"/>
+          <rect x="31" y="152" width="134" height="32" rx="16" fill="#FFFFFF" stroke-dasharray="4 4"/>
+          <rect x="202" y="152" width="134" height="32" rx="16" fill="#FBEEF1"/>
+          <rect x="373" y="152" width="134" height="32" rx="16" fill="#FBEEF1"/>
+          <rect x="544" y="152" width="134" height="32" rx="16" fill="#FBEEF1"/>
+          <rect x="715" y="152" width="134" height="32" rx="16" fill="#FBEEF1"/>
+        </g>
+
+        <text class="s1aH" x="98" y="83" text-anchor="middle">1 · The ask</text>
+        <text class="s1aS" x="98" y="103" text-anchor="middle">no-show dashboard</text>
+        <text class="s1aH" x="269" y="83" text-anchor="middle">2 · The decision</text>
+        <text class="s1aL" x="269" y="103" text-anchor="middle">who gets a call</text>
+        <text class="s1aH" x="440" y="83" text-anchor="middle">3 · The actor</text>
+        <text class="s1aS" x="440" y="103" text-anchor="middle">ops lead, Mondays</text>
+        <text class="s1aH" x="611" y="83" text-anchor="middle">4 · The action</text>
+        <text class="s1aS" x="611" y="103" text-anchor="middle">reminder calls made</text>
+        <text class="s1aH" x="782" y="83" text-anchor="middle">5 · The outcome</text>
+        <text class="s1aS" x="782" y="103" text-anchor="middle">fewer empty slots</text>
+
+        <text class="s1aS" x="98" y="173" text-anchor="middle">almost nothing</text>
+        <text class="s1aA" x="269" y="173" text-anchor="middle">what to rank</text>
+        <text class="s1aA" x="440" y="173" text-anchor="middle">when, for whom</text>
+        <text class="s1aA" x="611" y="173" text-anchor="middle">a list, not a chart</text>
+        <text class="s1aA" x="782" y="173" text-anchor="middle">how to judge it</text>
+
+        <text class="s1aS" x="30" y="248">what the builder learns from each box</text>
+        <text class="s1aB" x="269" y="210" text-anchor="middle">the box the ask left out</text>
+        <text class="s1aN" x="30" y="276">The ask names the means. Box 2 is what tells a builder what to rank, filter and refresh.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the ask names box 1; the builder needs box 2, and every later box follows from it</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Decision, actor, action: the three things an ask leaves out<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The decision</strong> is a choice between options: which patients get a call, whether to open a Saturday clinic, how many slots to overbook. If you cannot name the options, there is no decision yet, only a wish to look at numbers.</p>
+        <p><strong>The actor</strong> is the person who makes that choice, and the moment they make it. "The clinic operations lead, every Monday at 08:00" tells a builder the grain (weekly), the freshness (Sunday night's data at the latest) and the audience (one person, not a wall screen) before a single metric is named.</p>
+        <p><strong>The action</strong> is what physically happens next: calls placed, a rota changed, a referral sent. It decides the shape of the output. A person who will phone forty patients needs a sorted list with phone numbers, not a trend line.</p>
+        <p>None of the three is a technical question, and none of them needs the requester to know any SQL. They are the questions a requester can answer in two minutes and a builder cannot answer at all.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The job, not the feature (one-card recap)<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Why people ask for features rather than outcomes, and how to dig for the job behind the request, is a whole discipline of its own. It is taught in <a href="https://phoebefu6.github.io/learn-product-thinking-with-phoebe/courses/01-the-job-not-the-feature.html">Product Thinking, session 1</a> and <a href="https://phoebefu6.github.io/learn-product-thinking-with-phoebe/courses/02-what-people-ask-for.html">session 2</a>, and the discovery conversation with a stakeholder is the subject of <a href="https://phoebefu6.github.io/learn-asking-right-questions-as-da-with-phoebe/">Asking the Right Questions as a Data Analyst</a>.</p>
+        <p>These six sessions start one step later: the problem is clear enough to name, and the work is writing it down so that a builder who was not in the room can build it without guessing. If you find you cannot write the decision statement in the build-along below, that is the signal to go back to discovery, not to start building.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Four data products, four decisions<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The same test works for every kind of data product a non-coder asks for:</p>
+        <table class="clean">
+          <tr><th>The ask names</th><th>The decision it might serve (constructed examples)</th><th>What the builder learns</th></tr>
+          <tr><td>A dashboard</td><td>Which clinic gets the extra receptionist hours next month</td><td>Monthly grain, per clinic, compare clinics side by side</td></tr>
+          <tr><td>A metric</td><td>Whether the reminder calls are worth the staff time</td><td>A before-and-after comparison, a defined window, a target</td></tr>
+          <tr><td>A model</td><td>Which booked patients to call first this week</td><td>A ranked list, scored before the call is made, judged on the patients ranked highest</td></tr>
+          <tr><td>A pipeline</td><td>Whether Monday's call list can be trusted at 08:00</td><td>A freshness deadline and an owner to ring when it is late</td></tr>
+        </table>
+        <p>Notice that "maybe a model" in Saffrondale's ask is only answerable once the decision is named. A model that ranks patients by no-show risk serves the "who gets a call" decision; it serves nothing if the decision turns out to be about rotas.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>No-shows are a real decision problem, not a reporting curiosity.</strong> A systematic review of 105 studies across medical specialties (Dantas, Fleck, Cyrino Oliveira and Hamacher, Health Policy, 2018) put the average no-show rate at "of the order of 23%", highest in Africa (43.0%) and lowest in Oceania (13.2%). The determinants it found reported most often were a long lead time between booking and appointment, and a history of earlier no-shows. Both are known at booking time, which is what makes a "who gets a reminder call" decision possible at all; that inference is ours, not the review's.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the cost of a guessed requirement</span>
+      <h2>Guessed, not asked</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Every open question in an ask gets answered by somebody. If the requester answers it in the spec, it costs one sentence. If the builder asks, it costs a message and a wait. If the builder guesses, it costs nothing today and a rebuild later, and nobody finds out which questions were guessed until the demo. That is why counting open questions matters: the guessed ones are invisible.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One open question, what counts as a no-show, takes one of two roads. The upper road: asked, one message and one answer, then built once on the stated definition. The lower road: guessed, nobody is told, built on the guess and it looks finished, then found at review and rebuilt and re-tested. The lower road has three steps and ends in rework.">
+        <defs>
+          <filter id="s1bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1bH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s1bL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s1bS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s1bA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s1bN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s1bH" x="30" y="26">ONE OPEN QUESTION, TWO ROADS</text>
+
+        <g filter="url(#s1bSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="132" width="200" height="76" rx="12" transform="rotate(-1 130 170)" fill="#F5C518"/>
+          <rect x="300" y="56" width="240" height="56" rx="10" transform="rotate(0.6 420 84)" fill="#FFFFFF"/>
+          <rect x="600" y="56" width="250" height="56" rx="10" transform="rotate(-0.6 725 84)" fill="#FBEEF1"/>
+          <rect x="300" y="232" width="170" height="56" rx="10" transform="rotate(-0.6 385 260)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="490" y="232" width="170" height="56" rx="10" transform="rotate(0.6 575 260)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+          <rect x="680" y="232" width="170" height="56" rx="10" transform="rotate(-0.5 765 260)" fill="#FFFFFF"/>
+          <path d="M232 150 C262 150 268 86 296 84" marker-end="url(#s1bAr)"/>
+          <path d="M232 192 C262 192 268 258 296 260" marker-end="url(#s1bAr)"/>
+          <path d="M542 84 L596 84" marker-end="url(#s1bAr)"/>
+          <path d="M472 260 L486 260" marker-end="url(#s1bAr)"/>
+          <path d="M662 260 L676 260" marker-end="url(#s1bAr)"/>
+          <path d="M836 236 q10 -10 4 -22" stroke="#5C474E"/>
+          <path d="M834 212 l7 0 l1 7" stroke="#5C474E"/>
+        </g>
+
+        <text class="s1bH" x="130" y="164" text-anchor="middle">What counts as</text>
+        <text class="s1bH" x="130" y="180" text-anchor="middle">a no-show?</text>
+        <text class="s1bS" x="130" y="198" text-anchor="middle">one open question</text>
+
+        <text class="s1bH" x="420" y="80" text-anchor="middle">Asked</text>
+        <text class="s1bS" x="420" y="98" text-anchor="middle">one message, one answer</text>
+        <text class="s1bH" x="725" y="80" text-anchor="middle">Built once</text>
+        <text class="s1bS" x="725" y="98" text-anchor="middle">on the stated definition</text>
+
+        <text class="s1bH" x="385" y="256" text-anchor="middle">Guessed</text>
+        <text class="s1bS" x="385" y="274" text-anchor="middle">nobody is told</text>
+        <text class="s1bH" x="575" y="256" text-anchor="middle">Built on the guess</text>
+        <text class="s1bS" x="575" y="274" text-anchor="middle">looks finished</text>
+        <text class="s1bH" x="765" y="256" text-anchor="middle">Found at review</text>
+        <text class="s1bS" x="765" y="274" text-anchor="middle">rebuilt, re-tested</text>
+
+        <text class="s1bA" x="300" y="140">visible: it shows up as a message</text>
+        <text class="s1bA" x="300" y="214">invisible until the demo</text>
+        <text class="s1bN" x="30" y="318">Each open question gets answered. The spec decides who answers it: the requester, or the builder's guess.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the asked road is slower today; the guessed road is invisible until review, and then it costs a rebuild</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Why builders guess instead of asking<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Builders are not careless. They guess because asking has visible costs and guessing has none, at least this week. The requester is busy, the deadline is close, the question feels too small to bother anyone with, and the builder has a perfectly reasonable default in mind. "No-show" obviously means the patient did not arrive. Does a patient who cancelled an hour before count? One who arrived forty minutes late and was turned away? A telephone appointment nobody answered?</p>
+        <p>Each of those defaults is reasonable, and two reasonable builders will choose differently. The result is a dashboard that is correct by its own definition and wrong by the requester's, which is the most expensive kind of wrong, because nobody notices until the number is quoted in a meeting.</p>
+        <p>The fix is not "builders should ask more". It is to write the answers down before the work starts, which is what the next five sessions do, one kind of question at a time.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Asked questions are not a failure of the spec<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A spec with zero open questions is the goal at handover, not on day one. The Agile Alliance glossary lists, among the common pitfalls with user stories, assuming that a story's level of detail stays fixed: detail should grow as the story nears implementation. The same glossary entry says plainly that a user story is not a document; it is a placeholder for a conversation.</p>
+        <p>So the honest picture is: early drafts are full of open questions, and that is healthy, because they are visible. The danger is a spec that looks finished, gets handed over, and still contains questions nobody wrote down. Session 4's checker makes this concrete: Saffrondale's one-line ask scores fewer open questions than its first written draft, because a checker can only count what is on the page.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>"What is content?"</strong> When Lucassen, Dalpiaz, van der Werf and Brinkkemper built the Quality User Story framework (Requirements Engineering, 2016), they illustrated each defect with real stories from two Dutch software companies. Their example of an ambiguous story is "As a User, I am able to edit the content that I added to a person's profile page", and the defect they name is a single question: what is content? One word, and every builder who reads it either asks or picks a meaning.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the decision statement</span>
+      <h2>One sentence the rest hangs from</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A decision statement is one sentence with four parts: when the decision is made, who makes it, the choice they make, and the action that follows. It goes at the top of the spec. Every story, criterion and metric that comes later should be traceable to it, and anything that cannot be traced to it is a candidate for cutting.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saffrondale's decision statement split into four parts. Each Monday: when, which sets the refresh. The clinic operations lead: who, who signs in session 6. Decides which booked patients: the choice, which tells the builder what to rank. Get a reminder call: the action, which defines success. Below, a weaker statement, better visibility of no-shows, has no choice word and no owner.">
+        <defs>
+          <filter id="s1cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1cH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s1cL { font: 600 12px Inter, sans-serif; fill: #25141A; }
+          .s1cS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s1cA { font: 700 11px Inter, sans-serif; fill: #610017; }
+          .s1cN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s1cH" x="30" y="26">ANATOMY OF A DECISION STATEMENT</text>
+        <text class="s1cS" x="290" y="26">Constructed Saffrondale example</text>
+
+        <g filter="url(#s1cSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="60" y="54" width="110" height="44" rx="8" transform="rotate(-0.6 115 76)" fill="#FFFFFF"/>
+          <rect x="184" y="54" width="206" height="44" rx="8" transform="rotate(0.5 287 76)" fill="#FFFFFF"/>
+          <rect x="404" y="54" width="228" height="44" rx="8" transform="rotate(-0.5 518 76)" fill="#F5C518"/>
+          <rect x="646" y="54" width="174" height="44" rx="8" transform="rotate(0.6 733 76)" fill="#FFFFFF"/>
+          <path d="M66 108 L66 116 L164 116 L164 108"/>
+          <path d="M190 108 L190 116 L384 116 L384 108"/>
+          <path d="M410 108 L410 116 L626 116 L626 108"/>
+          <path d="M652 108 L652 116 L814 116 L814 108"/>
+          <rect x="60" y="206" width="236" height="40" rx="8" transform="rotate(0.4 178 226)" fill="#FFFFFF" stroke-dasharray="5 4"/>
+        </g>
+
+        <text class="s1cL" x="115" y="81" text-anchor="middle">Each Monday,</text>
+        <text class="s1cL" x="287" y="81" text-anchor="middle">the clinic operations lead</text>
+        <text class="s1cL" x="518" y="81" text-anchor="middle">decides which booked patients</text>
+        <text class="s1cL" x="733" y="81" text-anchor="middle">get a reminder call.</text>
+
+        <text class="s1cA" x="115" y="138" text-anchor="middle">WHEN</text>
+        <text class="s1cA" x="287" y="138" text-anchor="middle">WHO</text>
+        <text class="s1cA" x="518" y="138" text-anchor="middle">THE CHOICE</text>
+        <text class="s1cA" x="733" y="138" text-anchor="middle">THE ACTION</text>
+        <text class="s1cS" x="115" y="158" text-anchor="middle">sets the refresh</text>
+        <text class="s1cS" x="287" y="158" text-anchor="middle">signs the spec (session 6)</text>
+        <text class="s1cS" x="518" y="158" text-anchor="middle">which, whether, how many</text>
+        <text class="s1cS" x="733" y="158" text-anchor="middle">defines success</text>
+        <text class="s1cS" x="518" y="176" text-anchor="middle">tells the builder what to rank</text>
+
+        <text class="s1cL" x="178" y="231" text-anchor="middle">Decision: better visibility</text>
+        <text class="s1cS" x="316" y="231">no choice word, no owner, no moment: a wish, not a decision</text>
+        <text class="s1cN" x="30" y="268">If you cannot fill the yellow box with which, whether or how many, there is no decision yet.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - four parts, and the choice is the one the builder needs most</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The four parts, and the test for each<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>When.</strong> A cadence or a trigger: each Monday, at month end, when a referral arrives. Test: could the builder schedule a refresh from it?</p>
+        <p><strong>Who.</strong> One named role, the person who will use the result and who can say whether the spec is right. Test: could you ask this person to sign the spec? Session 6 does exactly that.</p>
+        <p><strong>The choice.</strong> Contains a choice word: which, whether, when, how many, how much, who. Test: can you list the options? "Which booked patients get a call" has options: every booked patient for next week. "Better visibility" has none.</p>
+        <p><strong>The action.</strong> What happens in the world after the choice. Test: could you check, a month later, whether the action happened? That is where session 3's acceptance criteria and session 5's metric will come from.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What a decision statement is not<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Not a goal.</strong> "Reduce no-shows by a fifth" is a goal. It is useful, and it belongs in the spec, but it does not tell the builder what anyone will do on Monday.</p>
+        <p><strong>Not a metric.</strong> "No-show rate by clinic" is the thing the dashboard might show. Session 5 defines it properly; the decision statement says why anyone needs it.</p>
+        <p><strong>Not a feature.</strong> "A dashboard with a filter by clinic" is a solution. The Quality User Story framework has a criterion for this in stories, Problem-oriented: a story specifies the problem, not the solution. The same discipline applies one level up.</p>
+        <p><strong>Not several decisions at once.</strong> If the honest answer is "the ops lead decides who gets a call, and the finance lead decides the clinic budgets", write two statements. They will have different grains, different freshness and different owners, and probably two specs.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Documentation built around intended use.</strong> Google researchers Pushkarna, Zaldivar and Kjartansson (Data Cards, 2022) describe dataset documentation that records not only upstream sources and collection methods, but the intended use and the decisions that affect how a model performs. Their lessons come from deploying over 20 Data Cards. A decision statement plays the same role for a requested data product: it is the "intended use" field, written before anything is built.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>From one line to a decision statement</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Saffrondale's operations director sent the data team one line (Constructed Saffrondale example). You will run it through the spec checker from session 4, write the decision statement, check again, and leave with the remaining open questions sorted by the session that will close them. Everything runs in this page.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The nine open questions the checker finds in Saffrondale's one-line ask, stacked above the session that closes each. Session 1 closes two: what decision, and whether the model is in or out. Session 2 closes who uses it. Session 3 closes what done means. Session 4 counts all nine. Session 5 closes four: rate of what, per what, how old is acceptable, and whose table. Session 6 closes who signs.">
+        <defs>
+          <filter id="s1dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#610017" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#25141A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1dH { font: 800 12px Inter, sans-serif; fill: #25141A; }
+          .s1dL { font: 600 11px Inter, sans-serif; fill: #25141A; }
+          .s1dS { font: 400 11px Inter, sans-serif; fill: #5C474E; }
+          .s1dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s1dN { font: 400 12px Inter, sans-serif; fill: #5C474E; }
+        </style>
+
+        <text class="s1dH" x="30" y="26">9 OPEN QUESTIONS IN THE ONE-LINE ASK, AND WHERE EACH GETS CLOSED</text>
+
+        <g filter="url(#s1dSk)" fill="none" stroke="#25141A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="177" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="314" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="451" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="588" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="725" y="250" width="125" height="40" rx="10" fill="#610017"/>
+          <rect x="43" y="206" width="119" height="30" rx="15" transform="rotate(-1.5 102 221)" fill="#FFFFFF"/>
+          <rect x="43" y="168" width="119" height="30" rx="15" transform="rotate(1.2 102 183)" fill="#FFFFFF"/>
+          <rect x="180" y="206" width="119" height="30" rx="15" transform="rotate(1 239 221)" fill="#FFFFFF"/>
+          <rect x="317" y="206" width="119" height="30" rx="15" transform="rotate(-1 376 221)" fill="#FFFFFF"/>
+          <rect x="454" y="206" width="119" height="30" rx="15" transform="rotate(0.8 513 221)" fill="#F5C518"/>
+          <rect x="591" y="206" width="119" height="30" rx="15" transform="rotate(-1.2 650 221)" fill="#FFFFFF"/>
+          <rect x="591" y="168" width="119" height="30" rx="15" transform="rotate(1 650 183)" fill="#FFFFFF"/>
+          <rect x="591" y="130" width="119" height="30" rx="15" transform="rotate(-0.8 650 145)" fill="#FFFFFF"/>
+          <rect x="591" y="92" width="119" height="30" rx="15" transform="rotate(1.3 650 107)" fill="#FFFFFF"/>
+          <rect x="728" y="206" width="119" height="30" rx="15" transform="rotate(-1 787 221)" fill="#FFFFFF"/>
+          <path d="M102 160 L102 140" stroke-dasharray="3 4"/>
+          <path d="M96 140 L102 132 L108 140"/>
+        </g>
+
+        <text class="s1dL" x="102" y="225" text-anchor="middle">What decision?</text>
+        <text class="s1dL" x="102" y="187" text-anchor="middle">Model in or out?</text>
+        <text class="s1dS" x="102" y="122" text-anchor="middle">tonight</text>
+        <text class="s1dL" x="239" y="225" text-anchor="middle">Who uses it?</text>
+        <text class="s1dL" x="376" y="225" text-anchor="middle">Done means what?</text>
+        <text class="s1dL" x="513" y="225" text-anchor="middle">all 9, counted</text>
+        <text class="s1dL" x="650" y="225" text-anchor="middle">Rate of what?</text>
+        <text class="s1dL" x="650" y="187" text-anchor="middle">Per what?</text>
+        <text class="s1dL" x="650" y="149" text-anchor="middle">How old is OK?</text>
+        <text class="s1dL" x="650" y="111" text-anchor="middle">Whose table?</text>
+        <text class="s1dL" x="787" y="225" text-anchor="middle">Who signs?</text>
+
+        <text class="s1dW" x="102" y="275" text-anchor="middle">1 · the ask</text>
+        <text class="s1dW" x="239" y="275" text-anchor="middle">2 · stories</text>
+        <text class="s1dW" x="376" y="275" text-anchor="middle">3 · criteria</text>
+        <text class="s1dW" x="513" y="275" text-anchor="middle">4 · the checker</text>
+        <text class="s1dW" x="650" y="275" text-anchor="middle">5 · data side</text>
+        <text class="s1dW" x="787" y="275" text-anchor="middle">6 · sign-off</text>
+        <text class="s1dN" x="30" y="318">Four of the nine sit in session 5: a data product's open questions cluster around the data itself.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - tonight closes two of the nine; the tallest stack is the data side, session 5</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Run the ask through the checker.</strong> The widget below is the real rule engine from session 4. It has loaded "1 · The one-line ask". Read the headline and the nine findings. Each finding is written as the question a builder would have to ask. Notice that eight of the nine are about the spec as a whole ("Whole spec"): the ask is so short that most of what is wrong with it is what is missing.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · the ask, exactly as sent (constructed)</span>Can we get a no-show dashboard for the clinics, and maybe a model?</div>
+        <div class="rqs-bench" data-preset="ask" data-mode="mini"></div>
+      </div>
+
+      <div class="step">
+        <p><strong>Name the actor and the moment.</strong> Who will open the result, and when? For Saffrondale, the operations director confirms it is the clinic operations lead, every Monday morning, before the reminder calls go out. Write it down in plain words before you worry about the sentence.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · actor and moment</span>Who: the clinic operations lead
+When: each Monday morning, before reminder calls start</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Name the choice, with a choice word.</strong> What do they choose between? Not "look at no-shows": which booked patients get a reminder call this week. The choice word is "which", and the options are the booked patients for next week. If you find yourself writing "better visibility" or "insight", stop and ask what the person will do differently.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · the choice</span>The choice: which booked patients get a reminder call
+The options: every patient booked for next week, in all 6 clinics</div>
+      </div>
+
+      <div class="step">
+        <p><strong>Write the decision line and check again.</strong> Paste the two lines below into the checker's text box (replace what is there) and press "Check my text". The "No decision named" finding disappears: the line contains a choice word. Try the weaker version, "Decision: better visibility of no-shows", and watch the finding come back. Then answer the "maybe": Saffrondale decides the model question later, so delete ", and maybe a model" from the first line, and check once more.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · the ask plus a decision statement</span>Can we get a no-show dashboard for the clinics, and maybe a model?
+Decision: Each Monday, the clinic operations lead decides which booked patients get a reminder call.</div>
+        <p>The checker prints 8 open questions for the two lines above, and 7 once the "maybe" is gone. Your own wording may give a different count; what matters is that "No decision named" is no longer on the list.</p>
+      </div>
+
+      <div class="step">
+        <p><strong>Sort what is left.</strong> Copy the seven remaining findings into the spec as an "Open questions" list, each tagged with who must answer it. This is the honest state of Saffrondale's spec after session 1: the decision is clear, and seven questions are known and visible rather than waiting to be guessed.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Saffrondale's one-page spec, version 0.1 (constructed)</span>Saffrondale Clinics no-show dashboard v0.1
+Decision: Each Monday, the clinic operations lead decides which booked patients get a reminder call.
+
+Open questions (owner):
+1. Who uses it, in which part of their job? (ops lead) - session 2
+2. How will we both know it is done? (ops lead + builder) - session 3
+3. No-show rate: a count of what, divided by what? (ops lead) - session 5
+4. One row per what? (builder proposes, ops lead agrees) - session 5
+5. How old may the data be on Monday morning? (ops lead) - session 5
+6. Which table, and who answers when it looks wrong? (data team) - session 5
+7. Who signs, and on which date? (ops director) - session 6</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Read the open-question list aloud to the requester.</strong> It takes two minutes, and it is the fastest way to find out whether you have the right decision. If the requester says "no, it is really about the Saturday clinics", you have lost two minutes, not two weeks.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 2</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find a real ask in your inbox</strong> for a dashboard, report, metric, model or pipeline, sent to you or by you. Write its decision statement in four parts: when, who, the choice, the action. If you cannot fill the choice, write down the question you would need to ask to fill it.</li>
+      <li><strong>Run it through the checker</strong> (session 4, or the widget above). Note the count, and how many of the findings are about the whole spec rather than a line.</li>
+      <li><strong>Find one guessed requirement</strong> in something you shipped or received: a definition, a filter, a refresh time that someone chose without asking. What did it cost when it surfaced?</li>
+      <li><strong>Name the users.</strong> For Saffrondale, list everyone who would open the no-show dashboard or act on its output. Session 2 turns that list into user stories.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 1 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · Which of these is a decision statement a builder can work from?</p>
+      <button class="qopt" type="button">A · "Better visibility of no-shows across all clinics"</button>
+      <button class="qopt" type="button">B · "Each Monday, the clinic operations lead decides which booked patients get a reminder call"</button>
+      <button class="qopt" type="button">C · "A no-show dashboard with a filter by clinic and a trend line"</button>
+      <button class="qopt" type="button">D · "Reduce the no-show rate by a fifth this year"</button>
+      <p class="qwhy">B names when, who, the choice (with a choice word, "which") and the action. A is a wish with no choice, C is a solution, and D is a goal: useful in the spec, but it does not say what anyone will do on Monday.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · Why is a guessed requirement more expensive than an asked one, even though asking takes longer today?</p>
+      <button class="qopt" type="button">A · Because builders are worse at guessing than requesters</button>
+      <button class="qopt" type="button">B · Because a guess is always wrong</button>
+      <button class="qopt" type="button">C · Because asking is free</button>
+      <button class="qopt" type="button">D · Because a guess is invisible: the result looks finished and is correct by its own definition, so the mismatch surfaces only at review or when the number is quoted, and then it costs a rebuild</button>
+      <p class="qwhy">Many guesses are reasonable, and asking does cost a message and a wait. The difference is visibility: an asked question is on the record the moment it is asked; a guessed one is found late, when changing it is most expensive.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Saffrondale's one-line ask scores 9 open questions on the checker; the analyst's first written draft scores 19. What does that tell you?</p>
+      <button class="qopt" type="button">A · Writing the draft made hidden questions visible; the checker can only count what is on the page, so a short ask looks cleaner than it is</button>
+      <button class="qopt" type="button">B · The draft is worse than the ask and should be thrown away</button>
+      <button class="qopt" type="button">C · The checker is broken</button>
+      <button class="qopt" type="button">D · Shorter specs are better specs</button>
+      <p class="qwhy">The count that matters is the one at handover. Early drafts with many visible questions are healthy; session 4 walks the same spec from 19 down to 0, and also shows that padding a spec with words pushes the count back up.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The decision statement</span><span class="note">A working frame for these sessions (when, who, the choice, the action), not a published standard; the checker's "No decision named" rule is labelled lab-only</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">No-shows as a decision problem</span><span class="note">Dantas, Fleck, Cyrino Oliveira, Hamacher (2018), Health Policy 122(4), 412-421; abstract read at source (105 studies, average of the order of 23%, determinants)</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">"What is content?"</span><span class="note">Lucassen, Dalpiaz, van der Werf, Brinkkemper (2016), Requirements Engineering 21, 383-403; Table 2, US6, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Detail grows near implementation</span><span class="note">Agile Alliance glossary, User Stories, common pitfalls; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Intended use in documentation</span><span class="note">Pushkarna, Zaldivar, Kjartansson (2022), Data Cards, arXiv:2204.01075; abstract read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The job behind the ask</span><span class="note">One-card recap; taught in full in Product Thinking sessions 1 and 2</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Saffrondale Clinics</span><span class="note">Constructed example; the ask on this page is preset 1 on the session 4 checker</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 1 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Ask for the decision</b><span>"What will someone decide differently once this exists?" before "What should it look like?"</span></div>
+      <div class="cheat-item"><b>Four parts</b><span>When, who, the choice (which, whether, how many), the action that follows.</span></div>
+      <div class="cheat-item"><b>The choice word test</b><span>No which, whether, when, how many or how much: no decision yet, only a wish.</span></div>
+      <div class="cheat-item"><b>Guessed beats asked, today</b><span>And loses later. A guess is invisible until review; write the answer down instead.</span></div>
+      <div class="cheat-item"><b>Visible questions are healthy</b><span>A draft full of open questions is progress. A spec that hides them is the risk.</span></div>
+      <div class="cheat-item"><b>Open questions list</b><span>Each with an owner. Read it aloud to the requester; two minutes, not two weeks.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The decision is named; now the people. Session 2 writes Saffrondale's user stories: who opens the dashboard, what they want to do and why it matters, checked against INVEST and the Quality User Story criteria, and the honest argument over whether data work needs stories at all.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 1 of 6 · learn-requirements-specs-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="../index.html">← Course home</a> &nbsp;·&nbsp; <a href="02-user-stories-who-what-why.html">Next: User stories that say who, what and why →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/rqs-sample.js?v=2"></script>
+<script src="../assets/rqs-live.js?v=2"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>
